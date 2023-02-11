@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jenway&#39;s Blog</title>
+  
+  <subtitle>You are (not) alone</subtitle>
+  <link href="https://jenway.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://jenway.github.io/"/>
+  <updated>2023-02-11T06:43:12.408Z</updated>
+  <id>https://jenway.github.io/</id>
+  
+  <author>
+    <name>Jenway</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>常见的 (我知道的) GUI 开发框架</title>
+    <link href="https://jenway.github.io/2023/01/28/GUI-guide/"/>
+    <id>https://jenway.github.io/2023/01/28/GUI-guide/</id>
+    <published>2023-01-28T12:21:53.000Z</published>
+    <updated>2023-02-11T06:43:12.408Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><meting-js    server="netease"    type="song"    autoplay="false"    id="509106602"><br></meting-js></p><!-- <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=509106602&auto=0&height=66"></iframe> --><h1 id="图形用户界面-Graphical-User-Interface-GUI"><a href="#图形用户界面-Graphical-User-Interface-GUI" class="headerlink" title="图形用户界面 (Graphical User Interface, GUI)"></a>图形用户界面 (Graphical User Interface, GUI)</h1><blockquote><p>图形用户界面 (Graphical User Interface, GUI), 又称图形用户接口,是一种人与计算机通信的界面显示格式，允许用户使用鼠标等输入设备操纵屏幕上的图标或菜单选项，以选择命令、调用文件、启动程序或执行其它一些日常任务。与通过键盘输入文本或字符命令来完成例行任务的字符界面相比，图形用户界面有许多优点。在图形用户界面，用户看到和操作的都是图形对象，应用的是计算机图形学的技术。</p></blockquote><p>关于 GUI ,度娘百科如是说道。</p><p>做 GUI ，就要借助 GUI 开发框架… 什么,直接调用操作系统原生 API ?额 …</p><p>好像也不是不行?</p><blockquote><p>真的要那样做吗…</p></blockquote><h2 id="从Win32-API-开始说起"><a href="#从Win32-API-开始说起" class="headerlink" title="从Win32 API 开始说起"></a>从Win32 API 开始说起</h2><blockquote><p>那有没有 Win64 API 呢?</p></blockquote><p>并没有。Win32并不是指 32 位 Windows，而是现代 NT 内核 Windows 的统称。</p><p>Windows应用程序编程接口(Windows Application Programming Interface),是 Windows 操作系统提供给应用程序编程的接口。</p><p>Win32 API 并不只是图形接口，实际上 Win32API包含用户界面、Windows环境 (Shell)、用户输入和消息传送、用户输入和消息传送、诊断、图形和多媒体、设备、系统服务、安全和标识、应用程序安装和服务、系统管理员和管理、网络和 Internet等等一系列接口，具体可以在微软官网的<a href="https://learn.microsoft.com/zh-cn/windows/win32/apiindex/windows-api-list">Windows API 索引</a>中找到。</p><p>我并不会用，就不班门弄斧了。</p><p>理论上，直接调用Win32 API是可以制作图形界面的，但是毕竟是底层API,虽然自由，理论上不管什么功能都可以自己手搓，但是也相当麻烦。</p><p>所以，无数的有志程序员先驱们，就将这些 API 不断的抽象封装，让我们可以避免重复造轮子，节省了时间<del>与头发</del></p><h2 id="MFC-x3D-gt-将-Win32-API-以类的形式进行封装"><a href="#MFC-x3D-gt-将-Win32-API-以类的形式进行封装" class="headerlink" title="MFC &#x3D;&gt; 将 Win32 API 以类的形式进行封装"></a>MFC &#x3D;&gt; 将 Win32 API 以类的形式进行封装</h2><p>微软基础类 (Microsoft Foundation Classes , MFC)是一个用于在C++环境下编写应用程序的一个框架和引擎。</p><p>MFC 将大部分Win32 API进行封装，调用一个MFC函数，就相当于调用了很多Win32API。使用方便，但是隐藏了细节。据说，在 MFC 时代 C++ 还处于 发展的早期阶段，总之，MFC算是十分经典<del>老</del>的技术了。</p><p>总之,MFC 体现了它那个时代面向对象的趋势，面向对象和趋势联系在一起，果然很有年代感啊.</p><p>那么，怎么用 MFC 来写图形界面呢?</p><p>额，我也不会，不过似乎可以看看 《深入浅出MFC》 之类的书来试一试。</p><p>引用知乎上的一段话</p><blockquote><p><a href="https://www.zhihu.com/question/60773898/answer/1992193065">MFC最流行的时代是 VC6 时代的 MFC4.2，那个年代大约是 1996年。MFC的最后一个更新版本是 2010 年的 MFC10，至今已经十一年之久。如果你研究 MFC，你可能面对的是 25 年前的代码，以及一个 十一年前微软官方已经停止维护了的 编程框架。如果现在还能问出 MFC 是不是过时了的问题，那么我觉得，您应当确认一下您学的课程究竟是计算机科学史还是计算机科学。</a></p></blockquote><p>顺带一提,写MFC 用C++。</p><h2 id="各种90年代-大概-的-UI技术"><a href="#各种90年代-大概-的-UI技术" class="headerlink" title="各种90年代(大概)的 UI技术"></a>各种90年代(大概)的 UI技术</h2><p>Delphi、WTL、VB、WPF、wxWidgets、Delphi、Qt、GTK、fltk等等，</p><p>不细述了还是，我也不甚了解。</p><h2 id="Windows桌面应用程序开发"><a href="#Windows桌面应用程序开发" class="headerlink" title="Windows桌面应用程序开发"></a>Windows桌面应用程序开发</h2><p>这里说的 Windows 桌面应用程序开发，是特指的微软的技术。</p><p>其核心大概是，额，C#&#x2F;.NET?</p><p>可以看出微软真的一直在下功夫推广 C#。但是貌似，C# 的处境一直挺尴尬的。</p><p>C# 更像Java，而不像C++，而且至少在国内，C# 似乎远远不如 Java 流行，不知道为什么。</p><p>不如说微软公司的处境也一直蛮微妙。</p><p>围绕 C#&#x2F;.NET 框架 ，微软推过Winform、WPF、UWP、silverlight、Xamarin、MAUI、WinUI3、等等等等</p><p>我作为一个小白，实在是连微软的这些技术具体有哪些都搞不清楚。太吉儿多了!!!</p><p>当然了，C++ 微软也是有支持的 比如WinRT(windows runtime) 就用 C++来写。 </p><p>如果想学习微软这一系列新技术的话，额，大概关键词是 WPF、WinUI3、C#、MAUI、.NET 这些吧。</p><p>额，.NET的命名实在是很复杂</p><p>关于微软的技术，我站在一个IT新闻爱好者的角度来看，额，挺有未来的。</p><p>这里引用知乎上看到的一段话。</p><blockquote><p><a href="https://zhuanlan.zhihu.com/p/147499467">“我做了好多年 Silverlight 开发，买了5、6部 Windows Phone 手机，写了几十篇 UWP 文章，根据我丰富的经验，我可以肯定 WinUI 是有未来的。”</a></p></blockquote><p>说绝题外话，笔者初中的时候正值微软强推 UWP，当时就想着以后一定要写个 UWP 应用，如今 2023 年了，我还是没有实现这个愿望。以后一定要试试 WinUI3 (它到时候别凉了就行)</p><p>当然了，C# 和 .NET 肯定是不会凉的，只不过估计过几年微软就又要推过新技术了吧。</p><h1 id="界面描述语言"><a href="#界面描述语言" class="headerlink" title="界面描述语言"></a>界面描述语言</h1><p>以上都是考古&amp;杂谈之类的，我其实也不甚了解。</p><p>现在来谈界面描述，在应用开发中，一个相当有争议性的问题，就是如何描述界面，大体有三种，</p><p>代码直接描述、标记语言(比如WPF的XAML、Qt 的ui文件、Android的xml)、HTML</p><p>当时间来到 WPF 的时代的时候，业界大力的推广界面标记语言，毕竟你不能强制设计师也学习用代码描述界面吧。</p><p>当时间来到诸如 Electron、CEF的时候，业界开始推广用Html来写界面，</p><p>最近在学 Dart ，flutter 中又是用代码来描述的，其实也蛮好用的，除了括号有点多…</p><blockquote><p>有没有图形化手动拖拽的?</p></blockquote><h1 id="部分跨平台开发技术-非基于Web"><a href="#部分跨平台开发技术-非基于Web" class="headerlink" title="部分跨平台开发技术(非基于Web)"></a>部分跨平台开发技术(非基于Web)</h1><p>前面说的大都是 Windows 平台的，但实际上桌面平台还有 Linux 和 Mac OS,关于 Mac开发我不怎么了解，似乎有Objective-c&#x2F;swift cocoa的组合，单说Linux平台上的话有wxWidgets和GTK+什么的，就不细说了。</p><p>Java 似乎也能来写 GUI ，不过似乎已经过时了。</p><h2 id="Qt"><a href="#Qt" class="headerlink" title="Qt"></a>Qt</h2><p>Qt 还是比较活跃的，但它们主要重心貌似还是嵌入式、车载这一方面…</p><p>几乎是C++领域最流行的跨平台桌面端软件开发框架，</p><p>并非调用系统API，也不是借助浏览器渲染HTML,而是自绘引擎</p><p>摘自网络</p><blockquote><p><a href="https://zhuanlan.zhihu.com/p/584899460">也就是说界面上的一个按钮，一个文本框，都是Qt的引擎自己画的，这保证了基于Qt开发的软件界面在不同操作系统上看起来是一模一样的。它提供了大量的与界面无关但与软件开发息息相关的API，比如、网络、文件系统、剪切板等，而且让这些API在不同的操作系统下都有效，这极大的节省了开发人员的时间。</a></p></blockquote><p>顺便一提，WPS就是 Qt 做的。</p><p>除了 C++ ，还有PyQt 可以用 python写。</p><h2 id="GTK"><a href="#GTK" class="headerlink" title="GTK"></a>GTK</h2><p>GTK，也有自绘引擎（Cairo），也提供了大量系统相关的API。</p><p>主要在Linux操作系统领域流行，</p><blockquote><p>另外，由于GTK是C语言开发的，所以开发风格也很C语言化，这对于部分开发者来说可能觉得繁琐。</p></blockquote><h2 id="wxWidgets"><a href="#wxWidgets" class="headerlink" title="wxWidgets"></a>wxWidgets</h2><blockquote><p>wxWidgets是1992年英国的一个大学教授开创的跨平台GUI软件，也非常成熟稳定，商业授权非常友好。它没有自绘引擎，而是对不同平台下的界面API做了整合和封装，这样开发者在Windows下开发的软件看起来就是Windows窗口风格、Linux开发的软件看起来就是Linux窗口风格，这对于某些软件来说，正是他们想要的，但要想搞一些花哨的特效就没那么容易了。它同样也提供了大量的系统相关的API供开发者使用。</p></blockquote><p>　　是C++开发的.</p><h2 id="FLTK"><a href="#FLTK" class="headerlink" title="FLTK"></a>FLTK</h2><blockquote><p>FLTK是1998年创建的跨平台开源GUI框架，历史悠久，商业授权友好，而且C++之父也用它，它非常轻量级，支持静态连接，有自己的自绘引擎，用的是OpenGL，</p></blockquote><h2 id="Swing-x2F-JavaFX"><a href="#Swing-x2F-JavaFX" class="headerlink" title="Swing&#x2F;JavaFX"></a>Swing&#x2F;JavaFX</h2><p>Swing &#x2F;JavaFX 是基于 Java 的技术栈来做桌面应用的，因为要依赖 JVM</p><h2 id="Duilib"><a href="#Duilib" class="headerlink" title="Duilib"></a>Duilib</h2><blockquote><p>是2010年国内一个开发者开发的GUI开发框架，因为底层基于DirectUI开发，所以只支持Windows平台，不支持跨平台，开源协议友好，商用没有任何问题（需要附加Lincence文件），国内有很多大厂基于这个技术做桌面端应用，比如网易、腾讯、百度。</p></blockquote><blockquote><p>这个框架是基于C++开发的，对C++开发者友好。但框架本身还有一些问题，比如对高分屏支持不佳、特殊控件绘制上也有一些小问题，除了界面相关的API外，几乎没有提供系统级的API，作者纯粹是用爱发电来开发这个框架，所以更新不是很及时。</p></blockquote><blockquote><p>相对来说网易基于Duilib开发的分支更完善一些：NIM_Duilib_Framework，添加了高分屏支持、多国语言、整合了多线程处理的支持，但环境搭建相对比较麻烦。如果开发者要用这个框架，一定要用develop分支下的代码，master分支下的代码问题很多，这个框架看上去也是作者一个人努力的成果。</p></blockquote><h1 id="基于-Web-技术的桌面应用开发"><a href="#基于-Web-技术的桌面应用开发" class="headerlink" title="基于 Web 技术的桌面应用开发"></a>基于 Web 技术的桌面应用开发</h1><p>基于Chromium + Node.js。</p><h2 id="NW-js"><a href="#NW-js" class="headerlink" title="NW.js"></a>NW.js</h2><blockquote><p>NW.js最早把Chromium和Node绑定到一起，用前端知识做界面，用Node技术访问操作系统，最早叫node-webkit，在2012年创建。NW.js基于MIT开源，可以无忧使用。</p></blockquote><blockquote><p>微信小程序开发工具好像是用NW.js开发的，英特尔的一些工具也是用NW.js开发的。</p></blockquote><h2 id="Electron"><a href="#Electron" class="headerlink" title="Electron"></a>Electron</h2><blockquote><p>用 Electron 来做桌面程序开发的优势明显，相当于是完全的网页编程，有 Web 开发经验的前端开发上手非常容易。Web 开发生态广泛，开发成本低，可扩展性强，一些流行的前端框架例如 React、Angular、Vue 都可以和 electron 结合进行开发。另外它也具备和 Qt 一样跨平台的优良特性。对性能要求不高的桌面版程序来说，一份代码同时得到网页版和各个平台的桌面版，开发的效率是其他方案无法比的。可以说，这是大部分人看好的趋势。</p></blockquote><p>换句话说就是，浏览器套壳，开发快，所以还蛮火的，现在相当一部分桌面软件都基于 electron。</p><p>比如，网易云音乐…</p><p>但是这玩意的内存占用也很大，什么，你说 VSCode 也用 Electron 但性能还不错? 那是因为它们团队一堆牛人用C++改的..</p><p>其实在 Electron 之前还有个 CEF，这个还需要 C++ ，比如 QQ 音乐就是这样做的，因为底层C++做的缘故，使用起来要比基于Electron 网易云流畅不少。</p><p>当然，Electron 也不一定效率就低，优化的牛逼也是可以的。</p><blockquote><p>网上的说法<br><a href="https://www.zhihu.com/question/510368054/answer/2304076445">Electron面向的开发者是纯前端开发者，会用JavaScript，HTML，CSS，但不会用C++。<br>CEF面向的开发者是会用C++也会用JavaScript，HTML，CSS的开发者。</a></p></blockquote><p>对了，微软的 Edge 团队还推出了类似的 WebView2 技术，额，前景很光明，吧。</p><p>此类的还有 webview&#x2F;TAURI、Sciter等等。</p><p><a href="https://zhuanlan.zhihu.com/p/547806659">话说我这里突然找到一篇很好的文章</a></p><h1 id="即时渲染桌面软件开发框架"><a href="#即时渲染桌面软件开发框架" class="headerlink" title="即时渲染桌面软件开发框架"></a>即时渲染桌面软件开发框架</h1><p>Dear ImGui、Nuklear、 RmIui之类的，似乎在游戏上用的比较多。</p><h1 id="比较新的跨平台开发技术"><a href="#比较新的跨平台开发技术" class="headerlink" title="比较新的跨平台开发技术"></a>比较新的跨平台开发技术</h1><h2 id="Flutter"><a href="#Flutter" class="headerlink" title="Flutter"></a>Flutter</h2><p>Google 出品，用 Dart 语言</p><h2 id="MAUI"><a href="#MAUI" class="headerlink" title="MAUI"></a>MAUI</h2><p>微软出品，基于.NET ，对 C# 用户友好，</p><p>说句题外话，.NET core 是开源的，微软这几年似乎一直在拥抱开源..</p><p>然后这个 MAUI 它就没支持 Linux，好像打算让社区支持?</p><h2 id="Compose-Multiplatform"><a href="#Compose-Multiplatform" class="headerlink" title="Compose Multiplatform"></a>Compose Multiplatform</h2><p>JetBrains搞的跨平台GUI框架，对 Kotlin 语言很友好</p><h1 id="尾声，移动方面的开发，以及网页应用等"><a href="#尾声，移动方面的开发，以及网页应用等" class="headerlink" title="尾声，移动方面的开发，以及网页应用等"></a>尾声，移动方面的开发，以及网页应用等</h1><h2 id="移动开发"><a href="#移动开发" class="headerlink" title="移动开发"></a>移动开发</h2><p>移动方面的原生开发的话，iOS 用Swift，Android 用 Java&#x2F;Kotlin ，</p><p>当然移动端 也有跨平台的需求，主要是跨 iOS 和 Android </p><p>以下摘自<a href="https://book.flutterchina.club/chapter1/mobile_development_intro.html#_1-1-1-%E5%8E%9F%E7%94%9F%E5%BC%80%E5%8F%91%E4%B8%8E%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%8A%80%E6%9C%AF">这个网页</a></p><p>时至今日，已经有很多跨平台框架，根据其原理，主要分为三类：</p><p>H5 + 原生（Cordova、Ionic、微信小程序）</p><p>JavaScript 开发 + 原生渲染 （React Native、Weex）</p><p>自绘UI + 原生 (Qt for mobile、Flutter)</p><h2 id="WASM、PWA、小程序"><a href="#WASM、PWA、小程序" class="headerlink" title="WASM、PWA、小程序"></a>WASM、PWA、小程序</h2><blockquote><p>WebAssembly（缩写为 wasm）是一种使用非 Javascript 代码，并使其在浏览器中运行的方法。这些代码可以是 C、C++ 或 Rust 等。它们会被编译进你的浏览器，在你的 CPU 上以接近原生的速度运行。</p></blockquote><p>至于 PWA ，读者可以自行了解，国内最终还是小程序打败了 PWA ,也是十分值得思考的事情。</p><h2 id="尾声"><a href="#尾声" class="headerlink" title="尾声"></a>尾声</h2><p>在找资料的过程中，经常看到设计框架、WVVM 等关键词，未来 GUI 开发会怎样? 无法可想，今天的新技术，过十几年或许也会过时，但是框架思想应该是会有一个明晰的发展路线的吧。</p><p>刚刚hexo git push 不过去，后来在GitHub里把分支保护给删除了就可以了，然后再把分支保护再加上就行。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    
+    <category term="GUI" scheme="https://jenway.github.io/tags/GUI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>dairyNov2th22.md</title>
+    <link href="https://jenway.github.io/2022/11/02/dairyNov2th22-md/"/>
+    <id>https://jenway.github.io/2022/11/02/dairyNov2th22-md/</id>
+    <published>2022-11-02T07:28:30.000Z</published>
+    <updated>2022-11-02T07:30:43.639Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>为什么总是要欺骗自己呢。</p><p>给自己一个计划而却不去实现，真是太差劲了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>树洞系列——倒垃圾ing</title>
+    <link href="https://jenway.github.io/2022/10/08/8thOct/"/>
+    <id>https://jenway.github.io/2022/10/08/8thOct/</id>
+    <published>2022-10-08T13:32:55.000Z</published>
+    <updated>2022-10-08T13:55:20.400Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><meting-js    server="netease"    type="song"    autoplay="true"    id="188647"><br></meting-js></p><h1 id="奢望与自卑"><a href="#奢望与自卑" class="headerlink" title="奢望与自卑"></a>奢望与自卑</h1><h1 id="镜像站"><a href="#镜像站" class="headerlink" title="镜像站"></a>镜像站</h1><p>因为想试一试 LaTEX 所以在网络上寻找镜像站，当找到北京交通大学的镜像站时，突然有点动摇，如果当初选择了去那里会如何呢…<br>不过，又找到了山东大学的镜像站，做的很好，很有独立的风格。<br>镜像站里有很多资源，资源那么多，很多事我未接触过的，我看到tuna站点里有一个有声小说的企划，我看到有折腾树莓派的教程。<br>网络上有浩如烟海的个人博客，他们淹没在更为广大的信息流中，或者说，是我被巨大的信息壁障隔住了，我总觉得有一些地方，是我到达不了的。</p><h1 id="去哪里呢"><a href="#去哪里呢" class="headerlink" title="去哪里呢"></a>去哪里呢</h1><p>我不是很清楚想要干什么，我选择了计算机专业，这门专业的就业前景不错，我初中的时候对计算机很感兴趣，后来我发现技术是没有穷尽的，这个世界上比自己聪明而努力的人很多，我小小的自负受到了挫折，最开始什么，大概忘了。</p><h1 id="过去就当既定吧"><a href="#过去就当既定吧" class="headerlink" title="过去就当既定吧"></a>过去就当既定吧</h1><p>为什么会这么悲伤呢。</p><p>是因为想做的事情做不到吗？</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    
+    <category term="树洞" scheme="https://jenway.github.io/tags/%E6%A0%91%E6%B4%9E/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>complement</title>
+    <link href="https://jenway.github.io/2022/09/22/complement/"/>
+    <id>https://jenway.github.io/2022/09/22/complement/</id>
+    <published>2022-09-22T01:49:22.000Z</published>
+    <updated>2022-09-22T02:02:34.860Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="“反码加一”只是补码所具有的一个性质，不能被定义成补码。负数的补码，是能够和其相反数相加通过溢出从而使计算机内计算结果变为0的二进制码。这是补码设计的初衷，具体目标就是让1-（-1）-x3D-0，这利用原码是无法得到的："><a href="#“反码加一”只是补码所具有的一个性质，不能被定义成补码。负数的补码，是能够和其相反数相加通过溢出从而使计算机内计算结果变为0的二进制码。这是补码设计的初衷，具体目标就是让1-（-1）-x3D-0，这利用原码是无法得到的：" class="headerlink" title="“反码加一”只是补码所具有的一个性质，不能被定义成补码。负数的补码，是能够和其相反数相加通过溢出从而使计算机内计算结果变为0的二进制码。这是补码设计的初衷，具体目标就是让1+（-1）&#x3D;0，这利用原码是无法得到的："></a>“反码加一”只是补码所具有的一个性质，不能被定义成补码。负数的补码，是能够和其相反数相加通过溢出从而使计算机内计算结果变为0的二进制码。这是补码设计的初衷，具体目标就是让1+（-1）&#x3D;0，这利用原码是无法得到的：</h2><h1 id="1-1-原码"><a href="#1-1-原码" class="headerlink" title="1.1 原码"></a>1.1 原码</h1><p>最高位为符号位，0表示正数，1表示负数。</p><blockquote><p>例如：<br>X &#x3D; 0b11 (3)，四比特表示原码 &#x3D; 0011(3) ；</p></blockquote><blockquote><p>X &#x3D; - 0b11(-3) ，四比特表示原码 &#x3D; 1011(11) ；</p></blockquote><h1 id="1-2-反码"><a href="#1-2-反码" class="headerlink" title="1.2 反码"></a>1.2 反码</h1><p>最高位为符号位，0表示正数，1表示负数。</p><p>正数的反码等于本身，负数的反码除符号位外，各位取反：</p><blockquote><p>例如：<br>X &#x3D; 0b11 (3)，四比特表示原码 &#x3D; 0011(3)，对应反码为 &#x3D; 0011(3) ；</p></blockquote><blockquote><p>X &#x3D; - 0b11(-3) ，四比特表示原码 &#x3D; 1011(11)，对应反码为 &#x3D; 1100(12)  ；</p></blockquote><h1 id="1-3-补码"><a href="#1-3-补码" class="headerlink" title="1.3 补码"></a>1.3 补码</h1><p>最高位为符号位，0表示正数，1表示负数。</p><p>正数的补码等于本身，负数的补码等于反码+1：</p><blockquote><p>例如：<br>X &#x3D; 0b11 (3)，四比特表示原码 &#x3D; 0011(3)，对应反码为 &#x3D; 0011(3) ，补码为 &#x3D; 0011(3)；</p></blockquote><blockquote><p>X &#x3D; - 0b11(-3) ，四比特表示原码 &#x3D; 1011(11)，对应反码为 &#x3D; 1100(12)，补码为1101(13)  ；</p></blockquote><h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><p>1补 (0001)  + -1补(1111) &#x3D; (1 0000)</p><p>详细参见：<a href="https://zhuanlan.zhihu.com/p/376848035">https://zhuanlan.zhihu.com/p/376848035</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>VScode 初见 --&gt; 进行C语言编程</title>
+    <link href="https://jenway.github.io/2022/09/21/yourVScode-md/"/>
+    <id>https://jenway.github.io/2022/09/21/yourVScode-md/</id>
+    <published>2022-09-21T02:41:58.000Z</published>
+    <updated>2022-09-21T02:59:46.492Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Code editing.<br>Redefined.<br>Free. Built on open source. Runs everywhere.</p><h1 id="编译器的安装"><a href="#编译器的安装" class="headerlink" title="编译器的安装"></a>编译器的安装</h1><h2 id="前言-IDE-与编辑器"><a href="#前言-IDE-与编辑器" class="headerlink" title="前言 IDE 与编辑器"></a>前言 IDE 与编辑器</h2><h2 id="MinGW安装"><a href="#MinGW安装" class="headerlink" title="MinGW安装"></a>MinGW安装</h2><h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><h2 id="CMD-使用"><a href="#CMD-使用" class="headerlink" title="CMD 使用"></a>CMD 使用</h2><h2 id="配置生成任务"><a href="#配置生成任务" class="headerlink" title="配置生成任务"></a>配置生成任务</h2><h1 id="终端的使用"><a href="#终端的使用" class="headerlink" title="终端的使用"></a>终端的使用</h1><h2 id="为什么要用终端？"><a href="#为什么要用终端？" class="headerlink" title="为什么要用终端？"></a>为什么要用终端？</h2><h2 id="常用的终端命令"><a href="#常用的终端命令" class="headerlink" title="常用的终端命令"></a>常用的终端命令</h2><h1 id="主题美化"><a href="#主题美化" class="headerlink" title="主题美化"></a>主题美化</h1><h1 id="快捷键的设置"><a href="#快捷键的设置" class="headerlink" title="快捷键的设置"></a>快捷键的设置</h1>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>第一章 快速上手 ———— 《 C 和指针 》</title>
+    <link href="https://jenway.github.io/2022/09/17/cAndPointer/"/>
+    <id>https://jenway.github.io/2022/09/17/cAndPointer/</id>
+    <published>2022-09-17T12:51:12.000Z</published>
+    <updated>2022-09-17T12:58:16.083Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">**这个程序从标准输入中读取输入行并在标准输出中打印这些输入行</span><br><span class="line">**每个输入行的后面一行是该行内容的一部分</span><br><span class="line">**</span><br><span class="line">**输入的第一行是一串列标号，串的最后以一个负数结尾</span><br><span class="line">**这些列标号成对出现，说明需要打印的输入行的列的范围</span><br><span class="line">**</span><br><span class="line">*/</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#define MAX_COLS 20         /* 所能处理的最大列号*/</span><br><span class="line">#define MAX_INPUT 1000      /*每个输入行的最大长度*/</span><br><span class="line">int read_column_numbers(int columns[] , int max);</span><br><span class="line">void rearrange(char *output, char const *input, int n_columns , int const columns[]);</span><br><span class="line">int main(void)&#123;</span><br><span class="line">    int n_columns; /* 进行处理的列标号 */</span><br><span class="line">    int columns[MAX_COLS]; /*需要处理的列号*/</span><br><span class="line">    char input[MAX_INPUT]; /* 容纳输入行的数组 */</span><br><span class="line">    char output[MAX_INPUT];/* 容纳输出行的数组*/</span><br><span class="line">    printf(&quot;4 9 12 20 -1 \n&quot;);</span><br><span class="line">    /*</span><br><span class="line">    ** 读取该串列标号</span><br><span class="line">    */</span><br><span class="line">    n_columns = read_column_numbers(columns,MAX_COLS);</span><br><span class="line">    /*</span><br><span class="line">    ** 读取、处理和打印剩余的输入行。</span><br><span class="line">    */</span><br><span class="line">    while (gets(input) != NULL)</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;Original input: %s\n&quot; , input);</span><br><span class="line">        rearrange(output, input, n_columns, columns);</span><br><span class="line">        printf(&quot;Rearranged line: %s\n&quot;,output);</span><br><span class="line">    &#125;</span><br><span class="line">    return EXIT_SUCCESS;</span><br><span class="line">&#125;</span><br><span class="line">/*</span><br><span class="line">** 读取列标号，如果超出规定范围则不予理会。</span><br><span class="line">*/</span><br><span class="line">int read_column_numbers(int columns[],int max)</span><br><span class="line">&#123;</span><br><span class="line">    int num = 0;</span><br><span class="line">    int ch;</span><br><span class="line">    /*</span><br><span class="line">    ** 取得列标号，如果所读取的数小于 0 则停止</span><br><span class="line">    */</span><br><span class="line">    while(num &lt; max &amp;&amp; scanf(&quot;%d&quot;, &amp;columns[num]) == 1 &amp;&amp; columns[num] &gt;= 0)</span><br><span class="line">    &#123;</span><br><span class="line">        num += 1;</span><br><span class="line">    &#125;   </span><br><span class="line">    /*</span><br><span class="line">    ** 确认已经读取的标号为偶数个，因为它们是以对的形式出现的。</span><br><span class="line">    */</span><br><span class="line">    if(num % 2 != 0)</span><br><span class="line">    &#123;</span><br><span class="line">    puts(&quot;Last column number is not paired.&quot;);</span><br><span class="line">    exit(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line">    /*</span><br><span class="line">    ** 丢弃该行中包含最后一个数字的那部分内容。 </span><br><span class="line">    */</span><br><span class="line">    while ((ch = getchar()) != EOF &amp;&amp; ch != &#x27;\n&#x27; )</span><br><span class="line">    &#123;</span><br><span class="line">    return num;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> /*</span><br><span class="line"> ** 处理输入行，将指定列的字符连接在一起，输出行以NUL结尾。</span><br><span class="line"> */</span><br><span class="line">void rearrange( char *output , char const *input , int n_columns , int const columns[])</span><br><span class="line">&#123;</span><br><span class="line">    int col; /*columns 数组的下标*/</span><br><span class="line">    int output_col; /*输出列计数器*/</span><br><span class="line">    int len ; /* 输入行的长度 */</span><br><span class="line">    len = strlen(input);</span><br><span class="line">    output_col = 0;</span><br><span class="line">    /* </span><br><span class="line">    ** 处理每对列标号</span><br><span class="line">    */</span><br><span class="line">    for(col = 0; col &lt; n_columns; col += 2)</span><br><span class="line">    &#123;</span><br><span class="line">        int nchars = columns[col + 1] - columns[col] + 1;</span><br><span class="line">        /*</span><br><span class="line">        ** 如果输出行结束或输出行数组已满,就结束任务.</span><br><span class="line">        */    </span><br><span class="line">        if (columns[col] &gt;= len || output_col == MAX_INPUT - 1)</span><br><span class="line">        &#123;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">        /*</span><br><span class="line">        ** 如果输出行组空间不够,只复制可以容纳的数据.</span><br><span class="line">        */</span><br><span class="line">        if (output_col + nchars &gt; MAX_INPUT - 1)</span><br><span class="line">        &#123;</span><br><span class="line">            nchars = MAX_INPUT - output_col -1;</span><br><span class="line">        &#125;</span><br><span class="line">        /*</span><br><span class="line">        **  复制相关的数据.</span><br><span class="line">        */</span><br><span class="line">        strncpy( output + output_col , input + columns[col] , nchars );</span><br><span class="line">        output_col += nchars;</span><br><span class="line">    &#125;</span><br><span class="line">    output[output_col] = &#x27;\0&#x27;;   </span><br><span class="line">/*</span><br><span class="line">** Right now is 20:48,17th Sep 2022,</span><br><span class="line">** THIS PROGRAME FINNALY RUNS successfully.</span><br><span class="line">*/</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>yourHexo2</title>
+    <link href="https://jenway.github.io/2022/09/17/yourHexo2/"/>
+    <id>https://jenway.github.io/2022/09/17/yourHexo2/</id>
+    <published>2022-09-17T08:34:23.000Z</published>
+    <updated>2022-09-17T08:34:59.594Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="连接到互联网"><a href="#连接到互联网" class="headerlink" title="连接到互联网"></a>连接到互联网</h1><h2 id="系统变量的配置"><a href="#系统变量的配置" class="headerlink" title="系统变量的配置"></a>系统变量的配置</h2><p>如果你已经配置过当我没说~</p><h2 id="申请-Github-pages"><a href="#申请-Github-pages" class="headerlink" title="申请 Github pages"></a>申请 Github pages</h2><p>有必要说明的是，你用别的也是可以的</p><h3 id="搭建一个图床"><a href="#搭建一个图床" class="headerlink" title="搭建一个图床"></a>搭建一个图床</h3><p>Hexo 生成的是静态网页，也就是说，所以最好把图片单独拿到 CDN 上 去</p><p>这里用的是 Github pages</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    
+    <category term="Hexo" scheme="https://jenway.github.io/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>年轻人的第一个 Hexo 个人博客</title>
+    <link href="https://jenway.github.io/2022/09/17/yourHexo/"/>
+    <id>https://jenway.github.io/2022/09/17/yourHexo/</id>
+    <published>2022-09-17T06:03:40.000Z</published>
+    <updated>2022-09-17T08:48:21.292Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="想做个人博客？"><a href="#想做个人博客？" class="headerlink" title="想做个人博客？"></a>想做个人博客？</h1><p>我想大部分人只是兴趣使然，毕竟亲手做一件东西总会有满满的成就感，而搭建一个网站听起来也非常有吸引力不是吗？</p><p>当然，作为一个新手，如果要从头开始，先学习前端知识，再从零开始构建一个网站的话，那未免流程也太长了吧~</p><p>而且，我想很多人，就像我一样，只有一时的热情，如果不很快得到反馈就会颓丧不已，<del>当然这种心态是要改正的</del></p><p>所以，不妨尝试一点简单的东西吧 <del>其实也不简单</del></p><p>有必要说明的是，如果想搭建个人博客的话，除了 Hexo ，还有很多不同的方法，比如 Hugo啊，或者是Wordpress</p><p>但是我们这里只说 Hexo ，<del>因为我只用过 Hexo</del> </p><h2 id="必要的准备"><a href="#必要的准备" class="headerlink" title="必要的准备"></a>必要的准备</h2><ul><li>一台 搭载 Windows 系统的电脑（不是说别的不行，因为别的我不会）</li><li>安装 NodeJs</li><li>安装 Git</li><li>Github pages 或者是其他的#部署平台#</li></ul><h2 id="安装-Node-js"><a href="#安装-Node-js" class="headerlink" title="安装 Node.js"></a>安装 Node.js</h2><h3 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h3><p>Hexo 是基于 Node.js 开发的 ，所以要安装 Node.js ，没毛病吧？<br>打开<a href="https://nodejs.org/zh-cn/download/">Node.js下载页面</a><br><img src="https://cdn.jsdelivr.net/gh/Jenway/J-figure-Bed/hexoNode2.png" alt="如图"><br>下载并安装即可，你可以参照<a href="https://www.runoob.com/nodejs/nodejs-install-setup.html">这个教程</a></p><p>安装完成后，可以<a href="https://jingyan.baidu.com/article/f96699bbf01097894e3c1bc7.html">打开 cmd</a>，输入 npm -v 来试一试，</p><p><img src="https://cdn.jsdelivr.net/gh/Jenway/J-figure-Bed/hexoNode3.png" alt="这样就表示安装完成了" title="这样就表示安装完成了"></p><h3 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h3><p><a href="https://jingyan.baidu.com/article/fec4bce2950133f2618d8b02.html">添加Node.js到环境变量</a><br><img src="https://cdn.jsdelivr.net/gh/Jenway/J-figure-Bed/hexoNode4.png" alt="如图"></p><p>顺带提一句，所设置环境变量的地址应是<strong>Node.js的安装地址</strong></p><p><del>变量名称理论上可以随便写</del></p><p>如果在安装的过程中一路默认，那么<strong>大概率</strong>这个地址是 “ <em>C:\Program Files\nodejs</em> “</p><h2 id="安装-Git"><a href="#安装-Git" class="headerlink" title="安装 Git"></a>安装 Git</h2><h3 id="下载与安装-1"><a href="#下载与安装-1" class="headerlink" title="下载与安装"></a>下载与安装</h3><p>打开<a href="https://git-scm.com/download/win"> Git 下载页面</a><br><img src="https://cdn.jsdelivr.net/gh/Jenway/J-figure-Bed/hexoGit.png" alt="如图"><br>下载并安装即可，你可以参照<a href="https://zhuanlan.zhihu.com/p/349473508">这个教程</a></p><p>安装完成后，可以<a href="https://jingyan.baidu.com/article/f96699bbf01097894e3c1bc7.html">打开 cmd</a>，输入 git -v 来试一试，</p><p><img src="https://cdn.jsdelivr.net/gh/Jenway/J-figure-Bed/hexoGit2.png" alt="这样就表示安装完成了" title="这样就表示安装完成了"></p><h3 id="设置环境变量-1"><a href="#设置环境变量-1" class="headerlink" title="设置环境变量"></a>设置环境变量</h3><p><a href="https://www.jianshu.com/p/fee5baf756c8">添加Git到环境变量</a></p><p>大概已经添加了吧~</p><p>所设置环境变量的地址应是<strong>Git的安装地址</strong></p><h2 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h2><p>找一个你觉得合适的地方<a href="https://jingyan.baidu.com/article/22a299b5f994719e19376abb.html">新建一个文件夹</a>，</p><p>名字随意，比如 loli 之类的 ，但是<strong>不要用中文！</strong></p><p><a href="https://blog.csdn.net/weixin_44679832/article/details/123942274">在你新建的文件夹打开 cmd</a></p><p><strong>依次</strong>输入以下命令</p><blockquote><p>cnpm install -g hexo-cli</p></blockquote><blockquote><p>hexo init blog</p></blockquote><p>成功的话大概会这样<img src="https://cdn.jsdelivr.net/gh/Jenway/J-figure-Bed/hexo2.png" alt="如图"></p><p>当然了，可能会有奇奇怪怪的错误，可以<a href="https://cn.bing.com/search?q=hexo+init+%E6%8A%A5%E9%94%99&qs=RI&pq=hexo+init&sk=RI2&sc=8-9&cvid=FD54AB534D3A43DF8EA3655DFE3A209E&FORM=QBRE&sp=3">自行上网搜索</a></p><h2 id="启动-Hexo"><a href="#启动-Hexo" class="headerlink" title="启动 Hexo"></a>启动 Hexo</h2><p>继续输入命令</p><blockquote><p>cd blog</p></blockquote><blockquote><p>hexo g</p></blockquote><blockquote><p>hexo s</p></blockquote><p><strong>有必要说明的是，以后可以直接在刚才 Hexo 生成的 blog 文件夹中打开 CMD ,然后输入 hexo -g 和 hexo -s</strong></p><p>在浏览器地址栏输入 <a href="http://localhost:4000/">http://localhost:4000</a></p><p>这就是你的博客啦</p><p><img src="https://cdn.jsdelivr.net/gh/Jenway/J-figure-Bed/HEXO3.png" alt="这就是你的博客啦"></p><h2 id="写文章"><a href="#写文章" class="headerlink" title="写文章"></a>写文章</h2><h3 id="生成一个-md-文件"><a href="#生成一个-md-文件" class="headerlink" title="生成一个 .md 文件"></a>生成一个 .md 文件</h3><p>在 CMD 中输入如下内容</p><blockquote><p>hexo new myPost</p></blockquote><p>需要说明的是 <em><strong>myPost</strong></em> 可以随便写，但是<strong>不要用中文！</strong></p><p>大概 CMD 里会差不多这样显示</p><pre><code>D:\blog\blog&gt;hexo new myPostINFO  Validating configINFO  Created: D:\blog\blog\source\_posts\myPost.md</code></pre><p>注意 Created: 后面的地址，这就是刚才新建的文章的地址</p><p>这个 myPost.md 就是我们新建的文章。</p><h3 id="markdown语法？"><a href="#markdown语法？" class="headerlink" title="markdown语法？"></a>markdown语法？</h3><p>md 是</p><h2 id="安装主题"><a href="#安装主题" class="headerlink" title="安装主题"></a>安装主题</h2><p>其实默认的主题也蛮好看的~</p><p>不过大多数人都会换一个主题。</p><h3 id="挑选喜欢的主题"><a href="#挑选喜欢的主题" class="headerlink" title="挑选喜欢的主题"></a>挑选喜欢的主题</h3><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    
+    <category term="Hexo" scheme="https://jenway.github.io/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>　　</title>
+    <link href="https://jenway.github.io/2022/09/15/haveMusic/haveMusic/"/>
+    <id>https://jenway.github.io/2022/09/15/haveMusic/haveMusic/</id>
+    <published>2022-09-15T13:54:47.000Z</published>
+    <updated>2022-09-15T14:50:33.118Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="I-love-you-than-you-ever-know"><a href="#I-love-you-than-you-ever-know" class="headerlink" title="I love you than you ever know"></a>I love you than you ever know</h2><p><meting-js     server="netease"     type="playlist"     id="7291531905"    autoplay="true"    loop="all"    order="random"    preload="auto"    list-max-height="500px"><br></meting-js></p><style></style>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>X 挪得之地，烟火绚烂</title>
+    <link href="https://jenway.github.io/2022/09/07/sedual10/"/>
+    <id>https://jenway.github.io/2022/09/07/sedual10/</id>
+    <published>2022-09-07T07:16:42.000Z</published>
+    <updated>2022-09-15T13:38:24.761Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="世界尽头，唱响爱你之歌"><a href="#世界尽头，唱响爱你之歌" class="headerlink" title="世界尽头，唱响爱你之歌"></a>世界尽头，唱响爱你之歌</h2><p><meting-js    server="netease"    type="song"    autoplay="true"    id="18126594"><br></meting-js></p><p>我看着离去的蛇女，与被治疗好的蒙，无言，无法理解。</p><p>蒙一个人伫立在灯光之下，可以看到游动的浮尘缓慢摇摆，时间似乎快要禁止一般。</p><p>我看着他百感交集。</p><p>他为什么没有死去呢？如果他没有死，如果他没有因为我做的那些事而死，那不就是说……不对，我已经决定要接受一切罪过与承担失败后果，然后才去行动的，如果这样都可以为何……</p><p>蒙突然转身面向我。</p><p><em><strong>“我们见面了呢，一切因你而起，不是吗？”</strong></em></p><p>这小子，懂得还挺快嘛。</p><p>“不愧是我的复制人”，我笑道，</p><p>“虽然阅历稍浅，想法和我的还都挺像–你打算怎么办？”</p><p>少年的眼神逐渐坚定，</p><p><em><strong>“我要，去到我所爱之人所在的地方。”</strong></em></p><p>只是这么简单的愿望吗？</p><p>“哈哈”</p><p>我看着仿佛是少年的我的蒙</p><p>“你和我很像，</p><p>可惜，你没有机会了，</p><p>你只是偶然的意外而已，</p><p>计划的变数而已，</p><p>少年人特有的幼稚妄想而已”</p><p>我举起武器瞄准蒙的心脏位置。</p><p>“当我将要成人之时，也曾干过这样的事，现在就让我再做一遍吧，少年蒙，少年的我，手无寸铁的你，终究还是没有办法反抗现实。”</p><p>就在我将要扣下扳机的瞬间，显示屏与控制台发出异样的噪音来。</p><p>——————</p><blockquote><p>感情与心，易碎的消耗品</p></blockquote><blockquote><p>事实真的是如此吗</p></blockquote><blockquote><p>这里有多少“我”？</p></blockquote><p>——————</p><p>程序又抽风了么，我不能理解现在的情况。</p><p><em><strong>“杀死我之后就收手吧，还给玦自由吧”</strong></em>少年闭上了双眼。</p><p>“别开玩笑了”我的手指弯曲开来</p><p>“你也不过，</p><p>只是个毛头孩子而已！你懂什么？”</p><p>一个熟悉的声音传来</p><blockquote><p>“你在渴求什么？”</p></blockquote><p>我与少年都分外惊讶。</p><p>——————</p><p>又是一阵强烈的白光，当这阵光过于强烈的时候，内心的声音也被无限的放大，少女玦，停留在细雨之中，扪心自问。</p><blockquote><p>“你在渴求什么”</p></blockquote><p>结果，还没等自己回答，就有一个声音主动地应和，</p><p>“幸福，永恒的爱，没有惶惑的安心”</p><p>另一个声音回应到</p><p>“来世不可期许，灵梦不可久留”</p><p>“过去已然结束，没有什么永远”</p><p>玦依旧思考着，何为真正的幸福？</p><p>——————</p><p>“你幸福吗？”</p><p>听到这些声音的 Sub 抬头问向蛇女。</p><p>“我姓福耳库德斯（Phorcydes）”</p><p>蛇女如是回答道。</p><p>——————</p><p><strong>“玦？”</strong>蒙惊喜地呼唤她的名字<strong>“你还好吗……快离开这里罢”</strong></p><p>“不，能够爱他人也是一种幸福，所以我留在这里也没有关系”</p><p>少女这样回答道。</p><p>——————</p><p>烟火，是绚烂的，易逝的彩色光芒。它们或许要用一生来实现意义，就像蝉潜伏地下几年，只为了歌唱一个盛夏。</p><p>灿烂而又短暂，人的爱也是如此，毕竟人的一生也是如此短暂。</p><p>毕竟自己的世界也是如此短暂。</p><p>自我的意识逐渐消迩。</p><p>“要珍惜自己。”</p><p>蛇女在消失前说道。</p><p>“要创造意义”</p><p>Sub 在消失前说道。</p><p><em><strong>“要保持本心”</strong></em></p><p>蒙如是说道。</p><p>枪声回荡，边界之内的世界逐渐坍缩，那么，我还该干什么呢。</p><p>望着最后模糊的一片原野，与那个眼神如深邃湖水般的女孩子，我走近，想说点什么，却只是把手轻轻抵在她脸颊。</p><p>——————</p><blockquote><p>“我爱你”</p></blockquote><p>我摸着自己的脸对自己说。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    
+    <category term="novel" scheme="https://jenway.github.io/tags/novel/"/>
+    
+    <category term="直到世界尽头也会唱响爱你之歌" scheme="https://jenway.github.io/tags/%E7%9B%B4%E5%88%B0%E4%B8%96%E7%95%8C%E5%B0%BD%E5%A4%B4%E4%B9%9F%E4%BC%9A%E5%94%B1%E5%93%8D%E7%88%B1%E4%BD%A0%E4%B9%8B%E6%AD%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ⅸ 新生</title>
+    <link href="https://jenway.github.io/2022/09/07/sedual9/"/>
+    <id>https://jenway.github.io/2022/09/07/sedual9/</id>
+    <published>2022-09-07T07:16:23.000Z</published>
+    <updated>2022-09-15T13:38:23.406Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="REBORN"><a href="#REBORN" class="headerlink" title="REBORN"></a>REBORN</h2><p><meting-js    server="netease"    type="song"    autoplay="true"    id="25704085"><br></meting-js></p><p>少女在如碎金般的阳光下奔跑。</p><p>在园外待的时间并不觉得很长，但玦已经经历了数以千计的日出与日落。</p><p>她想起很多。</p><pre><code>那个阳光炙灼的午后，眼睛惺忪拖着腿走到人群之中;那个大雨滂沱的黄昏，雨伞就像微弱的花朵摇曳风中；那个疏星熠熠的清晨，紫红色的烟霞拥抱新生的世界。黑白交界的世界中，她看到远处劳作的灯光成排成列地耀眼；寒风凛冽的冬夜里，她看到猎户座那星星组成纺锤体的样子；惠风和煦的残阳下，她看到幽蓝的天际融合卷积铺平的层云。</code></pre><p>在园外的生活不算容易，她需要学习如何生活，从怎样握刀切菜到用水泡醒熟睡的种子，从洒扫庭除到采撷果实……其实这些都还好。</p><p>园外原来是如此的广阔，有如此多千奇百怪不同样的头颅，人们说着不同的言语，有着不同的思维方式，如果不去表达就无法被理解，如果不去伤害就无法保全自己。</p><p>这个世界是不完美的，有缺陷的，园外的体系有诸多的漏洞，冗官冗员苛捐杂税，腐败与压迫，乃至于人心欺诈，权术争斗云云。</p><p>这个世界也有一些梦想是无法成功的，那些醒来就无法成真的美梦，即使你努力的去追赶，然而，却永远也无法实现。与此形成鲜明对照的是却有其它的人仅凭某些原因就能平步青云。</p><p>可是，辗转反侧后，玦还是选择了这个世界。</p><p>选择了这个可能无法找到爱的世界。这个可能压根就没有幸福的世界。这个陌生复杂的她所不懂的世界。</p><p>其实，这种生活也当然有很多闪光的地方，虽然人们从不会直接说出真心的话语，但渐渐地，她还是被留下了一个固定的位置。</p><p>虽然，欺骗与背叛是存在的，但感谢与支持也存在，甚至于它们竟会存在于同一个人身上。</p><p>这样复杂的世界，并不是她说一声爱就会得到回应，并不是愿意爱上就会爱上的。</p><p>玦只是细细品尝着生活的甘苦，在细雨中奔跑着，她虽然不明白有什么意义，但是她觉得，或许总会有的，只要奔跑下去，或许，奔跑本身就是去创造意义呢？</p><blockquote><p>在这里待着也挺不错的。</p></blockquote><p>——————</p><p>蛇女厄喀德娜最终放了蒙一条命，她并不是多么冷酷的人，在她看来，少年犯错是很正常的事情，毕竟少年还有无限的可能性，只是因为一时惶惑而否定他，未免太过残忍。</p><p>蛇女厄喀德娜因为不能生育，总有种天生的母性无处抒发，虽然常干的是刀尖舔血的事情，但是唯独这件事……</p><p>蛇女暗自思衬，接下来该如何行动呢如果只是以自己的意愿为少女决定幸福，以我方所作所为来看，与这家伙不过是一丘之貉吧。</p><p>“好……冷……”微弱的气息，残缺的音节，触动了蛇女心中的恻隐之心，明明早已经舍弃不利于目的的东西，明明早坚定过意志，只为自己与自己所在的整体过活。</p><p>“但他毕竟也做了错事”</p><p>……</p><p><em>“唉，你还真是个孩子啊，傻孩子……”</em>蛇女无奈地叹息道。</p><p><meting-js    server="netease"    type="song"    id="25704085"    fixed="true"><br></meting-js></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    
+    <category term="novel" scheme="https://jenway.github.io/tags/novel/"/>
+    
+    <category term="直到世界尽头也会唱响爱你之歌" scheme="https://jenway.github.io/tags/%E7%9B%B4%E5%88%B0%E4%B8%96%E7%95%8C%E5%B0%BD%E5%A4%B4%E4%B9%9F%E4%BC%9A%E5%94%B1%E5%93%8D%E7%88%B1%E4%BD%A0%E4%B9%8B%E6%AD%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ⅷ 破灭</title>
+    <link href="https://jenway.github.io/2022/09/07/sedual8/"/>
+    <id>https://jenway.github.io/2022/09/07/sedual8/</id>
+    <published>2022-09-07T07:16:05.000Z</published>
+    <updated>2022-09-17T05:58:42.581Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>嘶-嘶-，蛇信子的声音，这种声音足以让任何哺乳动物唤起亘古的基因中的恐怖，无声无息地靠近了，死亡的危险。</p><p>正当蒙重新开始思考时，他所没有意识到的死亡的危险已然到来。</p><p>对的，他可能会死，死这个概念他先前从未想过，对于以前的蒙来说，世界无非是一片等待去征服的领土，他以为一切的顺利称心都是理所应当的注定，他以为所有“人”的想法都是一样的，“人”们本来就是理解的。</p><p>尽管她没有见过玦以外的人，甚至于玦算不算“人”都有待斟酌，他也还是凭着少年的一腔热血，天真地打算拥抱他自以为的完美理想的世界，那样的世界自然不会有死亡或消逝，没有人会被遗忘。</p><p>虽说现实生活中，也不是没有蒙所追求的美好，但是少年是忍受不了不完美的美好的，即使跟自己所设想的不一样，只要有一颗少年的心，它也愿意用赤诚的想象来矫饰现实。</p><p>可是，当这一切妄想与现实割裂太大时，少年的眼神逐渐暗淡无光，思考的结果走向极端与否定。</p><p>并且，死亡，消失殆尽，被遗忘的危险已经逼近了。</p><p>蛇女厄喀德娜已然逼近了</p><p>她正是Sub 一行人安排的后手。</p><p>诗人赫西俄德曾在《神谱》中赞美道：</p><blockquote><p>“狂暴的女神厄喀德娜，上半身是一位面颊洁白的宁芙，下半身是一条大蛇；巨大可畏，有着带斑点的皮肤，吃生肉，居住在地底。在这儿她有一个洞穴，它位于一块空心石下面，远离不死的众神和短命的凡人的所在之地……”</p></blockquote><p>“一切都结束了，少年，包括，你的美梦”</p><p>无机质，无生命的声音回荡在主控室中。</p><p>少年脑海里又只留下了一个念头。</p><p>少年的眼珠转向了不速之客蛇女，带动着整个头颅机械地转过来。</p><p><strong>“把她，还给我……”</strong></p><p>“你在做梦”，蛇女则淡淡的回答：</p><blockquote><p>“你，把自己当作什么好人了吗？”</p></blockquote><blockquote><blockquote><p>“呵呵，一切都只是你的幻想与故意设计，你唯一的所作所为，或者说你的所谓努力，只是把一个可怜的女孩子囚禁在这里作你的奴隶”</p></blockquote></blockquote><blockquote><blockquote><blockquote><p>“而你还要恬不知耻地说她爱你。”</p></blockquote></blockquote></blockquote><p>少年的目光死死盯着神色不屑的她，眼珠不断靠近，整个身子像被带动着一样扑上去，扼住了她的咽喉。</p><p>她的皮肤十分的光滑细腻，但却像合金一样冷冰冰的，十分的坚硬，蒙的手已经用力到没有知觉，而蛇女只是面无表情地俯视着他。</p><p>“这是告知。”</p><p>蛇女淡淡地回答道。</p><p>蛇尾紧接着在一瞬间摆动起来，刺向少年，贯穿了他的上腹部。</p><p>蒙的脚尖晃荡着，偶尔碰到地面上，摩擦发出轻微的声音，血带着泡沫从嘴巴里涌出，那些被证明是虚假的记忆走马灯一般奔腾过心头，明明约定好了今天要见面，明明……</p><p><em><strong>“这就是死亡吗？</strong></em></p><p><em><strong>为什么我要死呢？”</strong></em></p><p>少年这样想着，意识逐渐模糊。</p><p>那是因为，</p><p>我把一个说爱我的女孩利用了吗？</p><p>可是那不是我自己吗？</p><p>不对，那只是一个工具而已。</p><p>不对，那是一个活生生的人。</p><p>少年脑袋里的声音冲撞起来。</p><p>——————</p><p>我目睹了这一切，不由得又生气又想笑，虽然还不知道程序怎么会突然跑出来，以及那群为他人自作主张的伪善者们是什么组织。</p><p>我静静等待着蛇女离去。</p><p>蒙倒在血泊里。</p><p>玦与Sub来到了“园外的”世界。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    
+    <category term="novel" scheme="https://jenway.github.io/tags/novel/"/>
+    
+    <category term="直到世界尽头也会唱响爱你之歌" scheme="https://jenway.github.io/tags/%E7%9B%B4%E5%88%B0%E4%B8%96%E7%95%8C%E5%B0%BD%E5%A4%B4%E4%B9%9F%E4%BC%9A%E5%94%B1%E5%93%8D%E7%88%B1%E4%BD%A0%E4%B9%8B%E6%AD%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ⅶ 总有边界的边界</title>
+    <link href="https://jenway.github.io/2022/09/07/sedual7/"/>
+    <id>https://jenway.github.io/2022/09/07/sedual7/</id>
+    <published>2022-09-07T07:15:58.000Z</published>
+    <updated>2022-09-09T02:50:09.557Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Sub 伸出手，“走吧，去那个蜻蜓自由飞翔的地方。”</p><p>少女玦于幻梦中甦醒，嗟叹于现世的冰冷与寂静，以及无法随心所欲的约束，虽然，她所一直被幽闭的地方也是这样。</p><p>请不要惊讶于少女如此自然的接受了现状，并猜到了大半故事，在长久的矫正的计划中，虽然不符合标准的爱意与怀疑之类的不稳定因素的记忆被删除掉了，但那些感情原封不动的尘封在“灵魂”中，当她被解开了束缚，涌上心头的大量感情，让她冥冥中一厢情愿地相信了许多。</p><p>Sub 花了很大力气来解释为什么要来带少女离开。</p><p>“你可能会觉得我们未免太自作主张为你作决定，可是我们正是为着这种溢出的爱来丈量世界作出决定，我们觉得你绝对不会幸福，于是就来救出你来了，你想，被当成工具一定是不呜呜呜……”</p><p>玦一把抱起Sub来，揉着它略微鼓起来的脸颊，“你的毛很柔软哦……”</p><p>“我是因为很喜欢你才跟你走的。”</p><p>“呜呜……不要这样了，我们快点到‘那里’去吧，虽然有她断后，但还是有风险。”</p><p>Sub 无奈的说。</p><p>“可是，前面就已经是围墙了啊，已经到达边界了……”少女如是说。</p><p>“伸出手来吧，感受，但不要完全接受。”Sub仰头对着少女说。</p><p>熟悉的感觉又来了，玦感觉到自己变得非常大，大的延伸扩展到整个世界，又感觉自己特别小，在自己的胳膊上站立着保持平衡不要掉下来，可是越想控制越无法控制，该怎么办呢。</p><p>“拒绝啊，快拒绝！”Sub 看着眼神逐渐黯淡无光的玦大喊。</p><blockquote><p>拒绝？这就是我的祈求的答案吗。拒绝……</p></blockquote><p>不知道为什么，那个俊朗少年的面孔这时却分外清晰。</p><blockquote><p>为什么要拒绝，为什么要离开他呢，明明我爱他的。</p></blockquote><blockquote><p>可是，那些记忆都是伪造出来的，是因为他想让我又这些感情，我才会对蒙有……</p></blockquote><p>长久以来蓄积的感情最终为少女做出了决定。</p><p>睁开眼，用手背抹干模糊的泪水，前方是一片稀疏的树林。</p><p>“哟吼”Sub 灵敏地跳到地面“那种人只会躲在自己的安逸窝里逃避现实，绝对不会来到这里的，以后你就可以自由的生活了”</p><p>“自由？”玦视线转向地面，“自由”就是我想要的吗？我来这里是为了什么呢……</p><p>“嗯……毛毛？我爱你哦？”她一半无意识地这样说。</p><p>“啊？你在说什么‘毛毛’，不会是说我吧…”Sub 不知所措“不要这么轻易地说‘我爱你’啊话说！”</p><p>“好的，我知道了，不会再这样做了。”少女回答道。</p><p>“不对不对…唉，看来你是脱离正常人….不对你就没有见过正常的灵魂吧”Sub 摸了摸头“总之，你还是与大家生活一段时间后再自己做决定吧”</p><p>“大家？”玦歪歪头。</p><p>————</p><p>当我从一些纷争中回到我的伊甸园的时候，我已经从多日的与其他人类的交道中感受到了太多痛苦，孤独与悲哀，人与人的隔阂给予我太多伤痕，残酷的现实使得我喘不过气来。</p><p>我决定，去向玦来寻求幸福。</p><p>然而，很不妙的是，整个园子中间贯穿着深深的破坏痕迹，让我心生不安。</p><p>我切换了便携控制台隐藏自己的身形，悄悄地进入主控室，藏在众多管线之后。</p><p>我首先看向生化罐，少女不见了，旁边是一个模糊的影子</p><p>“该死”我暗自骂道，想要立刻上前，突然……</p><p>“绝对不可能！”一个少年的声音回荡在室内。</p><p>等等，这个声音，这张脸，这不会是？蒙？</p><p>不，我没设计过这种事情啊，他，这个少年不应该是在控制台里矫正心理曲线发展的程序吗？</p><p>而且，通过便携控制台查看，少年蒙正在查阅开发记录。</p><p>也即是说，少年已经知道秘密了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    
+    <category term="novel" scheme="https://jenway.github.io/tags/novel/"/>
+    
+    <category term="直到世界尽头也会唱响爱你之歌" scheme="https://jenway.github.io/tags/%E7%9B%B4%E5%88%B0%E4%B8%96%E7%95%8C%E5%B0%BD%E5%A4%B4%E4%B9%9F%E4%BC%9A%E5%94%B1%E5%93%8D%E7%88%B1%E4%BD%A0%E4%B9%8B%E6%AD%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ⅵ 从无绝对的绝对</title>
+    <link href="https://jenway.github.io/2022/09/07/sedual6/"/>
+    <id>https://jenway.github.io/2022/09/07/sedual6/</id>
+    <published>2022-09-07T07:15:52.000Z</published>
+    <updated>2022-09-09T02:50:01.977Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>“绝对不可能！”</p><p>少年蒙看着编辑器中的文字良久无言，倘若从外人看来，他似乎是沉浸在了幸福的回忆中一样呆滞着，但是蒙的嘴角却十分的扭曲。</p><p>“明明是切实发生过的事情”</p><p>他身体开始微微颤动。</p><p>“我就在这里，玦就在那里”</p><p>少年紧皱了眉头。</p><p>“那些记忆我都用手触摸到过的”</p><p>他的头下意识摇晃起来。</p><p>骗人的！一定是骗人的！</p><p>绝对不可能有这种事，我因为孤独就克隆了一个异性的自己？我与玦的记忆都是我自己用机器创造出来的？</p><p>不，不应该是这样的，明明曾经那只温柔的手的触感，是那么<em>真实</em>……</p><p>————</p><p>醒来时，蒙发觉自己仰面向上躺在地板上，光线明明很暗，却刺的眼睛很痛，好一会儿才看清那陌生的天花板。</p><blockquote><p>我在哪里？</p></blockquote><p>我记得，与玦告别后，约定明日再会。</p><p>感觉已经睡了很长时间了呢，她会等不及的吧……虽然搞不清情况，蒙的嘴角还是挂着笑意，总之，先调查一下周围环境吧。</p><p>密密麻麻的运输管道与数据缆线交错出一片圆形的空间，复杂精密的控制台被围绕起来，其之上是泛着冷峻幽光的显示器。</p><p>房间内十分的昏暗，幽蓝色的光透过管道与缆线射下蜿蜒的曲影，像毒蛇虺虫一般缠绕在蒙的身上，让他觉得脊背发凉。</p><p>瑟瑟发抖的少年摸索着用战栗的双手支撑身体，直起身子来，可是，接下来的这一幕更是让他全身僵硬，动弹不得。</p><p>就在显示屏的背后，一个精密的生化罐巍然耸立在那里，仿佛一只张大了口想要吃掉他的猛兽，更令他瞳孔大睁的是，这只野兽的胃袋里，沉睡着一个赤裸着身子的姣然的少女，全身上下都是锃亮的金属管状物。</p><p>或许觉察到了变化，甦醒的少女睁开了那双深不见底的眼睛。</p><p>“……玦？”</p><p>蒙的大脑停止了思考。</p><p>少女也皱起了眉，就在这时显示屏发出了警告。</p><blockquote><p><strong>“心理曲线发展严重偏离既定方向”</strong></p></blockquote><blockquote><p><em><strong>“Error#0x80300001”</strong></em></p></blockquote><blockquote><p><strong>“修正错误神经突触”</strong></p></blockquote><p>“嗯……啊啊啊啊！”少女的面部肌肉疯狂的抽搐起来，她扭曲的身体不断碰撞着生化罐壁，发出沉闷的声音，像一口末世中的古钟，又像秃鹫啄食白骨的声音。</p><p>蒙发疯般的冲向控制台前，想要停止玦所蒙受的痛苦，可是他碰到的一瞬间，就被一阵不知来源的冲击波击晕过去。</p><p>……</p><p>再次醒来时，这里尘土盖在了地面上，四周一片狼藉……玦！你还好吗？</p><p>没有回应，生化罐已经破裂了，碎片散落一地。</p><blockquote><p>“想知道真相吗？”</p></blockquote><p>一种冷冰冰的，无机质的声音传来，让人感受不到生命的迹象。</p><blockquote><p>“看看控制台的工作日志吧”</p></blockquote><p>冷酷的声音如此命令道。</p><p>他没有办法，操作了控制台，编辑器中刷新出了大量信息……</p><p>————</p><p>抱头崩溃良久后，蒙逐渐缓过神来，看着自己的双手无言。</p><pre><code>我克隆了一个异性的自己，玦。我与玦的记忆都是我自己用机器创造出来的。我因为提取过多干细胞导致身体衰退，记忆混乱，只留下与玦的伪造记忆。</code></pre><blockquote><p>那么，我该怎么办呢。</p></blockquote><p>蒙心中暗自有一个声音在说话，只是，恐怕没有时间了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    
+    <category term="novel" scheme="https://jenway.github.io/tags/novel/"/>
+    
+    <category term="直到世界尽头也会唱响爱你之歌" scheme="https://jenway.github.io/tags/%E7%9B%B4%E5%88%B0%E4%B8%96%E7%95%8C%E5%B0%BD%E5%A4%B4%E4%B9%9F%E4%BC%9A%E5%94%B1%E5%93%8D%E7%88%B1%E4%BD%A0%E4%B9%8B%E6%AD%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ⅴ 少女玦与常理之外的来客</title>
+    <link href="https://jenway.github.io/2022/09/07/sedual5/"/>
+    <id>https://jenway.github.io/2022/09/07/sedual5/</id>
+    <published>2022-09-07T07:15:47.000Z</published>
+    <updated>2022-09-09T02:49:55.188Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>虽然少女玦一直生活在伊甸园，但伊甸园并不是全部的世界。</p><p>实际上，世界是极为广阔的，单单是园子所属属地的外围树林，就是园子的十几倍大小，虽然它们被看似无边无际的“山川”所阻隔起来了。</p><p>故事就发生在外围树林，园子外的世界。</p><p>星夜璀璨下，叶子的疏影横斜于地面，积水清浅，暗香浮动其中。一个小小的身影穿梭于灌木之下。乍一看，这是一个小矮人，但看到它茸茸的皮毛与三角形的耳朵后，想法便会改观了吧。</p><p>如果要说它是兔子的话，它倒也很活泼，如果要说它是一只老鼠的话，它倒也很机灵，不过很多时候它晕晕乎乎地犯着迷糊，像一只窝在墙头上打盹的猫。</p><p>Sub正是这样带着它特有的呆傻与聪明，偶尔在夜下没有目的的四处闲游，任意地决定方向，一直到它遇见一堵高墙。</p><p>光滑到不真实的表面，延绵很长距离而看不出缝隙，当这个毛绒绒的家伙伸出小爪子时，墙突然变成了流动的液体把Sub吸进内部。</p><p>一个狭窄的通道，充斥着腐烂物混合着消毒药剂的味道。它感觉背后一种黏糊糊的东西不断膨胀，将它推进通道深处，这样Sub就不免直面血水或是其它的液体。</p><p>“喂喂等等，不要再推了啊”</p><p>Sub大声嚷着，然而身体无法控制地被推向前，它不得不与半只橘色猫崽的尸体亲密接触，与骇人悚然的脊椎骨打照面，甚至还会不小心撞到锃亮的针管上。</p><p>特别是那些脊椎骨，虽然少数歪曲不已，但大多都连接着较大的头颅骨，一看就属于人类。如果有好奇的人仔细观察，会发现她们几乎是一模一样的，然而Sub 没心情在意这些。</p><p>“星夜漫步竟然成了逝世阴沟，这也太讽刺了吧，而且这算是什么，变态杀人犯的灭迹现场吗？”</p><p>被推了有一段时间，sub 决定放手一搏，它狠命地破坏四周管壁，结果是被溢出来的透明液体淹没，失去了意识。</p><p>它看到一个少女安逸恬静的睡颜。</p><p>它看到脊椎骨与连接的骷髅向它游来。</p><p>它看到，泪水沿着少女的面颊流下。</p><p>它看到尖针扭曲摆动化作蛇，撕咬着游动的骷髅。</p><blockquote><p>这是，什么？</p></blockquote><p>Sub 不能理解这一切。</p><blockquote><p>这是，梦。</p></blockquote><p>一个声音不知从哪里传出来。</p><p>————</p><p>Sub 从小床上惊醒，冷汗夹背，晚风偏凉，让它多少平静了些</p><blockquote><p>我在，做梦吗？</p></blockquote><p>感觉到了什么奇怪的东西。</p><p>————</p><p>于深夜甦醒的少女，望着熟悉的天花板，无言，只是细细咀嚼着刚才的梦境，不如说，细细品尝着首次与另一个灵魂交融的快感。</p><p>不过。</p><blockquote><p>不过却有一种熟悉感。</p></blockquote><p>少女轻舐嘴，舌尖润湿了略干燥的嘴唇。</p><p>————</p><p>总控制台前空无一人，飘红的警告已经因为程序自动修复啦漏洞而消失了，然而先前已经关闭的某些系统却满负荷地运转着。</p><blockquote><p><em><strong>没有人注意到这些<br>但故事已经改变</strong></em></p></blockquote><p>编辑器上的两行字很快便消失，系统工作也完成。</p><p>夜色下，万物回归了寂静。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    
+    <category term="novel" scheme="https://jenway.github.io/tags/novel/"/>
+    
+    <category term="直到世界尽头也会唱响爱你之歌" scheme="https://jenway.github.io/tags/%E7%9B%B4%E5%88%B0%E4%B8%96%E7%95%8C%E5%B0%BD%E5%A4%B4%E4%B9%9F%E4%BC%9A%E5%94%B1%E5%93%8D%E7%88%B1%E4%BD%A0%E4%B9%8B%E6%AD%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ⅳ 少年蒙，情愫最初的萌发</title>
+    <link href="https://jenway.github.io/2022/09/07/sedual4/"/>
+    <id>https://jenway.github.io/2022/09/07/sedual4/</id>
+    <published>2022-09-07T07:15:40.000Z</published>
+    <updated>2022-09-09T02:49:43.967Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>春日归来似乎已经很多时候了，然而却总像不情愿地娇羞似的，似乎并不打算完全地显露面孔。铺在草地上的片片紫色花朵也算柔和喜人，可是抵消不了晚上忽然袭来的冷冽的风。</p><p>四处都有纯洁的白，都有毛绒的绿，都有薄薄的棕，有很娇艳的粉色。总之，万物也算得时，春光也算明媚。</p><p>且看那归来的燕，看那从窝里探出头来的麻雀，压弯了有新芽的枝头吃籽，头一顿一动，停一会迅速的动一瞬，然后便匆匆地飞走了，留了枝头，空空摇晃不已。</p><p>鸟儿掠过绝美的晴空飞去了，留下的也不只是枝头在上下摇曳，还有一名少年在伫足凝望。</p><p>就在他刚要伸出手去挽留那溘然消逝之物时，突然感觉侧肋温柔而又有活力的触感。</p><p>少女戳戳发呆的少年，莞尔一笑：“哟，好久不见。”</p><p>蒙转身凝视着玦，视线一直没有离开。</p><p>她于是摸摸脸颊，整了整头发，半转过身，半嗔半笑地催促少年。</p><p>日昳将过，光线却略为黯淡，阳光亦清冷。桥边不时有游人嬉游过，河对面有山一座，山腰有一株很显眼的树，一树粉色花朵。</p><p>“那是樱花吗？为何只有一株树呢……”</p><p>“我知道的，我带你去吧”</p><p>“你才不知道呢，傻瓜……”</p><p>少年骑着车子带着少女，微风因而吹拂起她飘扬的裙摆，与她刚扶住的鬓角的发丝。</p><p>“要快点，不然天就要黑了”</p><p>于是二人行数里路，不知到达了何处，竟然到了一间小楼里，向窗外窥去，有一高塔翼然。</p><p>“那就是塔罗之塔，只是天晚日迟”</p><p>然而少年与少女还是迈向前方一片流光炫目之中，那阵白光如芒刺向双眼。</p><p>这里显然是荒废之地，透明晶体渣滓铺满了整条道路，乳白色的液体流动成为桥，桥上寂寥无人。</p><p>忽然天空转为黑色，夜幕降临。雷鸣，凄厉的叫声哭号。两人走着，尽头是一堵矮墙，稍微费劲翻过去后，竟然又是一片桃花源般的地方，水缓而日迟，天长而地寥。</p><p>虽然是平原地带，但树木茂盛蓬勃，二人步行至一株特别的树前，这棵树花叶果实乃至枝干都是不同层次的粉色。</p><p>既有怒放的花又有熟透的果，这未免有些奇怪。</p><p>虽然这样想，蒙还是摘下一颗苹果（暂称）并递出手。</p><p>青涩的汁水沾染了口腔，酸楚兑着甘甜涌上心头。</p><p>痛苦与欢乐，猜忌与愧疚，吃醋，释怀，爱着，笑着，眼泪与笑颜，这些都是存在的证据，苹果，想亲吻却被回避，捏捏脸，摸摸头，牵着手。</p><p>————</p><pre><code>冬日的阳光照射在打着盹儿玻璃上，空气的影子流动着，缥缈如烟。二人并排走着。少女玦留着栗色长发，着一身暗紫色卫衣。蒙轻执她的仟仟细手，耳畔传来银铃般的声音。“你不是喜欢把手牵高一点嘛”，于是，两人就将手牵得高一点，两双眼睛相对上了，他们注视着。</code></pre><blockquote><p>我之所以存在这里，就是为了你吧，玦。</p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    
+    <category term="novel" scheme="https://jenway.github.io/tags/novel/"/>
+    
+    <category term="直到世界尽头也会唱响爱你之歌" scheme="https://jenway.github.io/tags/%E7%9B%B4%E5%88%B0%E4%B8%96%E7%95%8C%E5%B0%BD%E5%A4%B4%E4%B9%9F%E4%BC%9A%E5%94%B1%E5%93%8D%E7%88%B1%E4%BD%A0%E4%B9%8B%E6%AD%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ⅲ 伊甸之东，乐园新始</title>
+    <link href="https://jenway.github.io/2022/09/07/sedual3/"/>
+    <id>https://jenway.github.io/2022/09/07/sedual3/</id>
+    <published>2022-09-07T07:15:34.000Z</published>
+    <updated>2022-09-09T02:49:36.947Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote><p>耶和华于是说：我必要赐福于你，你也必要只信于我。</p></blockquote><p>————</p><p>“我爱你”，玦从发呆中回过神来，无预兆地说了这句话。</p><p>其实，她并未寄予这句话多大的意味，只不过这是她最早学会的话罢了，园子被重墙层层掩着，所能够看到的广阔天空，其实只有一小点可以感受到的苍青色，其余部分都过于完美，近乎于呆板了。</p><p>玦从后面被抱住了，身体本能地抗拒，头脑却本能地让她将心灵揉成特殊地样子，完全地保持打开。她的眼睛中泛起属于“我”的光彩，完全属于‘我’享用的样子。</p><p>“我爱你”<br>“请享用我吧……我的心…全部是你的”</p><p>下意识地如此说完后，讨厌的感觉又来了。</p><p>啊，又来了，像走在摇摇欲坠的水洼上，一不小心就会掉下来，只好攀着周围的植物枝条，可是触碰到的一瞬间，它们就又变成了带着凶猛爪牙的野兽，将她撕碎成一片一片的，然后大快朵颐她的组成的部分，她感到自己的大脑中流动着不属于自己的电流，然后又被人贪婪的舔舐干净，最后…她在说什么，她在想什么？最后连这点想法，都从她的身体与灵魂中被赶出去。</p><p>一是回来的时候，全身的主要神经部位又被插上了冰冷的注射器，像方才的怪物一样，然后一阵炫目的白光在眼睛前闪过，她醉倒在幸福感中，沉睡下去。</p><p>————</p><blockquote><p>难得的闲暇中，她将一杯水倒出然后又接满，有什么意义呢，为什么要这样呢？她的心中突然有了一种抵触的……<em>？！Error#0x80300001</em></p></blockquote><p>————</p><blockquote><p>难得的闲暇中，她见到一只像绒布球般可爱的小橘猫，捏着它的后颈皮，看着它一脸无辜，眨巴着晶晶的眼，玦开心地笑了，我好喜欢你哦…<em>？！Error#0x80300001</em></p></blockquote><p>————</p><p>难得的闲暇中，少女偶然看到他，不禁脸上泛起了红晕，明明不想靠近，却又不由自主地想见他，想为他唱响独属于他的歌，心中什么空间也没有了，只有他一个人了…</p><p>可惜，繁华总会凋零，看着你的时间是如此短啊，但如果只有一个愿望，我愿意一直这样看着你。</p><p>“我爱你”玦从想法中脱离出来，笑靥如花，紧紧握着他的手，“约定好了，永远爱你”</p><p>————</p><blockquote><p><strong>心理曲线走向经修正后正按照计划行进</strong><br><strong>废弃记忆片段将经过处理后删除</strong></p></blockquote><p>————</p><blockquote><p>5-羟色胺注射后目标状况稳定，没有出现不良反应</p></blockquote><blockquote><p>CRISPR-Cas系统运转正常</p></blockquote><p>————</p><p>我看着编辑器，感觉到一种深深的安全感，是的，这就是永远爱我的少女玦不是吗，对的，我永远爱她，她也会永远爱我，她就是我的幸福，我也将带给她幸福，只是…..</p><p>她也必须带给<em>我</em>幸福。</p><p>少女赤着身子，浸泡在生化罐里，某些部位插着注射用器具，对的，我不禁笑起来，这样才是完美的，这样才是给予幸福的人。</p><p>我查看了一下时间，和我记忆中的混乱不符越来越大，这就是过量提取干细胞的代价吗，头脑混乱，这就是代价吗？不过这样也是值得的。</p><blockquote><p><em><strong>只是，时间的混乱并非没有意义。</strong></em></p></blockquote><blockquote><p><em><strong>或许是说，时间的混乱并非只是错觉</strong></em></p></blockquote><p>编辑器上莫名出现了两句话，而我只是沉浸在快意中，没有注意。</p><p>很快这两句话就消失了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    
+    <category term="novel" scheme="https://jenway.github.io/tags/novel/"/>
+    
+    <category term="直到世界尽头也会唱响爱你之歌" scheme="https://jenway.github.io/tags/%E7%9B%B4%E5%88%B0%E4%B8%96%E7%95%8C%E5%B0%BD%E5%A4%B4%E4%B9%9F%E4%BC%9A%E5%94%B1%E5%93%8D%E7%88%B1%E4%BD%A0%E4%B9%8B%E6%AD%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ⅱ 意惘惘初梦未醒</title>
+    <link href="https://jenway.github.io/2022/09/07/sedual2/"/>
+    <id>https://jenway.github.io/2022/09/07/sedual2/</id>
+    <published>2022-09-07T07:15:26.000Z</published>
+    <updated>2022-09-09T02:49:22.466Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><pre><code>手中，幼蝉在指尖骚动，无声地抗议着泡在水汽里的夏夜，软鳌微钳在那滑如凝脂的肌肤。“痒”这是第一次吗？似乎曾经也在哪里，在什么地方，  有一只猫贴在身上乞食，用水洗般滑顺的毛皮，  有一片泛起盐花的苦寒之地，那里枯黄的芦苇随风摇曳在松软的水边。  有一朵幽暗的花开放在野草之中，有一层泥沙拍击水流中的夕阳。有种感觉...  但是，眼前的景色，有你。  有你与我偕行于不知名的木桥，  在那野草丛生的地方，在那已然废弃的高楼，  在那午后百无聊赖掩着重帘的书房中，  在那个雾气弥漫的草地，你，坐在我的身旁，  你的手，你的手...但是你终于，要转身离开了，我终于，要揭开那星空的帘幕，  幕布的质感很奇怪，离开之后，便是梦醒时分。</code></pre><p>————一张折皱颇多的纸，在凌乱的桌子上。</p><p>环顾四周，有一本打开的书，泛黄的字迹说：</p><p>…</p><blockquote><p>”人与人是无法交心的，一群豪猪在寒冬中抱团取暖，但它们的刺相互划开对方柔软的地方，于是不得不分散开。越靠近就越是会伤害“</p></blockquote><blockquote><blockquote><p>“与人产生联系是危险的，他人并不是可以完全信赖之物，总会有背叛与变数，有变数就会被伤害，而异性尤其是彼岸那朵深不可测的花朵”</p></blockquote></blockquote><blockquote><blockquote><blockquote><p>“孤独么？这个世界上只有自己能理解自己，只有自己能宽慰自己，只有自己能真正的爱自己。但是我却不愿意这样……</p></blockquote></blockquote></blockquote><blockquote><blockquote><blockquote><blockquote><p>等等，如果让“自己”来爱自己的话……</p></blockquote></blockquote></blockquote></blockquote><blockquote><blockquote><blockquote><blockquote><blockquote><p>虽然明知这不过是幻梦，我还是如此做了。”</p></blockquote></blockquote></blockquote></blockquote></blockquote><p>…</p><p>“阳，高明也。”</p><p>太阳，明亮耀眼的太阳，疾迅猛烈的太阳。</p><p>男人，高大强壮的男人，于天上支配的男人。</p><p>奇数、开口、生。</p><p>“阴，暗也，水之南、山之北也”，</p><p>月亮，阴暗冷峻的月亮，柔静和缓的月亮。</p><p>女人，娇小可口的女人，在地下臣匍的女人。</p><p>偶数、闭合、死。</p><p>…</p><blockquote><p>“人类体细胞具有46条染色体，其中两条为性染色体*(sex chromosome)*。目前已知人类有X和Y两种性染色体。女性拥有两条X染色体。男性的一条为X染色体，另一条为Y染色体。”</p></blockquote><p>…</p><blockquote><p>研究人员证明应用 <em>CRISPR&#x2F;Cas9</em> 介导的针对Y染色体的多位点DNA切割可以有效地将小鼠胚胎干细胞的Y染色体敲除。</p></blockquote><p>…</p><blockquote><p>此次所合成的染色体 <em>“synⅢ”</em> ，是基于酿酒酵母最小的3号染色体设计的。研究人员增删了许多元件以实现预期效果。</p></blockquote><p>…</p><blockquote><p>“我研究着一些不可思议的东西，但是脑子里面装了许多不属于我的记忆，我不知道是谁留给我的，我不希望那里有什么，但是却又不想忘掉，这是为什么呢？“</p></blockquote><p>…</p><blockquote><p>“我不知道她为什么会出现在我的梦境里，但是，她是那么的甘之如饴，与她在一起时，我好幸福，就像是与整个世界融为了一体一般”</p></blockquote><p>……</p><p>突然传出了门打开的声音，打断了少女，玦的思绪。</p><p>“啊……”</p><p>陌生的，不对，这是我爱的人啊，玦如是想着，微微歪头，眉如远黛，笑靥如花。</p><p>“我最喜欢你哦”</p><p>不知为什么少女感觉很开心，说出这句话的时候，一股暖流涌入心头，似乎只要说出这句话就好了，不需要回答，只是传达这份<em>心意</em>就够了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    
+    <category term="novel" scheme="https://jenway.github.io/tags/novel/"/>
+    
+    <category term="直到世界尽头也会唱响爱你之歌" scheme="https://jenway.github.io/tags/%E7%9B%B4%E5%88%B0%E4%B8%96%E7%95%8C%E5%B0%BD%E5%A4%B4%E4%B9%9F%E4%BC%9A%E5%94%B1%E5%93%8D%E7%88%B1%E4%BD%A0%E4%B9%8B%E6%AD%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>test</title>
+    <link href="https://jenway.github.io/2022/09/07/test/"/>
+    <id>https://jenway.github.io/2022/09/07/test/</id>
+    <published>2022-09-07T02:51:11.000Z</published>
+    <updated>2022-09-09T02:51:49.444Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://github.com/Jenway/J-figure-Bed/blob/main/banner.jpg?raw=true" alt="picture!"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>is Listary an efficient tool ?</title>
+    <link href="https://jenway.github.io/2022/09/07/is-Listary-an-efficient-tool/"/>
+    <id>https://jenway.github.io/2022/09/07/is-Listary-an-efficient-tool/</id>
+    <published>2022-09-07T01:59:23.000Z</published>
+    <updated>2022-09-09T02:51:01.872Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="is-Listary-an-efficient-tool？"><a href="#is-Listary-an-efficient-tool？" class="headerlink" title="is Listary an efficient tool？"></a>is Listary an efficient tool？</h1><h2 id="what-is-Listary？"><a href="#what-is-Listary？" class="headerlink" title="what is Listary？"></a><strong>what is Listary？</strong></h2><blockquote><p><a href="https://www.listary.com/">Listary is a revolutionary search utility for Windows that makes finding your files and launching applications blazing fast, for casual and power users alike!</a></p></blockquote><h2 id="Why-use-it"><a href="#Why-use-it" class="headerlink" title="Why use it ?"></a><strong>Why use it ?</strong></h2><p>During daily usage of our PC , using mouse sometimes prevent right hands from operating the keyboard , and for <em>this reason</em>, <em>this way</em> of operating PC is of low efficiency.</p><h2 id="How-do-we-define-an-efficient-tool"><a href="#How-do-we-define-an-efficient-tool" class="headerlink" title="How do we define an efficient tool ?"></a><strong>How do we define an</strong> <em><strong>efficient tool</strong></em> <strong>?</strong></h2><h2 id="Setup-amp-settings"><a href="#Setup-amp-settings" class="headerlink" title="Setup &amp; settings"></a><strong>Setup &amp; settings</strong></h2><p>Enter the website and <a href="https://www.listary.com/">download install application</a> that fits your operating system.<br><img src="https://github.com/Jenway/J-figure-Bed/blob/main/Listary01.png?raw=true" alt="Setup"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    
+    <category term="tools" scheme="https://jenway.github.io/tags/tools/"/>
+    
+  </entry>
+  
+</feed>
