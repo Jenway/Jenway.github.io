@@ -2,7 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://jenway.github.io/music/index.html</loc>
+    <loc>https://jenway.github.io/link/index.html</loc>
+    
+    <lastmod>2023-02-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenway.github.io/messageboard/index.html</loc>
     
     <lastmod>2023-02-11</lastmod>
     
@@ -20,115 +29,7 @@
   </url>
   
   <url>
-    <loc>https://jenway.github.io/2022/09/07/sedual4/</loc>
-    
-    <lastmod>2023-02-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jenway.github.io/2022/09/07/sedual5/</loc>
-    
-    <lastmod>2023-02-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jenway.github.io/2022/09/07/sedual6/</loc>
-    
-    <lastmod>2023-02-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jenway.github.io/2022/09/07/sedual7/</loc>
-    
-    <lastmod>2023-02-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jenway.github.io/2022/09/07/sedual8/</loc>
-    
-    <lastmod>2023-02-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jenway.github.io/2022/09/07/sedual9/</loc>
-    
-    <lastmod>2023-02-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jenway.github.io/2022/09/07/test/</loc>
-    
-    <lastmod>2023-02-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jenway.github.io/2022/09/17/yourHexo/</loc>
-    
-    <lastmod>2023-02-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jenway.github.io/2022/09/17/yourHexo2/</loc>
-    
-    <lastmod>2023-02-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jenway.github.io/2022/09/21/yourVScode-md/</loc>
-    
-    <lastmod>2023-02-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jenway.github.io/about/index.html</loc>
-    
-    <lastmod>2023-02-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jenway.github.io/bangumi/index.html</loc>
-    
-    <lastmod>2023-02-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jenway.github.io/2022/10/08/8thOct/</loc>
+    <loc>https://jenway.github.io/timeline/index.html</loc>
     
     <lastmod>2023-02-11</lastmod>
     
@@ -155,25 +56,7 @@
   </url>
   
   <url>
-    <loc>https://jenway.github.io/2022/09/17/cAndPointer/</loc>
-    
-    <lastmod>2023-02-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jenway.github.io/2022/09/22/complement/</loc>
-    
-    <lastmod>2023-02-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jenway.github.io/2022/11/02/dairyNov2th22-md/</loc>
     
     <lastmod>2023-02-11</lastmod>
     
@@ -245,7 +128,97 @@
   </url>
   
   <url>
-    <loc>https://jenway.github.io/2022/09/15/haveMusic/haveMusic/</loc>
+    <loc>https://jenway.github.io/2022/09/07/sedual4/</loc>
+    
+    <lastmod>2023-02-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenway.github.io/2022/09/07/sedual5/</loc>
+    
+    <lastmod>2023-02-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenway.github.io/2022/09/07/sedual6/</loc>
+    
+    <lastmod>2023-02-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenway.github.io/2022/09/07/sedual7/</loc>
+    
+    <lastmod>2023-02-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenway.github.io/2022/09/07/sedual8/</loc>
+    
+    <lastmod>2023-02-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenway.github.io/2022/09/07/sedual9/</loc>
+    
+    <lastmod>2023-02-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenway.github.io/2022/09/17/yourHexo/</loc>
+    
+    <lastmod>2023-02-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenway.github.io/2022/09/21/yourVScode-md/</loc>
+    
+    <lastmod>2023-02-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenway.github.io/about/index.html</loc>
+    
+    <lastmod>2023-02-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenway.github.io/bangumi/index.html</loc>
+    
+    <lastmod>2023-02-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenway.github.io/categories/index.html</loc>
     
     <lastmod>2023-02-11</lastmod>
     
@@ -261,13 +234,6 @@
     <priority>1.0</priority>
   </url>
 
-  
-  <url>
-    <loc>https://jenway.github.io/tags/%E6%A0%91%E6%B4%9E/</loc>
-    <lastmod>2023-02-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
   
   <url>
     <loc>https://jenway.github.io/tags/GUI/</loc>
