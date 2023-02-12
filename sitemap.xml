@@ -38,105 +38,6 @@
   </url>
   
   <url>
-    <loc>https://jenway.github.io/2023/01/28/GUI-guide/</loc>
-    
-    <lastmod>2023-02-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jenway.github.io/2022/09/07/To-do-list/</loc>
-    
-    <lastmod>2023-02-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jenway.github.io/2022/09/22/complement/</loc>
-    
-    <lastmod>2023-02-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jenway.github.io/2022/09/02/hello-world/</loc>
-    
-    <lastmod>2023-02-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jenway.github.io/2022/09/07/is-Listary-an-efficient-tool/</loc>
-    
-    <lastmod>2023-02-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jenway.github.io/2022/09/02/nextItem/</loc>
-    
-    <lastmod>2023-02-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jenway.github.io/2022/09/06/sedual-2/</loc>
-    
-    <lastmod>2023-02-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jenway.github.io/2022/09/07/sedual10/</loc>
-    
-    <lastmod>2023-02-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jenway.github.io/2022/09/07/sedual2/</loc>
-    
-    <lastmod>2023-02-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jenway.github.io/2022/09/07/sedual3/</loc>
-    
-    <lastmod>2023-02-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jenway.github.io/2022/09/07/sedual4/</loc>
-    
-    <lastmod>2023-02-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jenway.github.io/2022/09/07/sedual5/</loc>
     
     <lastmod>2023-02-12</lastmod>
@@ -228,6 +129,105 @@
   
   <url>
     <loc>https://jenway.github.io/2023/02/12/ChatWithGPT/</loc>
+    
+    <lastmod>2023-02-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenway.github.io/2023/01/28/GUI-guide/</loc>
+    
+    <lastmod>2023-02-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenway.github.io/2022/09/07/To-do-list/</loc>
+    
+    <lastmod>2023-02-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenway.github.io/2022/09/22/complement/</loc>
+    
+    <lastmod>2023-02-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenway.github.io/2022/09/02/hello-world/</loc>
+    
+    <lastmod>2023-02-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenway.github.io/2022/09/07/is-Listary-an-efficient-tool/</loc>
+    
+    <lastmod>2023-02-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenway.github.io/2022/09/02/nextItem/</loc>
+    
+    <lastmod>2023-02-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenway.github.io/2022/09/06/sedual-2/</loc>
+    
+    <lastmod>2023-02-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenway.github.io/2022/09/07/sedual10/</loc>
+    
+    <lastmod>2023-02-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenway.github.io/2022/09/07/sedual2/</loc>
+    
+    <lastmod>2023-02-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenway.github.io/2022/09/07/sedual3/</loc>
+    
+    <lastmod>2023-02-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenway.github.io/2022/09/07/sedual4/</loc>
     
     <lastmod>2023-02-12</lastmod>
     
