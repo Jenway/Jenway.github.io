@@ -1,5 +1,3 @@
-<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>
-<script>
 document.addEventListener('visibilitychange',function(){
     if( document.visibilityState == 'hidden' ){
         normal_title = document.title;
@@ -11,4 +9,3 @@ document.addEventListener('visibilitychange',function(){
         }, 1200)
     }
 });
-</script>
