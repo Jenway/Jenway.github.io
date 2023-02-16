@@ -1,4 +1,4 @@
-!(function() {
+<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>!(function() {
   var oldLoadAp = window.onload;
   window.onload = function () {
     oldLoadAp && oldLoadAp();
@@ -15,8 +15,8 @@
         {
           name: 'song1',
           artist: 'artist1',
-          url: '/songs/song1.mp3',
-          cover: '/img/cover.jpg'
+          url: 
+          cover: 
         }
       ]
     });
