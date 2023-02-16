@@ -1,4 +1,4 @@
-<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>!(function() {
+!(function() {
   var oldLoadAp = window.onload;
   window.onload = function () {
     oldLoadAp && oldLoadAp();
@@ -10,13 +10,13 @@
       loop: 'all',
       order: 'random',
       theme: '#b7daff',
-      preload: 'none',
+      preload: 'auto',
       audio: [
         {
-          name: 'song1',
-          artist: 'artist1',
-          url: 
-          cover: 
+            name: '碧い瞳のエリス',
+            artist: '安全地帯',
+            url: 'https://doge.ottoli.cn/安全地帯 - 碧い瞳のエリス.mp3',
+            cover: 'https://doge.ottoli.cn/aqdd.jpg'
         }
       ]
     });
