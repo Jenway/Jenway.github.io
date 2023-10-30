@@ -2895,6 +2895,11 @@ h1.page-title + .tag-cloud-list {
     -o-transform: scale(0);
     -ms-transform: scale(0);
     transform: scale(0);
+    -webkit-transform-origin: right bottom;
+    -moz-transform-origin: right bottom;
+    -o-transform-origin: right bottom;
+    -ms-transform-origin: right bottom;
+    transform-origin: right bottom;
   }
   #aside-content #card-toc.open {
     -webkit-transform: scale(1);
@@ -3932,7 +3937,6 @@ h1.page-title + .tag-cloud-list {
 #article-container {
   word-wrap: break-word;
   overflow-wrap: break-word;
-  text-align: justify;
 }
 #article-container a {
   color: #49b1f5;
@@ -5516,6 +5520,9 @@ blockquote.pullquote.right {
 .note blockquote:last-child,
 .note img:last-child {
   margin-bottom: 0 !important;
+}
+.note .img-alt {
+  margin: 5px 0 10px;
 }
 .note:not(.no-icon) {
   padding-left: 3em;

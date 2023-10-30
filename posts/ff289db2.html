@@ -1,0 +1,397 @@
+<!DOCTYPE html><html lang="zh-cn" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>用 Qt 写五子棋的夜晚 二 | Jenway's Blog</title><meta name="author" content="Jenway"><meta name="copyright" content="Jenway"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="这篇博文主要讲了 Qt 中的信号与槽 (Signals &amp; Slots) 信号与槽 (Signals &amp; Slots)信号和槽是用于对象之间的通信的。信号和槽机制是 Qt 的一个核心特性，也是与其他框架提供的特性最不同的部分。信号和槽是由 Qt 的元对象系统实现的。 介绍在 GUI 编程中，当我们改变一个小部件时，我们经常希望另一个小部件被通知到。更一般地说，我们希望任何类型的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用 Qt 写五子棋的夜晚 二">
+<meta property="og:url" content="https://blog.jenway.live/posts/ff289db2.html">
+<meta property="og:site_name" content="Jenway&#39;s Blog">
+<meta property="og:description" content="这篇博文主要讲了 Qt 中的信号与槽 (Signals &amp; Slots) 信号与槽 (Signals &amp; Slots)信号和槽是用于对象之间的通信的。信号和槽机制是 Qt 的一个核心特性，也是与其他框架提供的特性最不同的部分。信号和槽是由 Qt 的元对象系统实现的。 介绍在 GUI 编程中，当我们改变一个小部件时，我们经常希望另一个小部件被通知到。更一般地说，我们希望任何类型的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover25.jpg">
+<meta property="article:published_time" content="2022-12-03T08:27:48.000Z">
+<meta property="article:modified_time" content="2023-10-30T13:18:06.382Z">
+<meta property="article:author" content="Jenway">
+<meta property="article:tag" content="Qt">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover25.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://blog.jenway.live/posts/ff289db2.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"You have switched to Traditional Chinese","cht_to_chs":"You have switched to Simplified Chinese","day_to_night":"You have switched to Dark Mode","night_to_day":"You have switched to Light Mode","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '用 Qt 写五子棋的夜晚 二',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-10-30 21:18:06'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="/css/footerTransp.css?1"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0-rc2"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+document.addEventListener('pjax:send', () => {
+  Pace.restart()
+})
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">38</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">10</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/bangumi/"><i class="fa-fw fas fa-bilibili"></i><span> Bangumi</span></a></li><li><a class="site-page child" href="/custom/homepage/index.html"><i class="fa-fw fas fa-graduation-cap"></i><span> CS50</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/timeline/"><i class="fa-fw fas fa-hourglass-half"></i><span> TimeLine</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover25.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Jenway's Blog"><span class="site-name">Jenway's Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/bangumi/"><i class="fa-fw fas fa-bilibili"></i><span> Bangumi</span></a></li><li><a class="site-page child" href="/custom/homepage/index.html"><i class="fa-fw fas fa-graduation-cap"></i><span> CS50</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/timeline/"><i class="fa-fw fas fa-hourglass-half"></i><span> TimeLine</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">用 Qt 写五子棋的夜晚 二</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-12-03T08:27:48.000Z" title="Created 2022-12-03 16:27:48">2022-12-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-10-30T13:18:06.382Z" title="Updated 2023-10-30 21:18:06">2023-10-30</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">3.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>11mins</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title="用 Qt 写五子棋的夜晚 二"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="twikoo_visitors"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/posts/ff289db2.html#post-comment"><span id="twikoo-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><!-- <meting-js
+    server="netease"
+    type="song"
+    autoplay="true"
+    id="18126594">
+</meting-js> -->
+
+<p>这篇博文主要讲了 Qt 中的信号与槽 (Signals &amp; Slots)</p>
+<h2 id="信号与槽-Signals-Slots"><a href="#信号与槽-Signals-Slots" class="headerlink" title="信号与槽 (Signals &amp; Slots)"></a>信号与槽 (Signals &amp; Slots)</h2><p>信号和槽是用于对象之间的通信的。信号和槽机制是 Qt 的一个核心特性，也是与其他框架提供的特性最不同的部分。信号和槽是由 Qt 的元对象系统实现的。</p>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>在 GUI 编程中，当我们改变一个小部件时，我们经常希望另一个小部件被通知到。更一般地说，我们希望任何类型的对象都能够相互通信。例如，如果用户点击一个关闭按钮，我们可能希望调用窗口的 close() 函数。</p>
+<p>其他工具包使用回调来实现这种通信。回调是一个指向函数的指针，因此如果您希望处理函数通知您某些事件，您将一个指向另一个函数（回调）的指针传递给处理函数。然后，处理函数在适当的时候调用回调。虽然使用这种方法的成功框架确实存在，但回调可能是不直观的，并且可能存在确保回调参数的类型正确性的问题。</p>
+<blockquote>
+<p>少年，有听说过回调地狱吗？</p>
+</blockquote>
+<h3 id="Signals-and-Slots"><a href="#Signals-and-Slots" class="headerlink" title="Signals and Slots"></a>Signals and Slots</h3><p>在 Qt 中，我们有一个替代回调技术的方法：我们使用信号和槽。当发生特定事件时，会发出一个信号。Qt 的小部件有许多预定义的信号，但我们总是可以对小部件进行子类化，以向它们添加我们自己的信号。槽是在响应特定信号时调用的函数。Qt 的小部件有许多预定义的槽，但是通常的做法是对小部件进行子类化，并添加自己的槽，以便您可以处理您感兴趣的信号。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://doc.qt.io/qt-6/images/abstract-connections.png" alt="https://doc.qt.io/qt-6/images/abstract-connections.png"></p>
+<p>信号和槽机制是类型安全的：信号的签名必须与接收槽的签名匹配。 （实际上，槽的签名可以比它接收的信号短，因为它可以忽略额外的参数。）由于签名是兼容的，因此编译器可以在使用基于函数指针的语法时帮助我们检测类型不匹配。基于字符串的 SIGNAL 和 SLOT 语法将在运行时检测到类型不匹配。信号和槽松散耦合：发出信号的类既不知道也不关心哪个槽接收信号。 Qt 的信号和槽机制确保如果将信号连接到槽，则槽将在正确的时间使用信号的参数调用。信号和槽可以采用任何类型的任意数量的参数。它们完全类型安全。</p>
+<p>从 QObject 或其子类（例如，QWidget）继承的所有类都可以包含信号和槽。当对象以可能对其他对象感兴趣的方式更改其状态时，对象发出信号。这是对象进行通信的全部内容。它不知道也不关心是否有任何内容接收其发出的信号。这是真正的信息封装，并确保对象可以用作软件组件。</p>
+<p>槽可用于接收信号，但它们也是普通的成员函数。就像对象不知道是否有任何内容接收其信号一样，槽也不知道是否有任何信号连接到它。这确保可以使用 Qt 创建真正独立的组件。</p>
+<p>您可以将任意数量的信号连接到单个槽，也可以将信号连接到所需的任意数量的槽。甚至可以将信号直接连接到另一个信号。 （这将在发出第一个信号时立即发出第二个信号。）</p>
+<p>信号和槽一起构成了强大的组件编程机制。</p>
+<h3 id="signals"><a href="#signals" class="headerlink" title="signals"></a>signals</h3><p>信号是由对象发出的，当其内部状态以某种可能对对象的客户端或所有者感兴趣的方式更改时。信号是公共访问函数，可以从任何地方发出，但我们建议仅从定义信号及其子类的类发出它们。</p>
+<p>当发出信号时，通常会立即执行连接到它的槽，就像普通的函数调用一样。当这种情况发生时，信号和槽机制完全独立于任何 GUI 事件循环。在所有槽返回后，将执行 emit 语句后面的代码。使用排队的连接时情况略有不同；在这种情况下，立即继续执行 emit 关键字后面的代码，并稍后执行槽。</p>
+<p>如果将多个槽连接到一个信号，则在发出信号时，槽将按照它们连接的顺序一个接一个地执行。</p>
+<p>信号是由 moc 自动生成的，不得在 .cpp 文件中实现。</p>
+<p>关于参数的说明：我们的经验表明，如果信号和槽不使用特殊类型，则它们更具可重用性。如果 QScrollBar::valueChanged() 使用特殊类型，例如假设的 QScrollBar::Range，那么它只能连接到专门为 QScrollBar 设计的槽。连接不同的输入小部件将是不可能的。</p>
+<h3 id="Slots"><a href="#Slots" class="headerlink" title="Slots"></a>Slots</h3><p>一个槽是在连接到它的信号发出时调用的函数。槽是普通的 C++ 函数，可以正常调用；它们唯一的特殊功能是信号可以连接到它们。</p>
+<p>由于槽是普通的成员函数，因此在直接调用时遵循普通的 C++ 规则。但是，作为槽，它们可以被任何组件调用，而不管其访问级别，通过信号槽连接。这意味着从任意类的实例发出的信号可以导致在不相关类的实例中调用私有槽。</p>
+<p>您还可以定义槽为虚拟的，我们发现这在实践中非常有用。</p>
+<p>与回调相比，由于它们提供的灵活性增加，信号和槽会稍微慢一些，尽管对于实际应用程序来说，差异微不足道。通常，发出连接到某些槽的信号，比直接调用接收器大约慢十倍，使用非虚函数调用。这是定位连接对象所需的开销，以安全地迭代所有连接（即检查在发出期间是否已销毁后续接收器）以及以通用方式编组任何参数。虽然十个非虚函数调用听起来很多，但它们的开销比任何新的或删除的操作小得多，例如。只要执行字符串、向量或列表操作，这些操作在幕后需要新的或删除的操作，信号和槽的开销就只占完整函数调用成本的很小一部分。每当在槽中执行系统调用时；或间接调用超过十个函数。信号和槽机制的简单性和灵活性远远超过开销，您的用户甚至不会注意到。</p>
+<p>请注意，当与基于 Qt 的应用程序一起编译时，定义为信号或槽的其他库可能会导致编译器警告和错误。要解决此问题，请取消定义有问题的预处理器符号。</p>
+<h3 id="A-Small-Example"><a href="#A-Small-Example" class="headerlink" title="A Small Example"></a>A Small Example</h3><p>一个最小的 C++ 类声明可能是这样的：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Counter</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Counter</span>() &#123; m_value = <span class="number">0</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">value</span><span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> m_value; &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setValue</span><span class="params">(<span class="type">int</span> value)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> m_value;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>一个最小的基于 QObject 的类可能是这样的：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QObject&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Counter</span> : <span class="keyword">public</span> QObject</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Counter</span>() &#123; m_value = <span class="number">0</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">value</span><span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> m_value; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> slots:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setValue</span><span class="params">(<span class="type">int</span> value)</span></span>;</span><br><span class="line"></span><br><span class="line">signals:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">valueChanged</span><span class="params">(<span class="type">int</span> newValue)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> m_value;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>基于 QObject 的版本具有相同的内部状态，并提供了公共方法来访问该状态，但除此之外，它还支持使用信号和槽进行组件编程。该类可以通过发出信号 valueChanged() 来告诉外部世界其状态已更改，并且它具有其他对象可以向其发送信号的插槽。</p>
+<p>所有包含信号或槽的类都必须在其声明顶部提及 Q_OBJECT。它们还必须从 QObject 派生（直接或间接）。</p>
+<p>Slots 由应用程序程序员实现。这是 Counter::setValue() 槽的可能实现：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Counter::setValue</span><span class="params">(<span class="type">int</span> value)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (value != m_value) &#123;</span><br><span class="line">        m_value = value;</span><br><span class="line">        <span class="function">emit <span class="title">valueChanged</span><span class="params">(value)</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>emit 语句会发出来自对象的信号 valueChanged()，并将新值作为参数。</p>
+<p>在下面的代码片段中，我们创建了两个 Counter 对象，并使用 QObject::connect() 将第一个对象的 valueChanged() 信号连接到第二个对象的 setValue() 槽：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Counter a, b;</span><br><span class="line">QObject::<span class="built_in">connect</span>(&amp;a, &amp;Counter::valueChanged,</span><br><span class="line">                 &amp;b, &amp;Counter::setValue);</span><br><span class="line"></span><br><span class="line">a.<span class="built_in">setValue</span>(<span class="number">12</span>);     <span class="comment">// a.value() == 12, b.value() == 12</span></span><br><span class="line">b.<span class="built_in">setValue</span>(<span class="number">48</span>);     <span class="comment">// a.value() == 12, b.value() == 48</span></span><br></pre></td></tr></table></figure>
+
+<p>调用 a.setValue(12) 会使 a 发出一个 valueChanged(12) 信号，b 将在其 setValue() 槽中接收该信号，即 b.setValue(12) 被调用。然后 b 发出相同的 valueChanged() 信号，但是由于没有将槽连接到 b 的 valueChanged() 信号，因此该信号被忽略。</p>
+<p>注意到 setValue() 函数只在 value !&#x3D; m_value 时设置值并发出信号。这可以防止在循环连接的情况下出现无限循环（例如，如果 b.valueChanged() 连接到 a.setValue()）。</p>
+<p>默认情况下，对于您进行的每个连接，都会发出一个信号；对于重复的连接，会发出两个信号。您可以使用单个 disconnect() 调用来断开所有这些连接。如果传递 Qt::UniqueConnection 类型，则仅在不是重复连接时才会进行连接。如果已经存在重复项（完全相同的信号到相同对象上的相同槽），则连接将失败，并且 connect 将返回 false。</p>
+<p>这个例子说明了对象可以在不需要彼此了解任何信息的情况下一起工作。为了实现这一点，只需要将对象连接在一起，这可以通过一些简单的 QObject::connect() 函数调用或 uic 的自动连接功能来实现。</p>
+<h3 id="A-Real-Example"><a href="#A-Real-Example" class="headerlink" title="A Real Example"></a>A Real Example</h3><p>接下来是一个简单的小部件类的头文件，没有成员函数。目的是展示如何在自己的应用程序中利用信号和槽。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># <span class="keyword">ifndef</span> LCDNUMBER_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># <span class="keyword">define</span> LCDNUMBER_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;QFrame&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LcdNumber</span> : <span class="keyword">public</span> QFrame</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br></pre></td></tr></table></figure>
+
+<p>LcdNumber 通过 QFrame 和 QWidget 继承 QObject，它具有大部分信号槽知识。它与内置的 QLCDNumber 小部件有些相似。</p>
+<p>Q_OBJECT 宏由预处理器展开，以声明由 moc 实现的几个成员函数；如果您得到类似“LcdNumber 的 vtable 的未定义引用”的编译器错误，则可能忘记运行 moc 或在链接命令中包含 moc 输出。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">LcdNumber</span>(QWidget *parent = <span class="literal">nullptr</span>);</span><br><span class="line"></span><br><span class="line">signals:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">overflow</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>在类构造函数和公共成员之后，我们声明类信号。当被要求显示一个不可能的值时，LcdNumber 类发出一个信号 overflow()。</p>
+<p>如果您不关心溢出，或者您知道溢出不可能发生，则可以忽略 overflow() 信号，即不将其连接到任何槽。</p>
+<p>另一方面，如果您想在数字溢出时调用两个不同的错误函数，只需将信号连接到两个不同的槽即可。Qt 将按照它们连接的顺序调用两者。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> slots:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">display</span><span class="params">(<span class="type">int</span> num)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">display</span><span class="params">(<span class="type">double</span> num)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">display</span><span class="params">(<span class="type">const</span> QString &amp;str)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setHexMode</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setDecMode</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setOctMode</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setBinMode</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setSmallDecimalPoint</span><span class="params">(<span class="type">bool</span> point)</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta"># <span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<p>一个槽是一个接收函数，用于获取其他小部件中的状态更改信息。LcdNumber 使用它，如上面的代码所示，来设置显示的数字。由于 display() 是类与程序的其余部分的接口的一部分，因此槽是公共的。</p>
+<p>许多示例程序将 QScrollBar 的 valueChanged() 信号连接到 display() 槽，因此 LCD 数字不断显示滚动条的值。</p>
+<p>请注意，display() 被重载；当您将信号连接到槽时，Qt 将选择适当的版本。使用回调，您必须找到五个不同的名称并跟踪类型。</p>
+<h3 id="信号和槽-with-默认参数"><a href="#信号和槽-with-默认参数" class="headerlink" title="信号和槽 with 默认参数"></a>信号和槽 with 默认参数</h3><p>信号和槽的签名可以包含参数，并且参数可以具有默认值。考虑 QObject::destroyed()：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">destroyed</span><span class="params">(QObject* = <span class="literal">nullptr</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>当 QObject 被删除时，它会发出此 QObject::destroyed() 信号。我们希望捕获此信号，无论我们是否有对已删除的 QObject 的悬空引用，以便我们可以清理它。适当的槽签名可能是：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">objectDestroyed</span><span class="params">(QObject* obj = <span class="literal">nullptr</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>要将信号连接到槽，我们使用 QObject::connect()。有几种连接信号和槽的方法。第一种是使用函数指针：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">connect</span>(sender, &amp;QObject::destroyed, <span class="keyword">this</span>, &amp;MyObject::objectDestroyed);</span><br></pre></td></tr></table></figure>
+
+<p>用 QObject::connect() 和 函数指针，有几个优点。首先，它允许编译器检查信号的参数是否与槽的参数兼容。如果需要，参数也可以由编译器隐式转换。</p>
+<p>您还可以连接到函数对象或 C++11 lambda：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">connect</span>(sender, &amp;QObject::destroyed, <span class="keyword">this</span>, [=]()&#123; <span class="keyword">this</span>-&gt;m_objects.<span class="built_in">remove</span>(sender); &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>在这两种情况下，我们在调用 connect() 中提供 this 作为上下文。上下文对象提供有关接收器应在其中执行的线程的信息。这很重要，因为提供上下文确保接收器在上下文线程中执行。</p>
+<p>当发出信号时，lambda 将被断开连接，因为 sender 或 context 被销毁。您应该注意，在信号发出时使用的任何对象都是存活的。</p>
+<p>将信号连接到槽的另一种方法是使用 QObject::connect() 和 SIGNAL 和 SLOT 宏。如果参数具有默认值，则关于是否在 SIGNAL() 和 SLOT() 宏中包含参数的规则是，传递给 SIGNAL() 宏的签名的参数数量不能少于传递给 SLOT() 宏的签名的参数数量。</p>
+<p>所有这些都可以工作：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">connect</span>(sender, <span class="built_in">SIGNAL</span>(<span class="built_in">destroyed</span>(QObject*)), <span class="keyword">this</span>, <span class="built_in">SLOT</span>(<span class="built_in">objectDestroyed</span>(Qbject*)));</span><br><span class="line"><span class="built_in">connect</span>(sender, <span class="built_in">SIGNAL</span>(<span class="built_in">destroyed</span>(QObject*)), <span class="keyword">this</span>, <span class="built_in">SLOT</span>(<span class="built_in">objectDestroyed</span>()));</span><br><span class="line"><span class="built_in">connect</span>(sender, <span class="built_in">SIGNAL</span>(<span class="built_in">destroyed</span>()), <span class="keyword">this</span>, <span class="built_in">SLOT</span>(<span class="built_in">objectDestroyed</span>()));</span><br></pre></td></tr></table></figure>
+
+<p>但是这个不会工作：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">connect</span>(sender, <span class="built_in">SIGNAL</span>(<span class="built_in">destroyed</span>()), <span class="keyword">this</span>, <span class="built_in">SLOT</span>(<span class="built_in">objectDestroyed</span>(QObject*)));</span><br></pre></td></tr></table></figure>
+
+<p>…因为槽将期望信号不会发送的 QObject。此连接将报告运行时错误。</p>
+<p>请注意，当使用此 QObject::connect() 重载时，不会检查信号和槽参数。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/signalsandslots.html">Signals &amp; Slots | Qt core 6.5.3</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/Jenway">Jenway</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://blog.jenway.live/posts/ff289db2.html">https://blog.jenway.live/posts/ff289db2.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Qt/">Qt</a><a class="post-meta__tags" href="/tags/C/">C++</a></div><div class="post_share"><div class="social-share" data-image="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover25.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/bd740bbf.html" title="用 Qt 写五子棋的夜晚 三"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover14.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous</div><div class="prev_info">用 Qt 写五子棋的夜晚 三</div></div></a></div><div class="next-post pull-right"><a href="/posts/8db9eb9.html" title="用 Qt 写五子棋的夜晚 一"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover12.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next</div><div class="next_info">用 Qt 写五子棋的夜晚 一</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/posts/8db9eb9.html" title="用 Qt 写五子棋的夜晚 一"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover12.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-02</div><div class="title">用 Qt 写五子棋的夜晚 一</div></div></a></div><div><a href="/posts/bd740bbf.html" title="用 Qt 写五子棋的夜晚 三"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover14.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-04</div><div class="title">用 Qt 写五子棋的夜晚 三</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Jenway</div><div class="author-info__description">I love you more than you ever know</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">38</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Jenway"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Jenway" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:JenwayHere@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://music.163.com/#/user/home?id=453746313" target="_blank" title="netease"><i class="iconfont icon-netease-cloud-music-fill" style="color: #d51007;"></i></a><a class="social-icon" href="https://space.bilibili.com/179871013" target="_blank" title="bilibili"><i class="fab fa-bilibili" style="color: #00a1d6;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content"><center> =( •̀ ω •́ )= </center></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E4%B8%8E%E6%A7%BD-Signals-Slots"><span class="toc-number">1.</span> <span class="toc-text">信号与槽 (Signals &amp; Slots)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Signals-and-Slots"><span class="toc-number">1.2.</span> <span class="toc-text">Signals and Slots</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#signals"><span class="toc-number">1.3.</span> <span class="toc-text">signals</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Slots"><span class="toc-number">1.4.</span> <span class="toc-text">Slots</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#A-Small-Example"><span class="toc-number">1.5.</span> <span class="toc-text">A Small Example</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#A-Real-Example"><span class="toc-number">1.6.</span> <span class="toc-text">A Real Example</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E5%92%8C%E6%A7%BD-with-%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0"><span class="toc-number">1.7.</span> <span class="toc-text">信号和槽 with 默认参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">2.</span> <span class="toc-text">参考</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/cb50296f.html" title="非常特立独行的随机 cover 实现"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="非常特立独行的随机 cover 实现"/></a><div class="content"><a class="title" href="/posts/cb50296f.html" title="非常特立独行的随机 cover 实现">非常特立独行的随机 cover 实现</a><time datetime="2023-09-30T18:05:37.000Z" title="Created 2023-10-01 02:05:37">2023-10-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/4a5195d4.html" title="make hello! 全局 Makefile 模式匹配"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover7.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="make hello! 全局 Makefile 模式匹配"/></a><div class="content"><a class="title" href="/posts/4a5195d4.html" title="make hello! 全局 Makefile 模式匹配">make hello! 全局 Makefile 模式匹配</a><time datetime="2023-09-25T15:49:19.000Z" title="Created 2023-09-25 23:49:19">2023-09-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/b8c13c86.html" title="那时年少春衫薄"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover18.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="那时年少春衫薄"/></a><div class="content"><a class="title" href="/posts/b8c13c86.html" title="那时年少春衫薄">那时年少春衫薄</a><time datetime="2023-06-22T11:43:02.000Z" title="Created 2023-06-22 19:43:02">2023-06-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/3b449868.html" title="设计模式与 Warcraft 其三"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover13.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="设计模式与 Warcraft 其三"/></a><div class="content"><a class="title" href="/posts/3b449868.html" title="设计模式与 Warcraft 其三">设计模式与 Warcraft 其三</a><time datetime="2023-04-30T08:38:04.000Z" title="Created 2023-04-30 16:38:04">2023-04-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/b307ab4.html" title="设计模式与 Warcraft 其二"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="设计模式与 Warcraft 其二"/></a><div class="content"><a class="title" href="/posts/b307ab4.html" title="设计模式与 Warcraft 其二">设计模式与 Warcraft 其二</a><time datetime="2023-04-29T14:37:11.000Z" title="Created 2023-04-29 22:37:11">2023-04-29</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By Jenway</div><div class="footer_custom_text"><br /> <b>I love you more than you ever know<b> <br /> <br /> <a target="_blank" href="https://hexo.io/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=for-the-badge&logo=hexo" title="博客框架为Hexo"> <a target="_blank" href="https://butterfly.js.org/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=for-the-badge&logo=honey" title="博客主题为butterfly"> <br /> <a target="_blank" href="https://icp.gov.moe/?keyword=20227445" title="本站已加入萌ICP，萌ICP备20227445号"> <img style="width:32px;height:32px;margin-bottom:-8px" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://icp.gov.moe/images/ico64.png"> <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/%E8%90%8CICP%E5%A4%87-20227445-fe1384?style=for-the-badge"> <br /> </a>&nbsp;<a target="_blank" href="https://github.com/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=for-the-badge&logo=GitHub" title="Gtihub托管"> </a>&nbsp;<a target="_blank" href="https://cloudflare.net/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-Cloudflare-orange?style=for-the-badge&logo=Cloudflare" title="CloudFlare提供CDN加速"> </a>&nbsp;<a target="_blank" href="https://app.netlify.com/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Hosted-Netlify-darkcyan?style=for-the-badge&logo=Netlify" title="Netlify托管"> </a>&nbsp;<a target="_blank" href="https://www.name.com/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Domain-Name.com-0cedbe?style=for-the-badge&logo=google" title="域名白嫖自 name.com "> </a>&nbsp; <br /> <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span> <br />本站已萌萌哒运行 <span id='htmer_time'></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Toggle Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => {
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-api-jenway.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(init)
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-api-jenway.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else {
+      loadTwikoo()
+      GLOBAL_CONFIG_SITE.isPost && getCount()
+    }
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script id="canvas_nest" defer="defer" color="143,0,255" opacity="0.7" zIndex="-1" count="187" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script src="/js/dynamicTabTitle.js"></script><script src="/js/runtimeShow.js"></script>
+  <!-- require APlayer -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+  <!-- require MetingJS -->
+  <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+  <script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
+  <meting-js
+    server="netease"
+    type="playlist"
+    order="random"
+    id="7290416033"
+    fixed=true
+    list-folded = "true"
+    >
+    </meting-js>
+  <!-- hexo injector body_end end --></body></html>
