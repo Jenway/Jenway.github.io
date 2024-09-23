@@ -1,30 +1,121 @@
 <!DOCTYPE html><html lang="zh-cn" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Jenway's Blog - You are (not) alone</title><meta name="author" content="Jenway"><meta name="copyright" content="Jenway"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="I love you more than you ever know">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Jenway&#39;s Blog">
-<meta property="og:url" content="https://blog.jenway.live/index.html">
+<meta property="og:url" content="https://jenway.tech/index.html">
 <meta property="og:site_name" content="Jenway&#39;s Blog">
 <meta property="og:description" content="I love you more than you ever know">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.jenway.live/img/avatar.jpg">
+<meta property="og:image" content="https://jenway.tech/img/avatar.jpg">
 <meta property="article:author" content="Jenway">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.jenway.live/img/avatar.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://blog.jenway.live/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+<meta name="twitter:image" content="https://jenway.tech/img/avatar.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://jenway.tech/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        if (name && globalFn[key][name]) return
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
   root: '/',
   algolia: undefined,
   localSearch: undefined,
   translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
   noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
-  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
   copy: {
     success: 'Copy Successful',
-    error: 'Copy Error',
+    error: 'Copy Failed',
     noSupport: 'Browser Not Supported'
   },
   relativeDate: {
     homepage: false,
     post: false
   },
-  runtime: 'days',
+  runtime: '',
   dateSuffix: {
     just: 'Just now',
     min: 'minutes ago',
@@ -33,7 +124,7 @@
     month: 'months ago'
   },
   copyright: undefined,
-  lightbox: 'mediumZoom',
+  lightbox: 'null',
   Snackbar: {"chs_to_cht":"You have switched to Traditional Chinese","cht_to_chs":"You have switched to Simplified Chinese","day_to_night":"You have switched to Dark Mode","night_to_day":"You have switched to Light Mode","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
   infinitegrid: {
     js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
@@ -53,257 +144,108 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-03-17 00:44:56'
-}</script><script>(win=>{
-      win.saveToLocal = {
-        set: (key, value, ttl) => {
-          if (ttl === 0) return
-          const now = Date.now()
-          const expiry = now + ttl * 86400000
-          const item = {
-            value,
-            expiry
-          }
-          localStorage.setItem(key, JSON.stringify(item))
-        },
-      
-        get: key => {
-          const itemStr = localStorage.getItem(key)
-      
-          if (!itemStr) {
-            return undefined
-          }
-          const item = JSON.parse(itemStr)
-          const now = Date.now()
-      
-          if (now > item.expiry) {
-            localStorage.removeItem(key)
-            return undefined
-          }
-          return item.value
-        }
-      }
-    
-      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
-        const script = document.createElement('script')
-        script.src = url
-        script.async = true
-        script.onerror = reject
-        script.onload = script.onreadystatechange = function() {
-          const loadState = this.readyState
-          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-          script.onload = script.onreadystatechange = null
-          resolve()
-        }
-
-        Object.keys(attr).forEach(key => {
-          script.setAttribute(key, attr[key])
-        })
-
-        document.head.appendChild(script)
-      })
-    
-      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
-        const link = document.createElement('link')
-        link.rel = 'stylesheet'
-        link.href = url
-        if (id) link.id = id
-        link.onerror = reject
-        link.onload = link.onreadystatechange = function() {
-          const loadState = this.readyState
-          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-          link.onload = link.onreadystatechange = null
-          resolve()
-        }
-        document.head.appendChild(link)
-      })
-    
-      win.activateDarkMode = () => {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = () => {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
-    
-        if (t === 'dark') activateDarkMode()
-        else if (t === 'light') activateLightMode()
-      
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
-    
-      const detectApple = () => {
-        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-          document.documentElement.classList.add('apple')
-        }
-      }
-      detectApple()
-    })(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="/css/footerTransp.css?1"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"></head><body><script>window.paceOptions = {
+  postUpdate: '2024-09-23 19:36:29'
+}</script><!-- hexo injector head_end start --><link rel="stylesheet" href="/css/footerTransp.css?1"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><script>window.paceOptions = {
   restartOnPushState: false
 }
 
-document.addEventListener('pjax:send', () => {
+btf.addGlobalFn('pjaxSend', () => {
   Pace.restart()
-})
-</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">48</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">49</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/bangumi/"><i class="fa-fw fas fa-bilibili"></i><span> Bangumi</span></a></li><li><a class="site-page child" href="/custom/homepage/index.html"><i class="fa-fw fas fa-graduation-cap"></i><span> CS50</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/img/banner.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Jenway's Blog"><span class="site-name">Jenway's Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/bangumi/"><i class="fa-fw fas fa-bilibili"></i><span> Bangumi</span></a></li><li><a class="site-page child" href="/custom/homepage/index.html"><i class="fa-fw fas fa-graduation-cap"></i><span> CS50</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Jenway's Blog</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/Jenway" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:JenwayHere@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://music.163.com/#/user/home?id=453746313" target="_blank" title="netease"><i class="iconfont icon-netease-cloud-music-fill" style="color: #d51007;"></i></a><a class="social-icon" href="https://space.bilibili.com/179871013" target="_blank" title="bilibili"><i class="fab fa-bilibili" style="color: #00a1d6;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/posts/7b16a0b.html" title="你的大学，并不是你的大学"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover26.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="你的大学，并不是你的大学"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/7b16a0b.html" title="你的大学，并不是你的大学">你的大学，并不是你的大学</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2024-03-16T10:52:11.000Z" title="Created 2024-03-16 18:52:11">2024-03-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/posts/7b16a0b.html#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> comments</span></span></div><div class="content">
-Your university is not your university
+}, 'pace_restart')
 
-
-
-近来的一件新闻是，全国各地的大学在三年疫情后重新又开放了，舆论是很激烈的，有的学生觉得，进入学校的有些社会人员的素质未免太过差，学校怎么不管管？有的声音则批评三年疫情培养出的学生是又封闭又自私，学校怎么不管管？
-在此我不想讨论纳税人是否应该去参观税金养的市政府，也不想讨论中国大学的开放氛围应该怎么体现，我只想问几个问题
-没有素质的人为何敢在大学没有素质，而不是在居民小区，或者是市政府没有素质？
-回答说，大学生好欺负。
-那么，一群二十出头，了无牵挂，没有工作，一人吃饱全家不饿的社会闲散人员们，何以是好欺负的呢？
-回答说，大学生有软肋。
-那么，大学生的软肋是什么？大学生为什么有软肋？利好于谁人？
-谁的大学？支持大学开放的人无不会表达一个观点，大学不只是学生的，还是社会的。 围绕于此的话题常常集中于后一句，但是有谁质疑过前一句呢，大学是学生的大学吗？
-如果大学是学生的大学，就好比居民小区是居民的小区，那么：
-学生有没有驱逐在小区里随地大小便的人的权利？
-学生有没有将在小区里行窃的小偷扭送到公安局的权利？
-学 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/8cc94882.html" title="年终篇下，梦醒了该去哪里"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover15.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="年终篇下，梦醒了该去哪里"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/8cc94882.html" title="年终篇下，梦醒了该去哪里">年终篇下，梦醒了该去哪里</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2024-01-19T15:14:40.000Z" title="Created 2024-01-19 23:14:40">2024-01-19</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/posts/8cc94882.html#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> comments</span></span></div><div class="content">
-What do you mean by forward ?
-
-
-
-对于我而言，一个很自然的想法是，一切都会不断进步，一切都会不断向前，这里的一切，不仅囊括寰宇、世界、社会、人类，当然也包括我自己。我一向是相信进化论的，总以为将来必胜于过去，青年必胜于老人
-1然而后来我明白我倒是错了。
-
-未来没有理由更好想想也是，有什么理由能让我们像宗教的狂信徒一般，皈依在所谓未来脚下呢？近来有一个笑话—— 一个穿越者回到上世纪，问周围的士兵：二战结束了吗？正在经历一战的士兵们无不汗颜。
-我们有可能就是在参与一战的士兵，以为这场战争会结束一切，然而事实却是，人类的相互屠杀反倒是之后愈演愈烈，从纳粹屠杀犹太人倒今天以色列对巴勒斯坦人的灭绝，人类的愚蠢与残暴的劣根性，几乎不分民族，或者是其它的特性，而是普遍的凶狠暴戾，使我们没有一点理由相信，这个物种还有所谓未来
-当然我们也可以说，再多过几十年，二战就也结束了啊，只要等，未来总会有希望的。
-然而，到不了的希望，还值得期许吗，二百年后世界成为极乐净土，与我何干呢？难道要谈理想，谈我们的民族，我们的种族的赓续吗？这又与我何干呢？既然现世，至少是我将经历的现世得 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/d9bbdf29.html" title="跨平台应用开发框架技术的发展应用与展望"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover10.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="跨平台应用开发框架技术的发展应用与展望"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/d9bbdf29.html" title="跨平台应用开发框架技术的发展应用与展望">跨平台应用开发框架技术的发展应用与展望</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-12-27T10:47:15.000Z" title="Created 2023-12-27 18:47:15">2023-12-27</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/posts/d9bbdf29.html#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> comments</span></span></div><div class="content">这篇是用来水《认知实习》的结课论文的，参考了以前写的一篇关于 GUI 开发框架的博客，借着这个机会顺便对那篇博文进行了一次修改作为一篇新博文，老文新水了属于是
-这个报告只是单纯的应付作业，不要太注意细节
-
-跨平台应用开发框架技术的发展应用与展望
-
-随着移动设备的广泛普及，跨平台应用开发框架成为解决不同操作系统底层API差异的关键工具。本 文回顾了桌面端和移动端跨平台框架的发展历程，在桌面端，从早期的调用API 或自绘技术到如今以CEF 库的应用为代表的框架。在移动端，Web应用、原生渲染技术和自绘方案分别应对挑战与机遇，而UI描述 方式也经历了从混合到声明式、组件化的演变。未来，随着移动设备技术的进步，跨平台开发框架有望在 提高开发效率的同时，进一步优化用户体验。这一领域的创新将继续推动应用开发工具和方法的演进，为 开发者提供更高效、灵活的解决方案。
-背景近年来，随着智能手机和平板电脑等移动设备的广泛普及，移动端应用开发一直备受关注。然而，由 于不同移动端平台（iOS、Android）之间底层API 存在差异，大多数应用程序提供商不得不雇佣两组开发 人员，以适配不同平台。为了解决这一问 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/cc6092b8.html" title="年终篇上 2023 的结束"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover1.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="年终篇上 2023 的结束"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/cc6092b8.html" title="年终篇上 2023 的结束">年终篇上 2023 的结束</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-12-26T15:15:17.000Z" title="Created 2023-12-26 23:15:17">2023-12-26</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/posts/cc6092b8.html#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> comments</span></span></div><div class="content">首先点首 hardest to be
-
-现在是 2023 年 的 12 月 26 日，我坐在宿舍里，眼神迟缓，精神萎靡不振，为了聊以慰藉，给自己一点好歹还做了点事情的错觉，我于是开始写，这一年的结束
-既然这不是例行的学期回首，那不妨就专注一些空泛的主题吧
-“这个世界哪里不好了?”
-这个世界会变好吗？
-
-如果是在 2020 年这样提问的话，或许所有人都会不禁触动，甚至于，在 2023 年的年初，大家还以为这似乎永远不会结束，然而现在恐怕连高中生写议论文都不拿这个举例子了吧。不过，即使是疫情结束，似乎互联网上的舆论也没有向更好的方向发展，或者说是有的，只是分成两个极端的部分
-
-哪里不好了，你有什么意图？
-
-恐怕这个问题现在就会招致这样的责难，然后不免陷入无意义的攻击，但是这责难还是有意义的
-这个世界哪里不好？很多时候还是有必要的，很多时候我们都分不清，让我们的精神几经崩溃的，到底是世界太荒谬，还是我们自作自受。
-每当有人哀叹世界不公平，有些人的起跑线就是我们遥不可及的终点时，必将有这样的诘难：
-
-还不是你不努力？
-
-确实，只消看看，越来越忙碌的小学生，至今还在增加的高考人数，以及图书馆里考 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/3535f2b5.html" title="CPP20 Ranges与斐波那契数列的惰性生成"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover21.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CPP20 Ranges与斐波那契数列的惰性生成"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/3535f2b5.html" title="CPP20 Ranges与斐波那契数列的惰性生成">CPP20 Ranges与斐波那契数列的惰性生成</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-12-24T07:32:59.000Z" title="Created 2023-12-24 15:32:59">2023-12-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/posts/3535f2b5.html#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> comments</span></span></div><div class="content">
-C++ 20 中引入了 Ranges 模块, 该模块提供了一系列的range view, 用于对容器进行操作, 本文将使用Ranges来实现惰性生成斐波那契数列.
-在开始之前让我们写一个十分简单的递归函数，用于生成斐波那契数列:
-1234567891011121314auto fibo_rec(int n) &#123;    if (n &lt;= 1) &#123;      return 1;    &#125; else &#123;      return fibo_rec(n - 1) + fibo_rec(n - 2);    &#125;&#125;int main() &#123;    for (int i = 0; i &lt; 10; ++i) &#123;        std::cout &lt;&lt; fibo_rec(i) &lt;&lt; &quot; &quot;;    &#125;    std::cout &lt;&lt; std::endl;&#125;
-
-这时，一定会有小伙伴迫不及待地想要说，这个递归函数的效率太低了，而且还有可能会导致 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/42f74a3c.html" title="CS好课可以改变废柴命运吗？"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover6.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CS好课可以改变废柴命运吗？"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/42f74a3c.html" title="CS好课可以改变废柴命运吗？">CS好课可以改变废柴命运吗？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-12-16T04:14:15.000Z" title="Created 2023-12-16 12:14:15">2023-12-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/posts/42f74a3c.html#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> comments</span></span></div><div class="content">
-
-SICP，大名鼎鼎的 CS 神课，狭义上指的是 MIT 6.001 课程以及同源的巫师书，要是宽泛点也能够指 UC Berkeley 的 CS61A 课程。
-所谓 CS 神课，属于那种 早学到这课我还会混成这 dio 样？ 的灵丹妙药，相当一部分人接触到的时候都会有这样的惊叹，我也不例外，有那么一瞬间甚至觉得，所谓 Computer Science 似乎也不过如此的错觉
-可惜，当我抽出时间来的时候，已经过了入门阶段了，怎奈这门课好评如潮，不免心动，于是来了一遍速通，做了做 hw、lab 和 project，质量相当的高
-做完之后，意犹未尽，于是向真正的 SICP 进发，开始看《计算机程序的构造和解释》(Structure and Interpretation of Computer Programs，SICP) 作者是麻省理工学院教授哈尔·阿伯尔森和杰拉德·杰伊·萨斯曼
-我得承认，虽然我在读的时候止不住的吐槽翻译很差劲，但当我转而去 MIT 官网上 down 下原版 PDF 的时候，还是不禁叹道:
-
-这 tm 和 CS61A 好像不是一个难度的啊？
-
-总之，这本原典一巴掌把我从速通 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/4980ba5b.html" title="那些坠落的感觉与午后的惆怅"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover5.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="那些坠落的感觉与午后的惆怅"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/4980ba5b.html" title="那些坠落的感觉与午后的惆怅">那些坠落的感觉与午后的惆怅</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-10-26T09:01:31.000Z" title="Created 2023-10-26 17:01:31">2023-10-26</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%97%B2%E8%81%8A/">闲聊</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/posts/4980ba5b.html#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> comments</span></span></div><div class="content">
-
-fallen如果，只是要表达此刻的感受，或许只需要 悲伤 就够了，但是如果想说清为什么悲伤，恐怕需要比打破现在的情形所需还要更多的智慧与勇气。
-是身在其中就永远无法看清楚吗？也是，如果能说清现在的情形，就不会再有半点迷惘了吧。
-人真是喜欢偷懒的生物，想着，只要写出什么东西，一切就搞明白了，那样所有的问题都迎刃而解。
-人真是不愿承认自己错误的生物，即使是现在，还是更倾向于说 “人类是怎样的” ，这样的话就像置身事外一样，才能放下矜持的批评，或许只有把自己当成另外的事物，才能毫不留情的攻击吧。
-这些不会改变什么，当然我也没有指望着神奇的效果会发生，只是觉得这样或许可以聊以抚慰静不下来的心
-这种话是从什么时候就开始说的？我的心静不下来
-人的距离我想去和人打篮球 🏀 ，可是我不喜欢打篮球
-我想和人一块去买水果 🍎 ，可是我不会挑水果
-我想找人一起组乐队 🎸 ，可是我不相信音乐
-走在路上的时候，我只能看到成群结队
-其实我知道身边经过的人，但是我看不到
-环顾四周的时候，我能够发现扑克牌的脸
-其实我知道各灵魂的呼喊，但是我听不到
-人潮汹涌，这里是那么的拥挤
-四处是摇摇欲坠的细线
-这里是那么 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/cb50296f.html" title="非常特立独行的随机 cover 实现"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover29.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="非常特立独行的随机 cover 实现"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/cb50296f.html" title="非常特立独行的随机 cover 实现">非常特立独行的随机 cover 实现</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-30T18:05:37.000Z" title="Created 2023-10-01 02:05:37">2023-10-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%BD%91%E7%AB%99%E5%BB%BA%E8%AE%BE/">网站建设</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/posts/cb50296f.html#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> comments</span></span></div><div class="content">
-
-这篇文章将会介绍一种非常特立独行的 hexo 博客的随机 cover 实现方式。
-我们先来看看，网络上流传的一些 hexo 博客的随机 cover 实现方式：
-
-修改主题的配置文件，在默认 cover 的设置里多加几张图
-调用网络上的随机图片 API，然后通过主题的默认 cover 来实现
-和第二种类似，但是通过自己写个 .php 来实现一个随机图片 API 接口，这种一般需要自己的服务器
-
-这些方法都不太适合我
-为什么不适合我首先，我不想在主题的配置文件里写一堆图片链接，这样太麻烦了，这样看来，随机图片 API 是个不错的选择，但是问题是。
-额，我没有服务器啊。
-或许你会说，那为什么不用网络上的随机图片 API 呢？
-
-人的 XP 是各不相同的，不一定符合我的审美
-
-更深层次的需求原因如果是用随机图片 API 的话，那么实际上达到的效果会是，每次刷新播客的首页，都会使得 cover 图片发生变化，虽然这样也是种很不错的效果，但是我对随机封面的需求来源其实和效果倒是没有太大关系：
-主要原因是我懒得给每个文章都配一张封面图。
-更重要的是，毕竟在国内，所以图床一般用 CDN 加速，但是 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/4a5195d4.html" title="make hello! 全局 Makefile 模式匹配"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover41.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="make hello! 全局 Makefile 模式匹配"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/4a5195d4.html" title="make hello! 全局 Makefile 模式匹配">make hello! 全局 Makefile 模式匹配</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-25T15:49:19.000Z" title="Created 2023-09-25 23:49:19">2023-09-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">开发记录</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/posts/4a5195d4.html#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> comments</span></span></div><div class="content">
-
-这个博客将会介绍如何编写全局的 makefile 模式匹配，用来替换默认的隐式规则。
-最终你可以直接使用 make hello 来编译 hello.c 文件、hello.tex 文件等等，而不用再写更长的编译命令。
-同时，你还可以自定义这里的编译器，编译选项等等，甚至增加新的模式匹配。
-内置隐式规则 (Built-in Implicit rules )实际上，你很可能已经使用过内置的隐式规则了，假如当前目录下有一个 hello.c 文件，那么你可以直接使用 make hello 来编译它，这就是一个隐式规则。
-隐式规则可以自动推导出目标文件的依赖关系，比如 hello.o 依赖于 hello.c，并且可以自动推导出命令，比如 gcc -c hello.c -o hello.o。如果是 .cpp 文件，那么命令就是 g++ -c hello.cpp -o hello.o。
-
-某些标准的方式经常用于重新制作目标文件。例如，一种常见的制作目标文件的方式是使用 C 编译器从 C 源文件制作目标文件。
-隐式规则告诉 make 如何使用惯用的技术，这样当你想使用它们时，你就不必详细地指定它们。 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/b8c13c86.html" title="那时年少春衫薄"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover12.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="那时年少春衫薄"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/b8c13c86.html" title="那时年少春衫薄">那时年少春衫薄</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-06-22T11:43:02.000Z" title="Created 2023-06-22 19:43:02">2023-06-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/posts/b8c13c86.html#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> comments</span></span></div><div class="content">
-
-​            如今却忆江南乐，当时年少春衫薄。骑马倚斜桥，满楼红袖招。翠屏金屈曲，醉入花丛宿。此度见花枝，白头誓不归——韦庄《菩萨蛮·如今却忆江南乐》
-
-
-刚才在知乎上看到一个孩子，提问了许多问题，大抵就是11岁学编程先学C 还是 Rust什么的，看样子，是觉得人工智能很火，现在要早早入局，以后卷起一片风云的人物。我也不得不想起，我刚上初中的时候也是这样，对编程很感兴趣，我那个时候是怎样的来着？让我想想。在我的青春将至的少年时节，我有好多奢望。
-
-虽然囿于小小的天井，不过幸运，或者说无关紧要的是，在我年少的时候我有着一台台式机，连通着互联网。
-我因而看到了很多，这些繁杂而又瑰丽的信息让我不由得神往，这些信息勾起了少年的欲望。
-那个时候，还是诸如德国下水道，日本夏令营的故事大有受众的时候，我当然也不例外，漫威的电影一部不落，人生目标就是下一个乔帮主或者比尔盖茨，幼小的我想着，以后我也要写出让全世界的人都使用的操作系统，冠以自己的名号，当然，还有上不了台面的——想当世界首富
-当然，后来我知道了 Linux，因此感到大为挫败，没成想，我年纪轻轻，壮志未酬，竟被一个和我爸一个年 ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#content-inner">5</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Jenway</div><div class="author-info__description">I love you more than you ever know</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">48</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">49</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Jenway"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Jenway" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:JenwayHere@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://music.163.com/#/user/home?id=453746313" target="_blank" title="netease"><i class="iconfont icon-netease-cloud-music-fill" style="color: #d51007;"></i></a><a class="social-icon" href="https://space.bilibili.com/179871013" target="_blank" title="bilibili"><i class="fab fa-bilibili" style="color: #00a1d6;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content"><center> =( •̀ ω •́ )= </center></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/7b16a0b.html" title="你的大学，并不是你的大学"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover26.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="你的大学，并不是你的大学"/></a><div class="content"><a class="title" href="/posts/7b16a0b.html" title="你的大学，并不是你的大学">你的大学，并不是你的大学</a><time datetime="2024-03-16T10:52:11.000Z" title="Created 2024-03-16 18:52:11">2024-03-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/8cc94882.html" title="年终篇下，梦醒了该去哪里"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover15.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="年终篇下，梦醒了该去哪里"/></a><div class="content"><a class="title" href="/posts/8cc94882.html" title="年终篇下，梦醒了该去哪里">年终篇下，梦醒了该去哪里</a><time datetime="2024-01-19T15:14:40.000Z" title="Created 2024-01-19 23:14:40">2024-01-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/d9bbdf29.html" title="跨平台应用开发框架技术的发展应用与展望"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover10.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="跨平台应用开发框架技术的发展应用与展望"/></a><div class="content"><a class="title" href="/posts/d9bbdf29.html" title="跨平台应用开发框架技术的发展应用与展望">跨平台应用开发框架技术的发展应用与展望</a><time datetime="2023-12-27T10:47:15.000Z" title="Created 2023-12-27 18:47:15">2023-12-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/cc6092b8.html" title="年终篇上 2023 的结束"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover1.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="年终篇上 2023 的结束"/></a><div class="content"><a class="title" href="/posts/cc6092b8.html" title="年终篇上 2023 的结束">年终篇上 2023 的结束</a><time datetime="2023-12-26T15:15:17.000Z" title="Created 2023-12-26 23:15:17">2023-12-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/3535f2b5.html" title="CPP20 Ranges与斐波那契数列的惰性生成"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover21.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CPP20 Ranges与斐波那契数列的惰性生成"/></a><div class="content"><a class="title" href="/posts/3535f2b5.html" title="CPP20 Ranges与斐波那契数列的惰性生成">CPP20 Ranges与斐波那契数列的惰性生成</a><time datetime="2023-12-24T07:32:59.000Z" title="Created 2023-12-24 15:32:59">2023-12-24</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg" style="background-image: url(url(/img/bak.jpg));"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">49</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/bangumi/"><i class="fa-fw fas fa-bilibili"></i><span> Bangumi</span></a></li><li><a class="site-page child" href="/custom/homepage/index.html"><i class="fa-fw fas fa-graduation-cap"></i><span> CS50</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(img/banner.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Jenway's Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/bangumi/"><i class="fa-fw fas fa-bilibili"></i><span> Bangumi</span></a></li><li><a class="site-page child" href="/custom/homepage/index.html"><i class="fa-fw fas fa-graduation-cap"></i><span> CS50</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">Jenway's Blog</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/Jenway" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:JenwayHere@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://music.163.com/#/user/home?id=453746313" target="_blank" title="netease"><i class="iconfont icon-netease-cloud-music-fill" style="color: #d51007;"></i></a><a class="social-icon" href="https://space.bilibili.com/179871013" target="_blank" title="bilibili"><i class="fab fa-bilibili" style="color: #00a1d6;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="post_cover left"><a href="/posts/5774811a.html" title="我没有去过巴塞罗那，但是 42"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover15.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="我没有去过巴塞罗那，但是 42"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/5774811a.html" title="我没有去过巴塞罗那，但是 42">我没有去过巴塞罗那，但是 42</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2024-07-15T05:42:11.000Z" title="Created 2024-07-15 13:42:11">2024-07-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/posts/5774811a.html#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> comments</span></span></div><div class="content">在我为了写操作系统实验而在网络上寻找参考的简单 shell 实现的时候，一个叫做 minishell 的仓库让我印象深刻：框架给的很好，代码也很适合初学者。我诧异为何这么好的项目却只有几个 star，过了几天，Github Mobile 又给我推荐了不止一个十分相似的 minshell。 实际上，不仅框架相同，readme也都标明了一段奇怪的字段： 42 打开其中一个人的 github 主页，这个人自称来自 42 Barcelona，仔细看一下仓库的话，还能看见其它的 42 Core 项目，比如 LibFt 之类的 这到底是个什么？为什么他们一直念叨着这个词汇呢？ 我没有去过巴塞罗那，自然不能在当地的街头问 42 有什么含义，我只能在搜索引擎上查找，找到了官网，并被满屏幕西班牙文阻塞住了，等到自动翻译被生产出来才模模糊糊的意识到，这是一个学校， 42 School 的学业安排进一步了解后发现，42 Barcelona 实际上是 42 The Network 的众多校区中的一部分  42 Barcelona...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/7b16a0b.html" title="你的大学，并不是你的大学"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover34.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="你的大学，并不是你的大学"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/7b16a0b.html" title="你的大学，并不是你的大学">你的大学，并不是你的大学</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2024-03-16T10:52:11.000Z" title="Created 2024-03-16 18:52:11">2024-03-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/posts/7b16a0b.html#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> comments</span></span></div><div class="content"> Your university is not your university    近来的一件新闻是，全国各地的大学在三年疫情后重新又开放了，舆论是很激烈的，有的学生觉得，进入学校的有些社会人员的素质未免太过差，学校怎么不管管？有的声音则批评三年疫情培养出的学生是又封闭又自私，学校怎么不管管？ 在此我不想讨论纳税人是否应该去参观税金养的市政府，也不想讨论中国大学的开放氛围应该怎么体现，我只想问几个问题 没有素质的人为何敢在大学没有素质，而不是在居民小区，或者是市政府没有素质？ 回答说，大学生好欺负。 那么，一群二十出头，了无牵挂，没有工作，一人吃饱全家不饿的社会闲散人员们，何以是好欺负的呢？ 回答说，大学生有软肋。 那么，大学生的软肋是什么？大学生为什么有软肋？利好于谁人？ 谁的大学？支持大学开放的人无不会表达一个观点，大学不只是学生的，还是社会的。...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/8cc94882.html" title="年终篇下，梦醒了该去哪里"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover26.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="年终篇下，梦醒了该去哪里"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/8cc94882.html" title="年终篇下，梦醒了该去哪里">年终篇下，梦醒了该去哪里</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2024-01-19T15:14:40.000Z" title="Created 2024-01-19 23:14:40">2024-01-19</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/posts/8cc94882.html#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> comments</span></span></div><div class="content"> What do you mean by forward ?    对于我而言，一个很自然的想法是，一切都会不断进步，一切都会不断向前，这里的一切，不仅囊括寰宇、世界、社会、人类，当然也包括我自己。我一向是相信进化论的，总以为将来必胜于过去，青年必胜于老人 1然而后来我明白我倒是错了。  未来没有理由更好想想也是，有什么理由能让我们像宗教的狂信徒一般，皈依在所谓未来脚下呢？近来有一个笑话——...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/d9bbdf29.html" title="跨平台应用开发框架技术的发展应用与展望"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover10.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="跨平台应用开发框架技术的发展应用与展望"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/d9bbdf29.html" title="跨平台应用开发框架技术的发展应用与展望">跨平台应用开发框架技术的发展应用与展望</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-12-27T10:47:15.000Z" title="Created 2023-12-27 18:47:15">2023-12-27</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/posts/d9bbdf29.html#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> comments</span></span></div><div class="content">这篇是用来水《认知实习》的结课论文的，参考了以前写的一篇关于 GUI 开发框架的博客，借着这个机会顺便对那篇博文进行了一次修改作为一篇新博文，老文新水了属于是 这个报告只是单纯的应付作业，不要太注意细节  跨平台应用开发框架技术的发展应用与展望  随着移动设备的广泛普及，跨平台应用开发框架成为解决不同操作系统底层API差异的关键工具。本 文回顾了桌面端和移动端跨平台框架的发展历程，在桌面端，从早期的调用API 或自绘技术到如今以CEF 库的应用为代表的框架。在移动端，Web应用、原生渲染技术和自绘方案分别应对挑战与机遇，而UI描述 方式也经历了从混合到声明式、组件化的演变。未来，随着移动设备技术的进步，跨平台开发框架有望在 提高开发效率的同时，进一步优化用户体验。这一领域的创新将继续推动应用开发工具和方法的演进，为 开发者提供更高效、灵活的解决方案。 背景近年来，随着智能手机和平板电脑等移动设备的广泛普及，移动端应用开发一直备受关注。然而，由 于不同移动端平台（iOS、Android）之间底层API 存在差异，大多数应用程序提供商不得不雇佣两组开发...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/cc6092b8.html" title="年终篇上 2023 的结束"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover1.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="年终篇上 2023 的结束"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/cc6092b8.html" title="年终篇上 2023 的结束">年终篇上 2023 的结束</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-12-26T15:15:17.000Z" title="Created 2023-12-26 23:15:17">2023-12-26</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/posts/cc6092b8.html#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> comments</span></span></div><div class="content">首先点首 hardest to be  现在是 2023 年 的 12 月 26 日，我坐在宿舍里，眼神迟缓，精神萎靡不振，为了聊以慰藉，给自己一点好歹还做了点事情的错觉，我于是开始写，这一年的结束 既然这不是例行的学期回首，那不妨就专注一些空泛的主题吧 “这个世界哪里不好了?” 这个世界会变好吗？  如果是在 2020 年这样提问的话，或许所有人都会不禁触动，甚至于，在 2023...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/3535f2b5.html" title="CPP20 Ranges与斐波那契数列的惰性生成"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover21.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CPP20 Ranges与斐波那契数列的惰性生成"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/3535f2b5.html" title="CPP20 Ranges与斐波那契数列的惰性生成">CPP20 Ranges与斐波那契数列的惰性生成</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-12-24T07:32:59.000Z" title="Created 2023-12-24 15:32:59">2023-12-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/posts/3535f2b5.html#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> comments</span></span></div><div class="content"> C++ 20 中引入了 Ranges 模块, 该模块提供了一系列的range view, 用于对容器进行操作, 本文将使用Ranges来实现惰性生成斐波那契数列. 在开始之前让我们写一个十分简单的递归函数，用于生成斐波那契数列: 1234567891011121314auto fibo_rec(int n) &#123;    if (n &lt;= 1) &#123;      return 1;    &#125; else &#123;      return fibo_rec(n - 1) + fibo_rec(n - 2);    &#125;&#125;int main() &#123;    for (int i = 0; i &lt; 10; ++i) &#123;        std::cout &lt;&lt; fibo_rec(i) &lt;&lt; &quot; &quot;;    &#125;    std::cout &lt;&lt;...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/42f74a3c.html" title="CS好课可以改变废柴命运吗？"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover6.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CS好课可以改变废柴命运吗？"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/42f74a3c.html" title="CS好课可以改变废柴命运吗？">CS好课可以改变废柴命运吗？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-12-16T04:14:15.000Z" title="Created 2023-12-16 12:14:15">2023-12-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/posts/42f74a3c.html#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> comments</span></span></div><div class="content">  SICP，大名鼎鼎的 CS 神课，狭义上指的是 MIT 6.001 课程以及同源的巫师书，要是宽泛点也能够指 UC Berkeley 的 CS61A 课程。 所谓 CS 神课，属于那种 早学到这课我还会混成这 dio 样？ 的灵丹妙药，相当一部分人接触到的时候都会有这样的惊叹，我也不例外，有那么一瞬间甚至觉得，所谓 Computer Science 似乎也不过如此的错觉 可惜，当我抽出时间来的时候，已经过了入门阶段了，怎奈这门课好评如潮，不免心动，于是来了一遍速通，做了做 hw、lab 和 project，质量相当的高 做完之后，意犹未尽，于是向真正的 SICP 进发，开始看《计算机程序的构造和解释》(Structure and Interpretation of Computer Programs，SICP) 作者是麻省理工学院教授哈尔·阿伯尔森和杰拉德·杰伊·萨斯曼 我得承认，虽然我在读的时候止不住的吐槽翻译很差劲，但当我转而去 MIT 官网上 down 下原版 PDF 的时候，还是不禁叹道:  这 tm 和 CS61A...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/4980ba5b.html" title="那些坠落的感觉与午后的惆怅"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover5.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="那些坠落的感觉与午后的惆怅"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/4980ba5b.html" title="那些坠落的感觉与午后的惆怅">那些坠落的感觉与午后的惆怅</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-10-26T09:01:31.000Z" title="Created 2023-10-26 17:01:31">2023-10-26</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%97%B2%E8%81%8A/">闲聊</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/posts/4980ba5b.html#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> comments</span></span></div><div class="content">  fallen如果，只是要表达此刻的感受，或许只需要 悲伤 就够了，但是如果想说清为什么悲伤，恐怕需要比打破现在的情形所需还要更多的智慧与勇气。 是身在其中就永远无法看清楚吗？也是，如果能说清现在的情形，就不会再有半点迷惘了吧。 人真是喜欢偷懒的生物，想着，只要写出什么东西，一切就搞明白了，那样所有的问题都迎刃而解。 人真是不愿承认自己错误的生物，即使是现在，还是更倾向于说 “人类是怎样的” ，这样的话就像置身事外一样，才能放下矜持的批评，或许只有把自己当成另外的事物，才能毫不留情的攻击吧。 这些不会改变什么，当然我也没有指望着神奇的效果会发生，只是觉得这样或许可以聊以抚慰静不下来的心 这种话是从什么时候就开始说的？我的心静不下来 人的距离我想去和人打篮球 🏀 ，可是我不喜欢打篮球 我想和人一块去买水果 🍎 ，可是我不会挑水果 我想找人一起组乐队 🎸...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/cb50296f.html" title="非常特立独行的随机 cover 实现"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover29.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="非常特立独行的随机 cover 实现"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/cb50296f.html" title="非常特立独行的随机 cover 实现">非常特立独行的随机 cover 实现</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-30T18:05:37.000Z" title="Created 2023-10-01 02:05:37">2023-10-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%BD%91%E7%AB%99%E5%BB%BA%E8%AE%BE/">网站建设</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/posts/cb50296f.html#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> comments</span></span></div><div class="content">  这篇文章将会介绍一种非常特立独行的 hexo 博客的随机 cover 实现方式。 我们先来看看，网络上流传的一些 hexo 博客的随机 cover 实现方式：  修改主题的配置文件，在默认 cover 的设置里多加几张图 调用网络上的随机图片 API，然后通过主题的默认 cover 来实现 和第二种类似，但是通过自己写个 .php 来实现一个随机图片 API 接口，这种一般需要自己的服务器  这些方法都不太适合我 为什么不适合我首先，我不想在主题的配置文件里写一堆图片链接，这样太麻烦了，这样看来，随机图片 API 是个不错的选择，但是问题是。 额，我没有服务器啊。 或许你会说，那为什么不用网络上的随机图片 API 呢？  人的 XP 是各不相同的，不一定符合我的审美  更深层次的需求原因如果是用随机图片 API 的话，那么实际上达到的效果会是，每次刷新播客的首页，都会使得 cover 图片发生变化，虽然这样也是种很不错的效果，但是我对随机封面的需求来源其实和效果倒是没有太大关系： 主要原因是我懒得给每个文章都配一张封面图。 更重要的是，毕竟在国内，所以图床一般用 CDN...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/4a5195d4.html" title="make hello! 全局 Makefile 模式匹配"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover41.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="make hello! 全局 Makefile 模式匹配"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/4a5195d4.html" title="make hello! 全局 Makefile 模式匹配">make hello! 全局 Makefile 模式匹配</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-25T15:49:19.000Z" title="Created 2023-09-25 23:49:19">2023-09-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">开发记录</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/posts/4a5195d4.html#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> comments</span></span></div><div class="content">  这个博客将会介绍如何编写全局的 makefile 模式匹配，用来替换默认的隐式规则。 最终你可以直接使用 make hello 来编译 hello.c 文件、hello.tex 文件等等，而不用再写更长的编译命令。 同时，你还可以自定义这里的编译器，编译选项等等，甚至增加新的模式匹配。 内置隐式规则 (Built-in Implicit rules )实际上，你很可能已经使用过内置的隐式规则了，假如当前目录下有一个 hello.c 文件，那么你可以直接使用 make hello 来编译它，这就是一个隐式规则。 隐式规则可以自动推导出目标文件的依赖关系，比如 hello.o 依赖于 hello.c，并且可以自动推导出命令，比如 gcc -c hello.c -o hello.o。如果是 .cpp 文件，那么命令就是 g++ -c hello.cpp -o hello.o。  某些标准的方式经常用于重新制作目标文件。例如，一种常见的制作目标文件的方式是使用 C 编译器从 C 源文件制作目标文件。 隐式规则告诉 make...</div></div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#content-inner">5</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Jenway</div><div class="author-info-description">I love you more than you ever know</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">49</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Jenway"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Jenway" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:JenwayHere@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://music.163.com/#/user/home?id=453746313" target="_blank" title="netease"><i class="iconfont icon-netease-cloud-music-fill" style="color: #d51007;"></i></a><a class="social-icon" href="https://space.bilibili.com/179871013" target="_blank" title="bilibili"><i class="fab fa-bilibili" style="color: #00a1d6;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content"><center> =( •̀ ω •́ )= </center></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/5774811a.html" title="我没有去过巴塞罗那，但是 42"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover15.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="我没有去过巴塞罗那，但是 42"/></a><div class="content"><a class="title" href="/posts/5774811a.html" title="我没有去过巴塞罗那，但是 42">我没有去过巴塞罗那，但是 42</a><time datetime="2024-07-15T05:42:11.000Z" title="Created 2024-07-15 13:42:11">2024-07-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/7b16a0b.html" title="你的大学，并不是你的大学"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover34.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="你的大学，并不是你的大学"/></a><div class="content"><a class="title" href="/posts/7b16a0b.html" title="你的大学，并不是你的大学">你的大学，并不是你的大学</a><time datetime="2024-03-16T10:52:11.000Z" title="Created 2024-03-16 18:52:11">2024-03-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/8cc94882.html" title="年终篇下，梦醒了该去哪里"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover26.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="年终篇下，梦醒了该去哪里"/></a><div class="content"><a class="title" href="/posts/8cc94882.html" title="年终篇下，梦醒了该去哪里">年终篇下，梦醒了该去哪里</a><time datetime="2024-01-19T15:14:40.000Z" title="Created 2024-01-19 23:14:40">2024-01-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/d9bbdf29.html" title="跨平台应用开发框架技术的发展应用与展望"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover10.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="跨平台应用开发框架技术的发展应用与展望"/></a><div class="content"><a class="title" href="/posts/d9bbdf29.html" title="跨平台应用开发框架技术的发展应用与展望">跨平台应用开发框架技术的发展应用与展望</a><time datetime="2023-12-27T10:47:15.000Z" title="Created 2023-12-27 18:47:15">2023-12-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/cc6092b8.html" title="年终篇上 2023 的结束"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover1.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="年终篇上 2023 的结束"/></a><div class="content"><a class="title" href="/posts/cc6092b8.html" title="年终篇上 2023 的结束">年终篇上 2023 的结束</a><time datetime="2023-12-26T15:15:17.000Z" title="Created 2023-12-26 23:15:17">2023-12-26</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>Categories</span>
             <a class="card-more-btn" href="/categories/" title="View More">
-    <i class="fas fa-angle-right"></i></a>
-            </div>
-            <ul class="card-category-list" id="aside-cat-list">
+      <i class="fas fa-angle-right"></i></a>
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
             <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%86%B7%E7%9F%A5%E8%AF%86%E6%9D%82%E8%B0%88/"><span class="card-category-list-name">冷知识杂谈</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B0%8F%E8%AF%B4/"><span class="card-category-list-name">小说</span><span class="card-category-list-count">11</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/"><span class="card-category-list-name">工具推荐</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/"><span class="card-category-list-name">开发记录</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/"><span class="card-category-list-name">技术</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"><span class="card-category-list-name">搭建博客</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B8%85%E5%8D%95/"><span class="card-category-list-name">清单</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BD%91%E7%AB%99%E5%BB%BA%E8%AE%BE/"><span class="card-category-list-name">网站建设</span><span class="card-category-list-count">1</span></a></li>
-            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/GUI/" style="font-size: 1.26em; color: #999fa8">GUI</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 1.26em; color: #999fa8">设计模式</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2/" style="font-size: 1.1em; color: #999">博客部署</a> <a href="/tags/%E7%A7%91%E6%8A%80/" style="font-size: 1.1em; color: #999">科技</a> <a href="/tags/C/" style="font-size: 1.26em; color: #999fa8">C++</a> <a href="/tags/C-20/" style="font-size: 1.1em; color: #999">C++20</a> <a href="/tags/make/" style="font-size: 1.1em; color: #999">make</a> <a href="/tags/CS50X/" style="font-size: 1.1em; color: #999">CS50X</a> <a href="/tags/%E5%AD%A6%E6%9C%9F%E6%80%BB%E7%BB%93/" style="font-size: 1.1em; color: #999">学期总结</a> <a href="/tags/Qt/" style="font-size: 1.26em; color: #999fa8">Qt</a> <a href="/tags/C-Ranges/" style="font-size: 1.1em; color: #999">C++Ranges</a> <a href="/tags/windows/" style="font-size: 1.1em; color: #999">windows</a> <a href="/tags/others/" style="font-size: 1.1em; color: #999">others</a> <a href="/tags/%E7%BC%96%E7%A8%8B/" style="font-size: 1.1em; color: #999">编程</a> <a href="/tags/cpp/" style="font-size: 1.1em; color: #999">cpp</a> <a href="/tags/VScode/" style="font-size: 1.1em; color: #999">VScode</a> <a href="/tags/Blog/" style="font-size: 1.1em; color: #999">Blog</a> <a href="/tags/Hexo/" style="font-size: 1.34em; color: #99a3b0">Hexo</a> <a href="/tags/%E4%B9%A6%E7%B1%8D/" style="font-size: 1.1em; color: #999">书籍</a> <a href="/tags/tools/" style="font-size: 1.1em; color: #999">tools</a> <a href="/tags/Claude/" style="font-size: 1.1em; color: #999">Claude</a> <a href="/tags/terminal/" style="font-size: 1.1em; color: #999">terminal</a> <a href="/tags/ChatGPT/" style="font-size: 1.1em; color: #999">ChatGPT</a> <a href="/tags/CS/" style="font-size: 1.1em; color: #999">CS</a> <a href="/tags/essay/" style="font-size: 1.1em; color: #999">essay</a> <a href="/tags/flutter/" style="font-size: 1.1em; color: #999">flutter</a> <a href="/tags/MinGW/" style="font-size: 1.1em; color: #999">MinGW</a> <a href="/tags/makefile/" style="font-size: 1.1em; color: #999">makefile</a> <a href="/tags/Manga/" style="font-size: 1.1em; color: #999">Manga</a> <a href="/tags/gcc/" style="font-size: 1.1em; color: #999">gcc</a> <a href="/tags/Azure/" style="font-size: 1.1em; color: #999">Azure</a> <a href="/tags/%E5%9B%BE%E5%BA%8A/" style="font-size: 1.1em; color: #999">图床</a> <a href="/tags/SICP/" style="font-size: 1.1em; color: #999">SICP</a> <a href="/tags/novel/" style="font-size: 1.5em; color: #99a9bf">novel</a> <a href="/tags/sdl/" style="font-size: 1.1em; color: #999">sdl</a> <a href="/tags/%E7%9B%B4%E5%88%B0%E4%B8%96%E7%95%8C%E5%B0%BD%E5%A4%B4%E4%B9%9F%E4%BC%9A%E5%94%B1%E5%93%8D%E7%88%B1%E4%BD%A0%E4%B9%8B%E6%AD%8C/" style="font-size: 1.5em; color: #99a9bf">直到世界尽头也会唱响爱你之歌</a> <a href="/tags/%E5%AF%B9%E8%AF%9D/" style="font-size: 1.18em; color: #999ca1">对话</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 1.1em; color: #999">博客</a> <a href="/tags/Windows/" style="font-size: 1.1em; color: #999">Windows</a> <a href="/tags/%E6%84%9F%E5%8F%97/" style="font-size: 1.42em; color: #99a6b7">感受</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span><a class="card-more-btn" href="/archives/" title="View More">
-    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">三月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">十二月 2023</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">十月 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">九月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/06/"><span class="card-archive-list-date">六月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/05/"><span class="card-archive-list-date">五月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/04/"><span class="card-archive-list-date">四月 2023</span><span class="card-archive-list-count">4</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">48</div></div><div class="webinfo-item"><div class="item-name">Runtime :</div><div class="item-count" id="runtimeshow" data-publishDate="2022-09-02T00:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Total Count :</div><div class="item-count">93.3k</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Update :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-03-16T16:44:55.741Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By Jenway</div><div class="footer_custom_text"><br /> <b>I love you more than you ever know<b> <br /> <br /> <a target="_blank" href="https://hexo.io/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=for-the-badge&logo=hexo" title="博客框架为Hexo"> <a target="_blank" href="https://butterfly.js.org/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=for-the-badge&logo=honey" title="博客主题为butterfly"> <br /> <a target="_blank" href="https://icp.gov.moe/?keyword=20227445" title="本站已加入萌ICP，萌ICP备20227445号"> <img style="width:32px;height:32px;margin-bottom:-8px" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://icp.gov.moe/images/ico64.png"> <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/%E8%90%8CICP%E5%A4%87-20227445-fe1384?style=for-the-badge"> <br /> </a>&nbsp;<a target="_blank" href="https://github.com/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=for-the-badge&logo=GitHub" title="Gtihub托管"> </a>&nbsp;<a target="_blank" href="https://cloudflare.net/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-Cloudflare-orange?style=for-the-badge&logo=Cloudflare" title="CloudFlare提供CDN加速"> </a>&nbsp;<a target="_blank" href="https://app.netlify.com/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Hosted-Netlify-darkcyan?style=for-the-badge&logo=Netlify" title="Netlify托管"> </a>&nbsp;<a target="_blank" href="https://www.name.com/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Domain-Name.com-0cedbe?style=for-the-badge&logo=google" title="域名白嫖自 name.com "> </a>&nbsp; <br /> <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span> <br />本站已萌萌哒运行 <span id='htmer_time'></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="Toggle Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
-  if (typeof pangu === 'object') pangu.autoSpacingPage()
-  else {
-    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
-      .then(() => {
-        pangu.autoSpacingPage()
-      })
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2/" style="font-size: 1.1em; color: #999">博客部署</a> <a href="/tags/%E8%A1%A5%E7%A0%81/" style="font-size: 1.1em; color: #999">补码</a> <a href="/tags/SICP/" style="font-size: 1.1em; color: #999">SICP</a> <a href="/tags/42-School/" style="font-size: 1.1em; color: #999">42 School</a> <a href="/tags/gcc/" style="font-size: 1.1em; color: #999">gcc</a> <a href="/tags/%E7%9B%B4%E5%88%B0%E4%B8%96%E7%95%8C%E5%B0%BD%E5%A4%B4%E4%B9%9F%E4%BC%9A%E5%94%B1%E5%93%8D%E7%88%B1%E4%BD%A0%E4%B9%8B%E6%AD%8C/" style="font-size: 1.5em; color: #99a9bf">直到世界尽头也会唱响爱你之歌</a> <a href="/tags/CS50X/" style="font-size: 1.1em; color: #999">CS50X</a> <a href="/tags/novel/" style="font-size: 1.5em; color: #99a9bf">novel</a> <a href="/tags/others/" style="font-size: 1.1em; color: #999">others</a> <a href="/tags/C-20/" style="font-size: 1.1em; color: #999">C++20</a> <a href="/tags/cpp/" style="font-size: 1.1em; color: #999">cpp</a> <a href="/tags/Hexo/" style="font-size: 1.34em; color: #99a3b0">Hexo</a> <a href="/tags/%E7%BC%96%E7%A8%8B/" style="font-size: 1.1em; color: #999">编程</a> <a href="/tags/%E7%A7%91%E6%8A%80/" style="font-size: 1.1em; color: #999">科技</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 1.26em; color: #999fa8">设计模式</a> <a href="/tags/Blog/" style="font-size: 1.1em; color: #999">Blog</a> <a href="/tags/GUI/" style="font-size: 1.18em; color: #999ca1">GUI</a> <a href="/tags/VScode/" style="font-size: 1.1em; color: #999">VScode</a> <a href="/tags/Windows/" style="font-size: 1.1em; color: #999">Windows</a> <a href="/tags/hexo/" style="font-size: 1.1em; color: #999">hexo</a> <a href="/tags/ChatGPT/" style="font-size: 1.1em; color: #999">ChatGPT</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 1.1em; color: #999">博客</a> <a href="/tags/blog/" style="font-size: 1.1em; color: #999">blog</a> <a href="/tags/Qt/" style="font-size: 1.26em; color: #999fa8">Qt</a> <a href="/tags/C-Ranges/" style="font-size: 1.1em; color: #999">C++Ranges</a> <a href="/tags/%E4%B9%A6%E7%B1%8D/" style="font-size: 1.1em; color: #999">书籍</a> <a href="/tags/C/" style="font-size: 1.18em; color: #999ca1">C</a> <a href="/tags/Manga/" style="font-size: 1.1em; color: #999">Manga</a> <a href="/tags/essay/" style="font-size: 1.1em; color: #999">essay</a> <a href="/tags/CS/" style="font-size: 1.1em; color: #999">CS</a> <a href="/tags/tools/" style="font-size: 1.1em; color: #999">tools</a> <a href="/tags/%E6%84%9F%E5%8F%97/" style="font-size: 1.42em; color: #99a6b7">感受</a> <a href="/tags/make/" style="font-size: 1.1em; color: #999">make</a> <a href="/tags/Scoop/" style="font-size: 1.1em; color: #999">Scoop</a> <a href="/tags/makefile/" style="font-size: 1.1em; color: #999">makefile</a> <a href="/tags/C/" style="font-size: 1.26em; color: #999fa8">C++</a> <a href="/tags/%E5%AD%A6%E6%9C%9F%E6%80%BB%E7%BB%93/" style="font-size: 1.1em; color: #999">学期总结</a> <a href="/tags/GitHub-Actions/" style="font-size: 1.1em; color: #999">GitHub Actions</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E5%AF%BC%E8%AE%BA/" style="font-size: 1.1em; color: #999">计算导论</a> <a href="/tags/%E5%9B%BE%E5%BA%8A/" style="font-size: 1.1em; color: #999">图床</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>Archives</span>
+      <a class="card-more-btn" href="/archives/" title="View More"><i class="fas fa-angle-right"></i></a>
+    </div>
+    <ul class="card-archive-list">
+  
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/07/">
+          <span class="card-archive-list-date">七月 2024</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/03/">
+          <span class="card-archive-list-date">三月 2024</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/01/">
+          <span class="card-archive-list-date">一月 2024</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2023/12/">
+          <span class="card-archive-list-date">十二月 2023</span>
+          <span class="card-archive-list-count">4</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2023/10/">
+          <span class="card-archive-list-date">十月 2023</span>
+          <span class="card-archive-list-count">2</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2023/09/">
+          <span class="card-archive-list-date">九月 2023</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2023/06/">
+          <span class="card-archive-list-date">六月 2023</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2023/05/">
+          <span class="card-archive-list-date">五月 2023</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    </ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Website Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article Count :</div><div class="item-count">49</div></div><div class="webinfo-item"><div class="item-name">Total Word Count :</div><div class="item-count">94.7k</div></div><div class="webinfo-item"><div class="item-name">Unique Visitors :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Page Views :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Update :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-09-23T11:36:29.156Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By Jenway</div><div class="footer_custom_text"><br /> <b>I love you more than you ever know<b> <br /> <br /> <a target="_blank" href="https://hexo.io/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=for-the-badge&logo=hexo" title="博客框架为Hexo"> <a target="_blank" href="https://butterfly.js.org/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=for-the-badge&logo=honey" title="博客主题为butterfly"> <br /> <a target="_blank" href="https://icp.gov.moe/?keyword=20227445" title="本站已加入萌ICP，萌ICP备20227445号"> <img style="width:32px;height:32px;margin-bottom:-8px" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://icp.gov.moe/images/ico64.png"> <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/%E8%90%8CICP%E5%A4%87-20227445-fe1384?style=for-the-badge"> <br /> </a>&nbsp;<a target="_blank" href="https://github.com/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=for-the-badge&logo=GitHub" title="Gtihub托管"> </a>&nbsp;<a target="_blank" href="https://cloudflare.net/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/CDN-Cloudflare-orange?style=for-the-badge&logo=Cloudflare" title="CloudFlare提供CDN加速"> </a>&nbsp;<a target="_blank" href="https://app.netlify.com/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Hosted-Netlify-darkcyan?style=for-the-badge&logo=Netlify" title="Netlify托管"> </a>&nbsp;<a target="_blank" href="https://www.name.com/"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Domain-Name.com-0cedbe?style=for-the-badge&logo=google" title="域名白嫖自 name.com "> </a>&nbsp; <br /> <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span> <br />本站已萌萌哒运行 <span id='htmer_time'></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="Toggle Between Traditional and Simplified Chinese">繁</button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>(() => {
+  const panguFn = () => {
+    if (typeof pangu === 'object') pangu.autoSpacingPage()
+    else {
+      btf.getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+        .then(() => {
+          pangu.autoSpacingPage()
+        })
+    }
   }
-}
 
-function panguInit () {
-  if (false){
-    GLOBAL_CONFIG_SITE.isPost && panguFn()
-  } else {
-    panguFn()
+  const panguInit = () => {
+    if (false){
+      GLOBAL_CONFIG_SITE.isPost && panguFn()
+    } else {
+      panguFn()
+    }
   }
-}
 
-document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => { 
+  btf.addGlobalFn('pjaxComplete', panguInit, 'pangu')
+  document.addEventListener('DOMContentLoaded', panguInit)
+})()</script><div class="js-pjax"><script>(() => { 
   const getCommentUrl = () => {
     const eleGroup = document.querySelectorAll('#recent-posts .article-title')
     let urlArray = []
@@ -332,14 +274,14 @@ document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-
       if (typeof twikoo === 'object') {
         runTwikoo()
       } else {
-        getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runTwikoo)
+        btf.getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runTwikoo)
       }
   }
 
   window.pjax ? getCount() : window.addEventListener('load', getCount)
 
 })()</script><script>window.typedJSFn = {
-  init: (str) => {
+  init: str => {
     window.typed = new Typed('#subtitle', Object.assign({
       strings: str,
       startDelay: 300,
@@ -348,20 +290,21 @@ document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-
       backSpeed: 50,
     }, null))
   },
-  run: (subtitleType) => {
+  run: subtitleType => {
     if (true) {
       if (typeof Typed === 'function') {
         subtitleType()
       } else {
-        getScript('https://cdn.jsdelivr.net/npm/typed.js/dist/typed.umd.min.js').then(subtitleType)
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js/dist/typed.umd.min.js').then(subtitleType)
       }
     } else {
       subtitleType()
     }
   }
 }
+btf.addGlobalFn('pjaxSendOnce', () => { typed.destroy() }, 'typedDestroy')
 </script><script>function subtitleType () {
-  getScript('https://sdk.jinrishici.com/v2/browser/jinrishici.js').then(() => {
+  btf.getScript('https://sdk.jinrishici.com/v2/browser/jinrishici.js').then(() => {
     jinrishici.load(result =>{
       if (true) {
         const sub = []
@@ -375,73 +318,53 @@ document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-
   })
 }
 typedJSFn.run(subtitleType)
-</script></div><script id="canvas_nest" defer="defer" color="143,0,255" opacity="0.7" zIndex="-1" count="187" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+</script></div><script id="canvas_nest" defer="defer" color="143,0,255" opacity="0.7" zIndex="-1" count="187" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
 
-var pjax = new Pjax({
-  elements: 'a:not([target="_blank"])',
-  selectors: pjaxSelectors,
-  cacheBust: false,
-  analytics: false,
-  scrollRestoration: false
-})
-
-document.addEventListener('pjax:send', function () {
-
-  // removeEventListener
-  btf.removeGlobalFnEvent('pjax')
-  btf.removeGlobalFnEvent('themeChange')
-
-  document.getElementById('rightside').classList.remove('rightside-show')
-  
-  if (window.aplayers) {
-    for (let i = 0; i < window.aplayers.length; i++) {
-      if (!window.aplayers[i].options.fixed) {
-        window.aplayers[i].destroy()
-      }
-    }
-  }
-
-  typeof typed === 'object' && typed.destroy()
-
-  //reset readmode
-  const $bodyClassList = document.body.classList
-  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
-
-  typeof disqusjs === 'object' && disqusjs.destroy()
-})
-
-document.addEventListener('pjax:complete', function () {
-  window.refreshFn()
-
-  document.querySelectorAll('script[data-pjax]').forEach(item => {
-    const newScript = document.createElement('script')
-    const content = item.text || item.textContent || item.innerHTML || ""
-    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
-    newScript.appendChild(document.createTextNode(content))
-    item.parentNode.replaceChild(newScript, item)
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
   })
 
-  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
-
-  typeof panguInit === 'function' && panguInit()
-
-  // google analytics
-  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
-
-  // baidu analytics
-  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
-
-  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
-
-  // prismjs
-  typeof Prism === 'object' && Prism.highlightAll()
-})
-
-document.addEventListener('pjax:error', e => {
-  if (e.request.status === 404) {
-    pjax.loadUrl('/404.html')
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
   }
-})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script src="/js/dynamicTabTitle.js"></script><script src="/js/runtimeShow.js"></script>
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script src="/js/dynamicTabTitle.js"></script><script src="/js/runtimeShow.js"></script>
   <!-- require APlayer -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
   <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
