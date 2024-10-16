@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-cn" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>VScode 初见 --&gt; 进行C语言编程 | Jenway's Blog</title><meta name="author" content="Jenway"><meta name="copyright" content="Jenway"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="这篇 Blog 会帮助你运用 VScode 进行 C 语言编程，希望能帮助到你。 Let’s develop C program with VScode !  Code editing. Redefined  前置知识什么是 VScode Visual Studio Code 是一个轻量级但功能强大的源代码编辑器，可在您的桌面上运行，并且可用于 Windows，macOS 和 Linux。它具有内">
+<!DOCTYPE html><html lang="zh-cn" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>VScode 初见 --&gt; 进行C语言编程 | Jenway's Blog</title><meta name="author" content="Jenway"><meta name="copyright" content="Jenway"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="这篇 Blog 会帮助你运用 VScode 进行 C 语言编程，希望能帮助到你。 Let’s develop C program with VScode !  Code editing. Redefined  前置知识 什么是 VScode  Visual Studio Code 是一个轻量级但功能强大的源代码编辑器，可在您的桌面上运行，并且可用于 Windows，macOS 和 Linux。它具">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VScode 初见 --&gt; 进行C语言编程">
 <meta property="og:url" content="https://jenway.tech/posts/a7cddfc3.html">
 <meta property="og:site_name" content="Jenway&#39;s Blog">
-<meta property="og:description" content="这篇 Blog 会帮助你运用 VScode 进行 C 语言编程，希望能帮助到你。 Let’s develop C program with VScode !  Code editing. Redefined  前置知识什么是 VScode Visual Studio Code 是一个轻量级但功能强大的源代码编辑器，可在您的桌面上运行，并且可用于 Windows，macOS 和 Linux。它具有内">
+<meta property="og:description" content="这篇 Blog 会帮助你运用 VScode 进行 C 语言编程，希望能帮助到你。 Let’s develop C program with VScode !  Code editing. Redefined  前置知识 什么是 VScode  Visual Studio Code 是一个轻量级但功能强大的源代码编辑器，可在您的桌面上运行，并且可用于 Windows，macOS 和 Linux。它具">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover11.webp">
 <meta property="article:published_time" content="2022-09-21T02:41:58.000Z">
-<meta property="article:modified_time" content="2024-10-16T06:03:49.338Z">
+<meta property="article:modified_time" content="2024-10-16T08:07:49.287Z">
 <meta property="article:author" content="Jenway">
 <meta property="article:tag" content="C">
 <meta property="article:tag" content="VScode">
@@ -148,8 +148,8 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2024-10-16 14:03:49'
-}</script><!-- hexo injector head_end start --><link rel="stylesheet" href="/css/footerTransp.css?1"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><script>window.paceOptions = {
+  postUpdate: '2024-10-16 16:07:49'
+}</script><!-- hexo injector head_end start --><link rel="stylesheet" href="/css/footerTransp.css?1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><script>window.paceOptions = {
   restartOnPushState: false
 }
 
@@ -157,21 +157,27 @@ btf.addGlobalFn('pjaxSend', () => {
   Pace.restart()
 }, 'pace_restart')
 
-</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg" style="background-image: url(url(/img/bak.jpg));"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">54</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">49</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/bangumi/"><i class="fa-fw fas fa-bilibili"></i><span> Bangumi</span></a></li><li><a class="site-page child" href="/custom/homepage/index.html"><i class="fa-fw fas fa-graduation-cap"></i><span> CS50</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover11.webp);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Jenway's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">VScode 初见 --&gt; 进行C语言编程</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/bangumi/"><i class="fa-fw fas fa-bilibili"></i><span> Bangumi</span></a></li><li><a class="site-page child" href="/custom/homepage/index.html"><i class="fa-fw fas fa-graduation-cap"></i><span> CS50</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">VScode 初见 --&gt; 进行C语言编程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-09-21T02:41:58.000Z" title="Created 2022-09-21 10:41:58">2022-09-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-10-16T06:03:49.338Z" title="Updated 2024-10-16 14:03:49">2024-10-16</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">2.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>9mins</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="twikoo_visitors"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/posts/a7cddfc3.html#post-comment"><span id="twikoo-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>这篇 Blog 会帮助你运用 VScode 进行 C 语言编程，希望能帮助到你。</p>
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg" style="background-image: url(url(/img/bak.jpg));"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">54</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">49</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/bangumi/"><i class="fa-fw fas fa-bilibili"></i><span> Bangumi</span></a></li><li><a class="site-page child" href="/custom/homepage/index.html"><i class="fa-fw fas fa-graduation-cap"></i><span> CS50</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover11.webp);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Jenway's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">VScode 初见 --&gt; 进行C语言编程</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/bangumi/"><i class="fa-fw fas fa-bilibili"></i><span> Bangumi</span></a></li><li><a class="site-page child" href="/custom/homepage/index.html"><i class="fa-fw fas fa-graduation-cap"></i><span> CS50</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">VScode 初见 --&gt; 进行C语言编程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-09-21T02:41:58.000Z" title="Created 2022-09-21 10:41:58">2022-09-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-10-16T08:07:49.287Z" title="Updated 2024-10-16 16:07:49">2024-10-16</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">2.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>9mins</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="twikoo_visitors"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/posts/a7cddfc3.html#post-comment"><span id="twikoo-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>这篇 Blog 会帮助你运用 VScode 进行 C 语言编程，希望能帮助到你。</p>
 <p>Let’s develop C program with VScode !</p>
 <blockquote>
 <p>Code editing.</p>
 <p>Redefined</p>
 </blockquote>
-<h2 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h2><h3 id="什么是-VScode"><a href="#什么是-VScode" class="headerlink" title="什么是 VScode"></a>什么是 VScode</h3><blockquote>
-<p>Visual Studio Code 是一个轻量级但功能强大的源代码编辑器，可在您的桌面上运行，并且可用于 Windows，macOS 和 Linux。它具有内置的 JavaScript，TypeScript 和 Node.js 支持，并具有丰富的其他语言（如 C++，C#，Java，Python，PHP，Go）和运行时（如 .NET 和 Unity）扩展。– <a target="_blank" rel="noopener" href="https://code.visualstudio.com/">VScode 官网</a></p>
+<h2 id="前置知识">前置知识</h2>
+<h3 id="什么是-VScode">什么是 VScode</h3>
+<blockquote>
+<p>Visual Studio Code 是一个轻量级但功能强大的源代码编辑器，可在您的桌面上运行，并且可用于 Windows，macOS 和 Linux。它具有内置的 JavaScript，TypeScript 和 Node.js 支持，并具有丰富的其他语言（如 C++，C#，Java，Python，PHP，Go）和运行时（如 .NET 和 Unity）扩展。-- <a target="_blank" rel="noopener" href="https://code.visualstudio.com/">VScode 官网</a></p>
 </blockquote>
-<h3 id="C-语言-–-编写，编译，运行"><a href="#C-语言-–-编写，编译，运行" class="headerlink" title="C 语言 – 编写，编译，运行"></a>C 语言 – 编写，编译，运行</h3><p>用十分简单但不严谨的语言来描述，我们编写的代码<code>(.c / .cpp文件)</code><br>，需要经过编译器的编译，转化为机器能够识别的二进制代码<code>(.exe 文件)</code>，然后由计算机执行。</p>
+<h3 id="C-语言-–-编写，编译，运行">C 语言 – 编写，编译，运行</h3>
+<p>用十分简单但不严谨的语言来描述，我们编写的代码<code>(.c / .cpp文件)</code><br>
+，需要经过编译器的编译，转化为机器能够识别的二进制代码<code>(.exe 文件)</code>，然后由计算机执行。</p>
 <p>常见的 C 语言编译器有 <code>gcc</code>，<code>clang</code>，<code>MSVC (from Visual Studio)</code> 等等。而本文我们将使用的是 <code>gcc</code>。</p>
-<h3 id="什么是-gcc"><a href="#什么是-gcc" class="headerlink" title="什么是 gcc"></a>什么是 gcc</h3><p>gcc，全称 GNU Compiler Collection，是 GNU 开源组织发布的编程语言编译器，支持 C、C++、Objective-C、Fortran、Java、Ada 和 Go 等语言。</p>
+<h3 id="什么是-gcc">什么是 gcc</h3>
+<p>gcc，全称 GNU Compiler Collection，是 GNU 开源组织发布的编程语言编译器，支持 C、C++、Objective-C、Fortran、Java、Ada 和 Go 等语言。</p>
 <p>在 <code>Linux</code> 平台上，<code>gcc</code> 是默认的编译器，而在 <code>Windows</code> 平台上，如果想要使用 <code>gcc</code>，那么有若干种不同的方式。</p>
 <p>其中种种会在另一篇 Blog 中进行介绍，本篇 Blog 中，我们将使用 <code>WinLibs</code> 来使用 <code>gcc</code>。</p>
-<h3 id="什么是-WinLibs"><a href="#什么是-WinLibs" class="headerlink" title="什么是 WinLibs"></a>什么是 WinLibs</h3><p>WinLibs standalone build of GCC and MinGW-w64 for Windows</p>
+<h3 id="什么是-WinLibs">什么是 WinLibs</h3>
+<p>WinLibs standalone build of GCC and MinGW-w64 for Windows</p>
 <p>简而言之，<code>WinLibs</code> 是一个 包含 <code>gcc</code>、<code>MinGW-w64</code>以及其他一些工具的编译版本，它可以在 <code>Windows</code> 平台上使用。</p>
 <p>我们可以在 <a target="_blank" rel="noopener" href="https://winlibs.com/">WinLibs 官网</a> 上下载到最新版本的 <code>WinLibs</code>，通过 <code>WinLibs</code>，我们可以在 <code>Windows</code> 平台上使用 <code>gcc</code>。</p>
 <p>如果你无法访问 <code>WinLibs</code> 官网，可以通过 <a target="_blank" rel="noopener" href="https://sourceforge.net/projects/winlibs-mingw/">Sourceforge</a> 下载。</p>
@@ -180,7 +186,9 @@ btf.addGlobalFn('pjaxSend', () => {
 <li>下载 <code>TDM-GCC</code>，在 <a target="_blank" rel="noopener" href="https://jmeubank.github.io/tdm-gcc/categories/#release">TDM-GCC 官网</a> 上下载 <code>TDM-GCC</code></li>
 <li>下载 <code>MinGW-w64</code>，在 <a target="_blank" rel="noopener" href="https://sourceforge.net/projects/mingw-w64/">Sourceforge</a> 上下载 <code>MinGW-w64</code></li>
 </ul>
-<h2 id="环境变量的配置"><a href="#环境变量的配置" class="headerlink" title="环境变量的配置"></a>环境变量的配置</h2><h3 id="什么是环境变量"><a href="#什么是环境变量" class="headerlink" title="什么是环境变量"></a>什么是环境变量</h3><p>我们用一个简单的例子来说明什么是环境变量。</p>
+<h2 id="环境变量的配置">环境变量的配置</h2>
+<h3 id="什么是环境变量">什么是环境变量</h3>
+<p>我们用一个简单的例子来说明什么是环境变量。</p>
 <p>设想我们现在在 <code>C:\Users\Jenway\Desktop</code> 目录下，该目录下有一个 <code>hello.exe</code> 文件，我们想要运行它，我们可以在终端中输入 <code>.\hello.exe</code> 来运行它。</p>
 <p>可是，如果我们现在在 <code>C:\Users\Jenway\Documents</code> 目录下，我们想要运行 <code>C:\Users\Jenway\Desktop\hello.exe</code>，我们该怎么做呢？</p>
 <p>一个比较直接的方法是，我们可以在终端中输入 <code>C:\Users\Jenway\Desktop\hello.exe</code> 来运行它。</p>
@@ -190,20 +198,22 @@ btf.addGlobalFn('pjaxSend', () => {
 <p>因为，当我们输入 <code>hello.exe</code> 时，终端会在环境变量中寻找 <code>hello.exe</code>，如果找到了，就会运行它。</p>
 <p>所以，我们可以把环境变量理解为一个存储了路径的地方，当我们在终端中输入一个命令时，终端会在环境变量中寻找这个命令，如果找到了，就会运行它。</p>
 <p>自然的，我们可以把 <code>gcc</code> 添加到环境变量中，这样，我们就可以在任意目录下，直接输入 <code>gcc</code> 来运行它。</p>
-<h3 id="将-WinLibs-TDM-GCC-MinGW-w64-添加到环境变量中"><a href="#将-WinLibs-TDM-GCC-MinGW-w64-添加到环境变量中" class="headerlink" title="将 WinLibs &#x2F; TDM-GCC &#x2F; MinGW-w64 添加到环境变量中"></a>将 WinLibs &#x2F; TDM-GCC &#x2F; MinGW-w64 添加到环境变量中</h3><p>其实这几种 gcc 实现的添加方式是一样的，我们以 <code>WinLibs</code> 为例。</p>
+<h3 id="将-WinLibs-TDM-GCC-MinGW-w64-添加到环境变量中">将 WinLibs / TDM-GCC / MinGW-w64 添加到环境变量中</h3>
+<p>其实这几种 gcc 实现的添加方式是一样的，我们以 <code>WinLibs</code> 为例。</p>
 <p>首先，我们需要找到 <code>WinLibs</code> 的安装目录，假设我们将 <code>WinLibs</code> 安装在 <code>C:\mingw-winlibs-llvm-ucrt-mcf</code> 目录下。</p>
 <p>将 <code>C:\mingw-winlibs-llvm-ucrt-mcf\bin</code> 添加到环境变量中，这样，我们就可以在任意目录下，直接输入 <code>gcc</code> 来运行它。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc --version</span><br></pre></td></tr></table></figure>
-
 <p>这将会输出 <code>gcc</code> 的版本信息，也意味着我们已经成功的将 <code>gcc</code> 添加到了环境变量中。</p>
-<h2 id="开始使用-VScode"><a href="#开始使用-VScode" class="headerlink" title="开始使用 VScode"></a>开始使用 VScode</h2><p>现在，我们已经成功的将 <code>gcc</code> 添加到了环境变量中，我们可以开始使用 VScode 进行 C 语言编程了。</p>
+<h2 id="开始使用-VScode">开始使用 VScode</h2>
+<p>现在，我们已经成功的将 <code>gcc</code> 添加到了环境变量中，我们可以开始使用 VScode 进行 C 语言编程了。</p>
 <p>安装 VScode，这里不再赘述，不过要说明的是，请直接在 <a target="_blank" rel="noopener" href="https://code.visualstudio.com/">VScode 官网</a>（点击超链接即可跳转）下载，不要在其他地方下载，如果你不想下载到国内无良厂商收你几十块钱的所谓<code>VScode</code>。</p>
 <blockquote>
 <p>VScode 作为一个开源且免费的软件，不应该被收费，如果你在其他地方下载到了收费的 VScode，那么请立即删除，如果有可能的话，也请向有关部门举报。</p>
 </blockquote>
 <p>当你安装好 VScode 之后，你会发现，VScode 的界面是英文的，如果你不习惯英文界面，可以在 VScode 的扩展商店中搜索 <code>Chinese</code>，下载<code>Chinese (Simplified) Language Pack for Visual Studio Code</code>插件，安装并重启软件之后，VScode 的界面就会变成中文的了。</p>
 <p>你可能需要一点时间来适应 VScode 的界面，不过，作为如今最流行的代码编辑器，VScode 的界面还是很友好的。</p>
-<h3 id="安装必要的插件"><a href="#安装必要的插件" class="headerlink" title="安装必要的插件"></a>安装必要的插件</h3><p>在 VScode 上进行 <code>C/C++</code> 单文件开发在网络上大概有三种流派：</p>
+<h3 id="安装必要的插件">安装必要的插件</h3>
+<p>在 VScode 上进行 <code>C/C++</code> 单文件开发在网络上大概有三种流派：</p>
 <ul>
 <li>使用 <code>C/C++</code> 插件，并编写 <code>tasks.json</code>、<code>launch.json</code> 等文件</li>
 <li>使用 <code>Code Runner</code> 插件</li>
@@ -211,112 +221,116 @@ btf.addGlobalFn('pjaxSend', () => {
 </ul>
 <p>By the way，如果是多文件开发的话，一般会使用 <code>CMake</code> <code>Xmake</code>、<code>Makefile</code> 等工具来进行编译。这里不再赘述。</p>
 <p>你可以选择你喜欢的方式，对于新手来说，大概一键运行的方式更加友好，也就是选择使用 <code>Code Runner</code> 插件。这样的话，这篇 Blog 就可以到此为止了。</p>
-<h3 id="配置生成任务"><a href="#配置生成任务" class="headerlink" title="配置生成任务"></a>配置生成任务</h3><p>如果你倾向于更符合 <code>VScode</code> 设计理念的方式，那么你可以选择使用 <code>C/C++</code> 插件，并编写 <code>tasks.json</code>、<code>launch.json</code> 、<code>c_cpp_properties.json</code> 这三个文件。</p>
+<h3 id="配置生成任务">配置生成任务</h3>
+<p>如果你倾向于更符合 <code>VScode</code> 设计理念的方式，那么你可以选择使用 <code>C/C++</code> 插件，并编写 <code>tasks.json</code>、<code>launch.json</code> 、<code>c_cpp_properties.json</code> 这三个文件。</p>
 <p>这种方式需要你手动编写 json 配置文件，如果你仔细看网上的教程，你就会发现相当多劣质教程的配置文件都是复制来复制去的，我在这里不会不负责任的复制粘贴，但是我也不会仔细讲解如果编写这些配置文件。</p>
 <p>我在这里向你推荐 <a target="_blank" rel="noopener" href="https://guyutongxue.site/">谷雨同学</a> 大佬所编写的 <a target="_blank" rel="noopener" href="https://v4.vscch.tk/">VS Code Config Helper v4</a>,点击链接，下载安装，根据提示进行配置，就可以搭建好 <code>C/C++</code> 开发环境了，其本质上就是在你所打开的文件夹中，生成了 <code>tasks.json</code>、<code>launch.json</code> 、<code>c_cpp_properties.json</code> 这三个文件。</p>
 <p>这里挖一个坑，以后我活血会写一篇关于 <code>tasks.json</code>、<code>launch.json</code> 、<code>c_cpp_properties.json</code> 这三个文件的文章，敬请期待。</p>
-<h3 id="终端的使用"><a href="#终端的使用" class="headerlink" title="终端的使用"></a>终端的使用</h3><p>我们刚才已经介绍了两种流派，一种是使用 <code>Code Runner</code> 插件，一种是使用 <code>C/C++</code> 插件，并编写 <code>tasks.json</code>、<code>launch.json</code> 、<code>c_cpp_properties.json</code> 这三个文件。</p>
+<h3 id="终端的使用">终端的使用</h3>
+<p>我们刚才已经介绍了两种流派，一种是使用 <code>Code Runner</code> 插件，一种是使用 <code>C/C++</code> 插件，并编写 <code>tasks.json</code>、<code>launch.json</code> 、<code>c_cpp_properties.json</code> 这三个文件。</p>
 <p>还有一种最简单的方式，直接命令行编译运行、dubug 等，<code>Clangd</code> 或 <code>C/C++</code> 插件只用来语法提示。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -o hello hello.c</span><br></pre></td></tr></table></figure>
-
 <p>这样就可以编译 <code>hello.c</code> 文件了，<code>-o</code> 参数指定了输出文件的名字，如果不指定的话，输出文件的名字默认为 <code>a.exe</code>。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -o hello hello.c &amp;&amp; .\hello.exe</span><br></pre></td></tr></table></figure>
-
 <p>编译 <code>hello.c</code> 文件，并运行 <code>hello.exe</code> 文件。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gdb hello.exe</span><br></pre></td></tr></table></figure>
-
 <p>使用 <code>gdb</code> 调试 <code>hello.exe</code> 文件</p>
 <p>你也可以写一个简单的 <code>makefile</code> 文件，来编译你的代码。</p>
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">hello: hello.c</span></span><br><span class="line">    gcc -o hello hello.c</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make</span><br></pre></td></tr></table></figure>
-
 <p>关于这些 GNU 工具的使用，比如使用 <code>gdb</code> 调试啦，写 <code>makefile</code>啦，已经可以单独写一篇 Blog 了，这里不再赘述。</p>
-<h2 id="为什么要用终端？"><a href="#为什么要用终端？" class="headerlink" title="为什么要用终端？"></a>为什么要用终端？</h2><p>你可能会问，既然有了图形化界面，为什么还要用终端？</p>
+<h2 id="为什么要用终端？">为什么要用终端？</h2>
+<p>你可能会问，既然有了图形化界面，为什么还要用终端？</p>
 <p>这是一个很好的问题，我也不知道该怎么回答，同理我们也可以问，像 <code>CLion</code>、<code>Visual Studio</code> 这样的 IDE 已经很好用了，为什么还要用 VScode？</p>
 <p>大佬们或许会说:</p>
 <blockquote>
 <p>如果你习惯了使用终端，那么你就会发现，终端的使用是如此的方便，如此的高效。</p>
 </blockquote>
 <p>啊，谁知道呢，可能只是终端会让人觉得很酷吧。</p>
-<h3 id="常用的终端命令"><a href="#常用的终端命令" class="headerlink" title="常用的终端命令"></a>常用的终端命令</h3><table>
+<h3 id="常用的终端命令">常用的终端命令</h3>
+<table>
 <thead>
 <tr>
-<th align="center">命令</th>
-<th align="center">英文含义</th>
-<th align="center">作用</th>
-<th align="center">举例</th>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">英文含义</th>
+<th style="text-align:center">作用</th>
+<th style="text-align:center">举例</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">cd</td>
-<td align="center">Change Directory</td>
-<td align="center">切换目录</td>
-<td align="center">cd C:\Users\Jenway\Desktop</td>
+<tbody>
+<tr>
+<td style="text-align:center">cd</td>
+<td style="text-align:center">Change Directory</td>
+<td style="text-align:center">切换目录</td>
+<td style="text-align:center">cd C:\Users\Jenway\Desktop</td>
 </tr>
 <tr>
-<td align="center">ls</td>
-<td align="center">list</td>
-<td align="center">列出当前目录下的文件</td>
-<td align="center">ls</td>
+<td style="text-align:center">ls</td>
+<td style="text-align:center">list</td>
+<td style="text-align:center">列出当前目录下的文件</td>
+<td style="text-align:center">ls</td>
 </tr>
 <tr>
-<td align="center">mkdir</td>
-<td align="center">make directory</td>
-<td align="center">创建目录</td>
-<td align="center">mkdir test</td>
+<td style="text-align:center">mkdir</td>
+<td style="text-align:center">make directory</td>
+<td style="text-align:center">创建目录</td>
+<td style="text-align:center">mkdir test</td>
 </tr>
 <tr>
-<td align="center">rm</td>
-<td align="center">remove</td>
-<td align="center">删除文件</td>
-<td align="center">rm test.txt</td>
+<td style="text-align:center">rm</td>
+<td style="text-align:center">remove</td>
+<td style="text-align:center">删除文件</td>
+<td style="text-align:center">rm test.txt</td>
 </tr>
 <tr>
-<td align="center">rmdir</td>
-<td align="center">remove directory</td>
-<td align="center">删除目录</td>
-<td align="center">rmdir test</td>
+<td style="text-align:center">rmdir</td>
+<td style="text-align:center">remove directory</td>
+<td style="text-align:center">删除目录</td>
+<td style="text-align:center">rmdir test</td>
 </tr>
 <tr>
-<td align="center">mv</td>
-<td align="center">move</td>
-<td align="center">移动文件</td>
-<td align="center">mv test.txt .\test\</td>
+<td style="text-align:center">mv</td>
+<td style="text-align:center">move</td>
+<td style="text-align:center">移动文件</td>
+<td style="text-align:center">mv test.txt .\test\</td>
 </tr>
 <tr>
-<td align="center">cp</td>
-<td align="center">copy</td>
-<td align="center">复制文件</td>
-<td align="center">cp test.txt C:\Users\Jenway\Desktop</td>
+<td style="text-align:center">cp</td>
+<td style="text-align:center">copy</td>
+<td style="text-align:center">复制文件</td>
+<td style="text-align:center">cp test.txt C:\Users\Jenway\Desktop</td>
 </tr>
 <tr>
-<td align="center">cat</td>
-<td align="center">concatenate</td>
-<td align="center">查看文件内容</td>
-<td align="center">cat test.txt</td>
+<td style="text-align:center">cat</td>
+<td style="text-align:center">concatenate</td>
+<td style="text-align:center">查看文件内容</td>
+<td style="text-align:center">cat test.txt</td>
 </tr>
 <tr>
-<td align="center">pwd</td>
-<td align="center">print working directory</td>
-<td align="center">查看当前目录</td>
-<td align="center">pwd</td>
+<td style="text-align:center">pwd</td>
+<td style="text-align:center">print working directory</td>
+<td style="text-align:center">查看当前目录</td>
+<td style="text-align:center">pwd</td>
 </tr>
 <tr>
-<td align="center">clear</td>
-<td align="center">clear</td>
-<td align="center">清屏</td>
-<td align="center">clear</td>
+<td style="text-align:center">clear</td>
+<td style="text-align:center">clear</td>
+<td style="text-align:center">清屏</td>
+<td style="text-align:center">clear</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>在 Windows 下，如果想使用这种 <code>bash</code> 风格的终端，那么就不要使用 <code>cmd</code>，而是使用 <code>PowerShell</code>，好在，<code>win11</code> 已经默认安装了 <code>windows terminal</code>，我们可以在 <code>windows terminal</code> 中使用 <code>PowerShell</code>。</p>
 <p>当然了，win 下的其它终端环境还有很多，比如 <code>MSYS2</code>、<code>WSL</code> 等等，或许我会在以后的 Blog 中进行介绍。</p>
-<h2 id="主题美化"><a href="#主题美化" class="headerlink" title="主题美化"></a>主题美化</h2><p>我用的主题是是 <code>Material Theme</code>，你也可以在 VScode 的扩展商店中搜索 <code>Theme</code>，选择你喜欢的主题。</p>
+<h2 id="主题美化">主题美化</h2>
+<p>我用的主题是是 <code>Material Theme</code>，你也可以在 VScode 的扩展商店中搜索 <code>Theme</code>，选择你喜欢的主题。</p>
 <p>很多人有修改字体的习惯，不过很多人也觉得自带的 <code>consolas</code> 字体已经足够好了，我选择的是 <code>Monaco</code> 字体，</p>
 <p>我也对 VScode 终端的字体进行了修改，我使用的是 <code>CaskaydiaCove NF</code> 字体，你可以在 <a target="_blank" rel="noopener" href="https://www.nerdfonts.com/">Nerd Fonts</a> 上下载到它。</p>
-<p>终端环境的美化折腾与编程字体其实是程序员群体中一个比较和谐的话题，相比之下，字体之争，换行符之争，vim &#x2F;Emacs 之争，语言之争，框架之争，常常会引发激烈的争论。</p>
-<h2 id="快捷键的设置"><a href="#快捷键的设置" class="headerlink" title="快捷键的设置"></a>快捷键的设置</h2><p>很多人习惯修改快捷键，我个人是没有这样的习惯了，我只修改了一条那就是将打开终端的命令从 <code>ctrl + ~</code> 修改为 <code>ctrl + \</code>。因为这样更符合左右手分工</p>
-<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>后来我逐渐意识到，对于新手来说，花太多时间在这些琐碎的配置上，是不值得的，所以我写了这篇 Blog，希望能帮助到你。</p>
+<p>终端环境的美化折腾与编程字体其实是程序员群体中一个比较和谐的话题，相比之下，字体之争，换行符之争，vim /Emacs 之争，语言之争，框架之争，常常会引发激烈的争论。</p>
+<h2 id="快捷键的设置">快捷键的设置</h2>
+<p>很多人习惯修改快捷键，我个人是没有这样的习惯了，我只修改了一条那就是将打开终端的命令从 <code>ctrl + ~</code> 修改为 <code>ctrl + \</code>。因为这样更符合左右手分工</p>
+<h2 id="结尾">结尾</h2>
+<p>后来我逐渐意识到，对于新手来说，花太多时间在这些琐碎的配置上，是不值得的，所以我写了这篇 Blog，希望能帮助到你。</p>
 <p>如果你懒得配置的话，你也可以选择更加简单、开箱即用的方法，</p>
 <blockquote>
 <p>你的意思是，Visual Studio ？ DEV C++ ？ CLion ？</p>

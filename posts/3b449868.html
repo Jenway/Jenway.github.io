@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-cn" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>设计模式与 Warcraft 其三 | Jenway's Blog</title><meta name="author" content="Jenway"><meta name="copyright" content="Jenway"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="须知: 这并不是一篇教程，而是一篇笔记，  如果你想学习设计模式，建议直接阅读比较好的设计模式教程，比如 设计模式|菜鸟教程。   这篇文章我们来讲讲行为型模式… 吗？ 并不是，这篇文章先来讲一讲 part 1 中提到的大作业 Warcraft 3。 Warcraft 3如果你对这个不管兴趣请点击 这里 跳过这一节。 什么是 Warcraft 3魔兽争霸 3（Warcraft III: Rei">
+<!DOCTYPE html><html lang="zh-cn" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>设计模式与 Warcraft 其三 | Jenway's Blog</title><meta name="author" content="Jenway"><meta name="copyright" content="Jenway"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="须知: 这并不是一篇教程，而是一篇笔记，  如果你想学习设计模式，建议直接阅读比较好的设计模式教程，比如 设计模式|菜鸟教程。   这篇文章我们来讲讲行为型模式… 吗？ 并不是，这篇文章先来讲一讲 part 1 中提到的大作业 Warcraft 3。 Warcraft 3 如果你对这个不管兴趣请点击 这里 跳过这一节。 什么是 Warcraft 3 魔兽争霸 3（Warcraft III: Re">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式与 Warcraft 其三">
 <meta property="og:url" content="https://jenway.tech/posts/3b449868.html">
 <meta property="og:site_name" content="Jenway&#39;s Blog">
-<meta property="og:description" content="须知: 这并不是一篇教程，而是一篇笔记，  如果你想学习设计模式，建议直接阅读比较好的设计模式教程，比如 设计模式|菜鸟教程。   这篇文章我们来讲讲行为型模式… 吗？ 并不是，这篇文章先来讲一讲 part 1 中提到的大作业 Warcraft 3。 Warcraft 3如果你对这个不管兴趣请点击 这里 跳过这一节。 什么是 Warcraft 3魔兽争霸 3（Warcraft III: Rei">
+<meta property="og:description" content="须知: 这并不是一篇教程，而是一篇笔记，  如果你想学习设计模式，建议直接阅读比较好的设计模式教程，比如 设计模式|菜鸟教程。   这篇文章我们来讲讲行为型模式… 吗？ 并不是，这篇文章先来讲一讲 part 1 中提到的大作业 Warcraft 3。 Warcraft 3 如果你对这个不管兴趣请点击 这里 跳过这一节。 什么是 Warcraft 3 魔兽争霸 3（Warcraft III: Re">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover24.webp">
 <meta property="article:published_time" content="2023-04-30T08:38:04.000Z">
-<meta property="article:modified_time" content="2024-10-16T06:03:49.339Z">
+<meta property="article:modified_time" content="2024-10-16T08:07:49.288Z">
 <meta property="article:author" content="Jenway">
 <meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary">
@@ -147,8 +147,8 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2024-10-16 14:03:49'
-}</script><!-- hexo injector head_end start --><link rel="stylesheet" href="/css/footerTransp.css?1"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><script>window.paceOptions = {
+  postUpdate: '2024-10-16 16:07:49'
+}</script><!-- hexo injector head_end start --><link rel="stylesheet" href="/css/footerTransp.css?1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><script>window.paceOptions = {
   restartOnPushState: false
 }
 
@@ -156,13 +156,12 @@ btf.addGlobalFn('pjaxSend', () => {
   Pace.restart()
 }, 'pace_restart')
 
-</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg" style="background-image: url(url(/img/bak.jpg));"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">54</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">49</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/bangumi/"><i class="fa-fw fas fa-bilibili"></i><span> Bangumi</span></a></li><li><a class="site-page child" href="/custom/homepage/index.html"><i class="fa-fw fas fa-graduation-cap"></i><span> CS50</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover24.webp);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Jenway's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">设计模式与 Warcraft 其三</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/bangumi/"><i class="fa-fw fas fa-bilibili"></i><span> Bangumi</span></a></li><li><a class="site-page child" href="/custom/homepage/index.html"><i class="fa-fw fas fa-graduation-cap"></i><span> CS50</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">设计模式与 Warcraft 其三</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-04-30T08:38:04.000Z" title="Created 2023-04-30 16:38:04">2023-04-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-10-16T06:03:49.339Z" title="Updated 2024-10-16 14:03:49">2024-10-16</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">1.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>5mins</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="twikoo_visitors"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/posts/3b449868.html#post-comment"><span id="twikoo-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><!-- <meting-js
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg" style="background-image: url(url(/img/bak.jpg));"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">54</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">49</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/bangumi/"><i class="fa-fw fas fa-bilibili"></i><span> Bangumi</span></a></li><li><a class="site-page child" href="/custom/homepage/index.html"><i class="fa-fw fas fa-graduation-cap"></i><span> CS50</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(http://fastly.jsdelivr.net/gh/jenway/J-figure-bed@master/cover/cover24.webp);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Jenway's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">设计模式与 Warcraft 其三</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/bangumi/"><i class="fa-fw fas fa-bilibili"></i><span> Bangumi</span></a></li><li><a class="site-page child" href="/custom/homepage/index.html"><i class="fa-fw fas fa-graduation-cap"></i><span> CS50</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">设计模式与 Warcraft 其三</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-04-30T08:38:04.000Z" title="Created 2023-04-30 16:38:04">2023-04-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-10-16T08:07:49.288Z" title="Updated 2024-10-16 16:07:49">2024-10-16</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">1.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>5mins</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="twikoo_visitors"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/posts/3b449868.html#post-comment"><span id="twikoo-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><!-- <meting-js
     server="netease"
     type="song"
     autoplay="true"
     id="18126594">
 </meting-js> -->
-
 <p>须知: 这并不是一篇教程，而是一篇笔记，</p>
 <blockquote>
 <p>如果你想学习设计模式，建议直接阅读比较好的设计模式教程，比如 <a target="_blank" rel="noopener" href="https://www.runoob.com/design-pattern/design-pattern-tutorial.html">设计模式|菜鸟教程</a>。</p>
@@ -170,17 +169,20 @@ btf.addGlobalFn('pjaxSend', () => {
 <hr>
 <p>这篇文章我们来讲讲行为型模式… 吗？</p>
 <p>并不是，这篇文章先来讲一讲 part 1 中提到的大作业 <code>Warcraft 3</code>。</p>
-<h2 id="Warcraft-3"><a href="#Warcraft-3" class="headerlink" title="Warcraft 3"></a>Warcraft 3</h2><p>如果你对这个不管兴趣请点击 <a href="#%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F">这里</a> 跳过这一节。</p>
-<h3 id="什么是-Warcraft-3"><a href="#什么是-Warcraft-3" class="headerlink" title="什么是 Warcraft 3"></a>什么是 Warcraft 3</h3><p>魔兽争霸 3（Warcraft III: Reign of Chaos）是由暴雪娱乐公司开发的一款即时战略游戏，于2002年7月3日发行。游戏的故事发生在魔兽争霸系列的虚构世界中，讲述了一场由人类、兽人、亡灵和暗夜精灵四个种族之间的战争。游戏的扩展包《冰封王座》于2003年7月1日发行。</p>
+<h2 id="Warcraft-3">Warcraft 3</h2>
+<p>如果你对这个不管兴趣请点击 <a href="#%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F">这里</a> 跳过这一节。</p>
+<h3 id="什么是-Warcraft-3">什么是 Warcraft 3</h3>
+<p>魔兽争霸 3（Warcraft III: Reign of Chaos）是由暴雪娱乐公司开发的一款即时战略游戏，于2002年7月3日发行。游戏的故事发生在魔兽争霸系列的虚构世界中，讲述了一场由人类、兽人、亡灵和暗夜精灵四个种族之间的战争。游戏的扩展包《冰封王座》于2003年7月1日发行。</p>
 <blockquote>
 <p>我顺便下载下来玩了会儿，很好玩，推荐。</p>
 </blockquote>
-<h3 id="大作业的要求"><a href="#大作业的要求" class="headerlink" title="大作业的要求"></a>大作业的要求</h3><p>然而，这个大作业除了名字，和魔兽争霸 3 没有任何关系。</p>
+<h3 id="大作业的要求">大作业的要求</h3>
+<p>然而，这个大作业除了名字，和魔兽争霸 3 没有任何关系。</p>
 <p>除此之外，这个大作业甚至并不是原创，实际上，经查证，原题来自 <a target="_blank" rel="noopener" href="https://cxsjsx.openjudge.cn/2018hwall/024/">北京大学 程序设计与算法（三）魔兽世界3(2020秋季)</a>。</p>
 <p>内容比较长，这里只摘录一部分：</p>
 <figure class="highlight plaintext"><figcaption><span>Text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">大实验以old school游戏魔兽争霸为背景，分成三个难度：</span><br><span class="line">魔兽世界之一：备战</span><br><span class="line">魔兽世界之二：装备</span><br><span class="line">魔兽世界之三：开战</span><br><span class="line"></span><br><span class="line">魔兽世界之一：备战</span><br><span class="line"></span><br><span class="line">描述</span><br><span class="line">魔兽世界的西面是红魔军的司令部，东面是蓝魔军的司令部。两个司令部之间是依次排列的若干城市。</span><br><span class="line">红司令部，City 1，City 2，……，City n，蓝司令部</span><br><span class="line"></span><br><span class="line">两军的司令部都会制造武士。</span><br><span class="line"></span><br><span class="line">武士</span><br><span class="line">- dragon</span><br><span class="line">- ninja</span><br><span class="line">- iceman</span><br><span class="line">- lion</span><br><span class="line">- wolf</span><br><span class="line"></span><br><span class="line">每种武士都有这三种属性</span><br><span class="line">- 编号 从1开始计算。红方制造出来的第n个武士，编号就是n。同样，蓝方制造出来的第n个武士，编号也是n。</span><br><span class="line">-生命值 武士在刚降生的时候有一个生命值。</span><br><span class="line">-攻击力 </span><br></pre></td></tr></table></figure>
-
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>可以参见我的 <a target="_blank" rel="noopener" href="https://github.com/Jenway/Warcraft_sdu">Warcraft_sdu</a> repo。</p>
+<h3 id="思路">思路</h3>
+<p>可以参见我的 <a target="_blank" rel="noopener" href="https://github.com/Jenway/Warcraft_sdu">Warcraft_sdu</a> repo。</p>
 <p>它使用了</p>
 <ul>
 <li>工厂模式</li>
@@ -188,50 +190,66 @@ btf.addGlobalFn('pjaxSend', () => {
 <li>CMake</li>
 </ul>
 <p>等一些杂七杂八的东西，详情参考仓库吧</p>
-<h2 id="行为型模式"><a href="#行为型模式" class="headerlink" title="行为型模式"></a>行为型模式</h2><p>行为型模式（Behavioral Patterns）描述类或对象之间怎样相互协作共同完成单个对象都无法单独完成的任务，以及怎样分配职责。</p>
+<h2 id="行为型模式">行为型模式</h2>
+<p>行为型模式（Behavioral Patterns）描述类或对象之间怎样相互协作共同完成单个对象都无法单独完成的任务，以及怎样分配职责。</p>
 <p>包括：责任链模式、命令模式、解释器模式、迭代器模式、中介者模式、备忘录模式、观察者模式、状态模式、空对象模式、策略模式、模板模式、访问者模式。</p>
 <p>这里我只列张图，与教程的链接。</p>
 <p>如果你不想看，直接跳到 <a href="#%E5%B0%8F%E7%BB%93">这里</a> 来看小结吧。</p>
-<h3 id="责任链模式"><a href="#责任链模式" class="headerlink" title="责任链模式"></a>责任链模式</h3><p>责任链模式（Chain of Responsibility Pattern）为请求创建了一个接收者对象的链。</p>
-<p>菜鸟教程画的图都挺好的，所以我直接盗图好了，详细的教程点击 <a target="_blank" rel="noopener" href="https://www.runoob.com/design-pattern/chain-of-responsibility-pattern.html">这里</a><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://www.runoob.com/wp-content/uploads/2014/08/2021-chain-of-responsibility.svg" alt="责任链模式"></p>
-<h3 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h3><p>命令模式（Command Pattern）是一种数据驱动的设计模式，它属于行为型模式。请求以命令的形式包裹在对象中，并传给调用对象。调用对象寻找可以处理该命令的合适的对象，并把该命令传给相应的对象，该对象执行命令。</p>
+<h3 id="责任链模式">责任链模式</h3>
+<p>责任链模式（Chain of Responsibility Pattern）为请求创建了一个接收者对象的链。</p>
+<p>菜鸟教程画的图都挺好的，所以我直接盗图好了，详细的教程点击 <a target="_blank" rel="noopener" href="https://www.runoob.com/design-pattern/chain-of-responsibility-pattern.html">这里</a><br>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://www.runoob.com/wp-content/uploads/2014/08/2021-chain-of-responsibility.svg" alt="责任链模式"></p>
+<h3 id="命令模式">命令模式</h3>
+<p>命令模式（Command Pattern）是一种数据驱动的设计模式，它属于行为型模式。请求以命令的形式包裹在对象中，并传给调用对象。调用对象寻找可以处理该命令的合适的对象，并把该命令传给相应的对象，该对象执行命令。</p>
 <p><a target="_blank" rel="noopener" href="https://www.runoob.com/design-pattern/command-pattern.html">这里</a> 有详细的教程。</p>
 <p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://www.runoob.com/wp-content/uploads/2014/08/20220427-command-1-command-1.svg" alt="命令模式"></p>
-<h3 id="解释器模式"><a href="#解释器模式" class="headerlink" title="解释器模式"></a>解释器模式</h3><p>解释器模式（Interpreter Pattern）提供了评估语言的语法或表达式的方式，它属于行为型模式。这种模式实现了一个表达式接口，该接口解释一个特定的上下文。这种模式被用在 SQL 解析、符号处理引擎等。</p>
+<h3 id="解释器模式">解释器模式</h3>
+<p>解释器模式（Interpreter Pattern）提供了评估语言的语法或表达式的方式，它属于行为型模式。这种模式实现了一个表达式接口，该接口解释一个特定的上下文。这种模式被用在 SQL 解析、符号处理引擎等。</p>
 <p><a target="_blank" rel="noopener" href="https://www.runoob.com/design-pattern/interpreter-pattern.html">这里</a> 有详细的教程。</p>
 <p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://www.runoob.com/wp-content/uploads/2014/08/interpreter_pattern_uml_diagram.jpg" alt="解释器模式"></p>
-<h3 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h3><p>迭代器模式（Iterator Pattern）是 Java 和 .Net 编程环境中非常常用的设计模式。这种模式用于顺序访问集合对象的元素，不需要知道集合对象的底层表示。</p>
+<h3 id="迭代器模式">迭代器模式</h3>
+<p>迭代器模式（Iterator Pattern）是 Java 和 .Net 编程环境中非常常用的设计模式。这种模式用于顺序访问集合对象的元素，不需要知道集合对象的底层表示。</p>
 <p><a target="_blank" rel="noopener" href="https://www.runoob.com/design-pattern/iterator-pattern.html">这里</a> 有详细的教程。</p>
 <p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://www.runoob.com/wp-content/uploads/2014/08/202107-23-iterator-pattern.png" alt="迭代器模式"></p>
-<h3 id="中介者模式"><a href="#中介者模式" class="headerlink" title="中介者模式"></a>中介者模式</h3><p>中介者模式（Mediator Pattern）用于降低多个对象和类之间的通信复杂性。</p>
+<h3 id="中介者模式">中介者模式</h3>
+<p>中介者模式（Mediator Pattern）用于降低多个对象和类之间的通信复杂性。</p>
 <p><a target="_blank" rel="noopener" href="https://www.runoob.com/design-pattern/mediator-pattern.html">这里</a> 有详细的教程。</p>
 <p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://www.runoob.com/wp-content/uploads/2014/08/mediator_pattern_uml_diagram.jpg" alt="中介者模式"></p>
-<h3 id="备忘录模式"><a href="#备忘录模式" class="headerlink" title="备忘录模式"></a>备忘录模式</h3><p>备忘录模式（Memento Pattern）保存一个对象的某个状态，以便在适当的时候恢复对象。</p>
+<h3 id="备忘录模式">备忘录模式</h3>
+<p>备忘录模式（Memento Pattern）保存一个对象的某个状态，以便在适当的时候恢复对象。</p>
 <p><a target="_blank" rel="noopener" href="https://www.runoob.com/design-pattern/memento-pattern.html">这里</a> 有详细的教程。</p>
 <p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://www.runoob.com/wp-content/uploads/2014/08/memento_pattern_uml_diagram.jpg" alt="备忘录模式"></p>
-<h3 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h3><p>观察者模式（Observer Pattern）用于在目标对象与观察者之间建立一种一对多的依赖关系。</p>
+<h3 id="观察者模式">观察者模式</h3>
+<p>观察者模式（Observer Pattern）用于在目标对象与观察者之间建立一种一对多的依赖关系。</p>
 <p><a target="_blank" rel="noopener" href="https://www.runoob.com/design-pattern/observer-pattern.html">这里</a> 有详细的教程。</p>
 <p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://www.runoob.com/wp-content/uploads/2014/08/observer_pattern_uml_diagram.jpg" alt="观察者模式"></p>
-<h3 id="状态模式"><a href="#状态模式" class="headerlink" title="状态模式"></a>状态模式</h3><p>状态模式（State Pattern）允许一个对象在其内部状态改变时改变其行为能力。</p>
+<h3 id="状态模式">状态模式</h3>
+<p>状态模式（State Pattern）允许一个对象在其内部状态改变时改变其行为能力。</p>
 <p><a target="_blank" rel="noopener" href="https://www.runoob.com/design-pattern/state-pattern.html">这里</a> 有详细的教程。</p>
 <p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://www.runoob.com/wp-content/uploads/2014/08/state_pattern_uml_diagram.jpg" alt="状态模式"></p>
-<h3 id="空对象模式"><a href="#空对象模式" class="headerlink" title="空对象模式"></a>空对象模式</h3><p>空对象模式（Null Object Pattern）是一种使用频率相对较低的设计模式。</p>
+<h3 id="空对象模式">空对象模式</h3>
+<p>空对象模式（Null Object Pattern）是一种使用频率相对较低的设计模式。</p>
 <p><a target="_blank" rel="noopener" href="https://www.runoob.com/design-pattern/null-object-pattern.html">这里</a> 有详细的教程。</p>
 <p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://www.runoob.com/wp-content/uploads/2014/08/null_pattern_uml_diagram.jpg" alt="空对象模式"></p>
-<h3 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h3><p>策略模式（Strategy Pattern）中，一个类的行为或其算法可以在运行时更改。</p>
+<h3 id="策略模式">策略模式</h3>
+<p>策略模式（Strategy Pattern）中，一个类的行为或其算法可以在运行时更改。</p>
 <p><a target="_blank" rel="noopener" href="https://www.runoob.com/design-pattern/strategy-pattern.html">这里</a> 有详细的教程。</p>
 <p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://www.runoob.com/wp-content/uploads/2014/08/strategy_pattern_uml_diagram.jpg" alt="策略模式"></p>
-<h3 id="模板模式"><a href="#模板模式" class="headerlink" title="模板模式"></a>模板模式</h3><p>模板模式（Template Pattern）在一个方法中定义一个算法的骨架，而将一些步骤延迟到子类中。</p>
+<h3 id="模板模式">模板模式</h3>
+<p>模板模式（Template Pattern）在一个方法中定义一个算法的骨架，而将一些步骤延迟到子类中。</p>
 <p><a target="_blank" rel="noopener" href="https://www.runoob.com/design-pattern/template-pattern.html">这里</a> 有详细的教程。</p>
 <p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://www.runoob.com/wp-content/uploads/2014/08/template_pattern_uml_diagram.jpg" alt="模板模式"></p>
-<h3 id="访问者模式"><a href="#访问者模式" class="headerlink" title="访问者模式"></a>访问者模式</h3><p>访问者模式（Visitor Pattern）主要将数据结构与数据操作分离。</p>
+<h3 id="访问者模式">访问者模式</h3>
+<p>访问者模式（Visitor Pattern）主要将数据结构与数据操作分离。</p>
 <p><a target="_blank" rel="noopener" href="https://www.runoob.com/design-pattern/visitor-pattern.html">这里</a> 有详细的教程。</p>
 <p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://www.runoob.com/wp-content/uploads/2014/08/visitor_pattern_uml_diagram.jpg" alt="访问者模式"></p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<h2 id="参考资料">参考资料</h2>
+<ul>
 <li><a target="_blank" rel="noopener" href="https://cxsjsx.openjudge.cn/2018hwall/024/">魔兽世界3(2020秋季)</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.runoob.com/design-pattern/design-pattern-tutorial.html">设计模式|菜鸟教程</a></li>
 </ul>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>如果你看到这里，就会发现，这一篇文章十分的水，一方面是，关于这些行为型模式，我并没有什么好的理解。</p>
+<h2 id="小结">小结</h2>
+<p>如果你看到这里，就会发现，这一篇文章十分的水，一方面是，关于这些行为型模式，我并没有什么好的理解。</p>
 <p>我感觉到，很多这些模式，因为太过经典，已经成为了语言的一部分，比如说，迭代器模式，在 Java 中，写一个对象，让它 implement Iterable，然后为它写一个 迭代器，这是很自然的事情。</p>
 <p>再比如，装饰器模式，这个设计在 Python 中，是很常见的，甚至原生提供。Python 的 <code>@property</code> 就是一个很好的例子。</p>
 <p>话说，装饰器这种想法，是函数式编程还是 GoF 的设计模式先提出来的？</p>
