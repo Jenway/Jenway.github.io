@@ -1,0 +1,52 @@
+name: 自动部署
+# 当有改动推送到master分支时，启动Action
+on:
+    push:
+        tags:
+            - 'v*.*.*'
+    release:
+        types:
+            - published
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: 检查分支
+              uses: actions/checkout@v4
+              with:
+                  ref: master
+                  submodules: recursive
+                  token: ${{ secrets.CONTENT_TOKEN }}
+
+            - name: 安装 Node && yarn
+              uses: actions/setup-node@v3
+              with:
+                  node-version: latest 
+            - run: npm install -g yarn
+
+            - name: 安装依赖
+              run: yarn
+            
+            - name: 下载图床link && 生成随机 cover
+              run: |
+                  wget https://raw.githubusercontent.com/Jenway/J-figure-Bed/master/img.txt -O source/_data/img.txt
+                  npx hexo random_list
+
+            - name: 生成静态文件
+              run: |
+                  npx hexo clean
+                  npx hexo bangumi -u
+                  # export HEXO_ALGOLIA_INDEXING_KEY=${{ secrets.ALGOLIA_TOKEN }}
+                  # hexo algolia
+                  npx hexo generate
+                  # gulp
+
+            - name: 部署到Github
+              uses: JamesIves/github-pages-deploy-action@v4
+              with:
+                  token: ${{ secrets.DEPLOY_TOKEN }}
+                  repository-name: Jenway/Jenway.github.io
+                  branch: master
+                  folder: public
+                  commit-message: "${{ github.event.head_commit.message }} Updated By Github Actions"
